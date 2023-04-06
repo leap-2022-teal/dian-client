@@ -2,6 +2,7 @@ import Input from "../../components/input";
 // import axios from "axios";
 // import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
+import Card from "../../components/card";
 
 const Auth = () => {
   // const router = useRouter();
@@ -61,6 +62,7 @@ const Auth = () => {
             </p>
           </div>
         </div>
+        <Card/>
       </div>
     </div>
   )
