@@ -1,7 +1,11 @@
-import { Header } from "../../components/header";
+import { Header } from '../../components/header';
 
 export default function Home() {
   return (
-    <Header/>
-  )
+    <>
+      <div className="bg-gray-900 min-h-screen">
+        <Header />
+      </div>
+    </>
+  );
 }
