@@ -7,7 +7,7 @@ export default function Home() {
       <div className="bg-gray-900 min-h-screen">
         <Header />
 
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-4">
           <Products />
         </div>
       </div>
