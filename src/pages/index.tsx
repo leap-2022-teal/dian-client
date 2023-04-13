@@ -1,3 +1,4 @@
+import { Category } from '../../components/category';
 import { Header } from '../../components/header';
 import { Products } from '../../components/products';
 
@@ -6,7 +7,7 @@ export default function Home() {
     <>
       <div className="bg-gray-900 min-h-screen">
         <Header />
-
+           <Category />
         <div className="grid grid-cols-4">
           <Products />
         </div>
