@@ -1,4 +1,4 @@
-import Card from '../../components/card';
+import { Category } from '../../components/category';
 import { Header } from '../../components/header';
 
 export default function Home() {
@@ -6,7 +6,9 @@ export default function Home() {
     <>
       <div className="bg-gray-900 min-h-screen">
         <Header />
-        <Card />
+        <Category />
+
+
       </div>
     </>
   );
