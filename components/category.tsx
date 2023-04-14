@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
+import { fetcher } from '../utils/fetcher';
 
 export function Category(props: any) {
   const [categories, setCategories] = useState(props.categories);
 
   useEffect(() => {
-    fetch(`http://localhost:8000/categories`)
-      .then((res) => res.json())
+    fetcher(`categories`)
       .then((data) => setCategories(data));
   }, []);
-  console.log(categories);
+
   return (
     <div>
       {categories?.map((category: any) => (
-        <div key={category._id}>{category.title}</div>
+        <div className='text-white' key={category._id}>{category.title}</div>
       ))}
     </div>
   );
