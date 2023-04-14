@@ -1,15 +1,14 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { fetcher } from '../utils/fetcher';
 
 export function Products(props: any) {
   const [products, setProducts] = useState(props.products);
 
   useEffect(() => {
-    axios(`http://localhost:8000/products`).then((data: any) => {
-      setProducts(data.data);
-    });
+    fetcher(`products`).then((data: any) => {
+      setProducts(data);
+    }); 
   }, []);
-
   return (
     <>
       {products?.map((product: any) => {
