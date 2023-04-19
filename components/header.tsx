@@ -1,13 +1,14 @@
+import Link from 'next/link';
+
 export function Header() {
   return (
     <>
-      <header >
+      <header>
         <div className="container mx-auto flex items-center justify-between px-4 py-3">
           <div className="flex items-center">
-            <a href="#" className="text-xl font-bold text-white">
+            <Link href="/" className="text-xl font-bold text-white">
               Logo
-            </a>
-            {/* <span className="h-2 w-2 bg-green-400 rounded-full ml-2"></span> */}
+            </Link>
           </div>
 
           <div className="hidden md:flex items-center">
@@ -24,12 +25,12 @@ export function Header() {
               </div>
             </form>
 
-            <a href="#" className="text-gray-300 hover:text-white mr-10">
+            <Link href="/login" className="text-gray-300 hover:text-white mr-10">
               Нэвтрэх
-            </a>
-            <a href="#" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+            </Link>
+            <Link href="/signUp" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
               Бүртгүүлэх
-            </a>
+            </Link>
           </div>
           <button className="md:hidden rounded-lg focus:outline-none focus:shadow-outline-gray">
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" className="w-6 h-6">
