@@ -8,7 +8,7 @@
         {
             "files": ["*.ts", "**/*.ts", "*.tsx", "**/*.tsx"],
             "rules": {
-                "camelcase": "error"
+                "camelCase": "error"
             }
         
         }
