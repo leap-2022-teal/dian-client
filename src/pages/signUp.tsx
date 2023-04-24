@@ -23,6 +23,7 @@ export default function UserSignUp() {
       if (isCheck) {
         fetcherPost('user/register', { email, password, confirmPassword }).then((res) => {
           const { status } = res;
+          console.log(status);
           if (status === 200) {
             toast('Амжилттай', {
               position: 'top-right',
@@ -40,7 +41,7 @@ export default function UserSignUp() {
             setConfirmPassword('');
             setIsCheck(false);
           } else if (status === 400) {
-            return res.json().then((data) => {
+            return res.json().then((data: any) => {
               toast(data.message, {
                 position: 'top-right',
                 type: 'error',

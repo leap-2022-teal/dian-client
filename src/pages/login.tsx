@@ -1,19 +1,25 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import { fetcherPost } from '../../utils/fetcher';
-import { Alert } from 'flowbite-react';
+import { fetcherLogin } from '../../utils/fetcher';
+import axios from 'axios';
+import { useRouter } from 'next/router';
 
 export default function UserLogin() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useRouter();
 
   function handleLogin() {
-    fetcherPost('user/login', { email, password })
+    fetcherLogin('user/login', { email, password })
       .then((res: any) => {
-        console.log(res);
-        if (res.token) {
-          localStorage.setItem('loginToken', res.token);
+        const { token } = res;
+        if (token) {
+          localStorage.setItem('loginToken', token);
           window.location.reload();
+          console.log('Amjilttai nevterleeeee');
+          navigate.push('/');
+        } else {
+          console.log('no response');
         }
       })
       .catch(({ res, code }) => {
@@ -77,12 +83,11 @@ export default function UserLogin() {
                 </div>
                 <button
                   type="submit"
-                  onClick={handleLogin}
+                  onClick={() => handleLogin()}
                   className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Login
                 </button>
-                <Alert color="info">Alert!</Alert>;
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{' '}
                   <Link href="/signUp" className="font-medium text-green-600 hover:underline dark:text-primary-500">
