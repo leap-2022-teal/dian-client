@@ -17,18 +17,18 @@ export const fetcherPost = async (path: string, body: any) => {
 };
 
 export const fetcherDelete = async (path: string) => {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
     },
   });
 
-  return req;
+  return res;
 };
 
 export async function fetcherPut(path: string, data: any) {
-  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
     method: 'PUT',
     body: JSON.stringify(data),
     headers: {
@@ -36,7 +36,7 @@ export async function fetcherPut(path: string, data: any) {
     },
   });
 
-  return req;
+  return res;
 }
 
 export const fetcherLogin = async (path: string, body: any) => {

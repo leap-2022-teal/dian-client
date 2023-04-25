@@ -23,7 +23,6 @@ export default function UserSignUp() {
       if (isCheck) {
         fetcherPost('user/register', { email, password, confirmPassword }).then((res) => {
           const { status } = res;
-          console.log(status);
           if (status === 200) {
             toast('Амжилттай', {
               position: 'top-right',
