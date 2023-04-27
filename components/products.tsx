@@ -6,7 +6,14 @@ export function Products(props: any) {
 
   useEffect(() => {
     fetcherGet(`products`).then((data: any) => {
-      setProducts(data);
+      const filteredProducts = data.filter((e: any) => {
+        console.log(e);
+        const subCategories = ['b85bf3a0-4a6b-45d3-bc57-75592f0b7115', '323ed6c1-f4aa-49b6-99a6-c89098c1b6e7'];
+        if (subCategories.includes(e.categoryId._id)) {
+          return e;
+        }
+      });
+      setProducts(filteredProducts);
     });
   }, []);
   return (

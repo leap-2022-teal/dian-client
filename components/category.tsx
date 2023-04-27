@@ -10,6 +10,8 @@ export function Category(props: any) {
     fetcherGet(`categories`).then((data) => setCategories(data));
   }, []);
 
+
+  
   return (
     <>
       <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
