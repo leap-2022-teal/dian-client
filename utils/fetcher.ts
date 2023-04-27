@@ -12,7 +12,6 @@ export const fetcherPost = async (path: string, body: any) => {
       'Content-Type': 'application/json',
     },
   });
-
   return res;
 };
 
