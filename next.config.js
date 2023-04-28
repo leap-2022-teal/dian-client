@@ -7,7 +7,7 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'api.hitech.mn',
         port: '',
-        pathname: '*',
+        pathname: '/uploads/images/**',
       },
     ],
   },

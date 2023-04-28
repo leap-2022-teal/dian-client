@@ -1,10 +1,10 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { fetcherPost } from '../../utils/fetcher';
-import { toast } from 'react-toastify';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from 'react-toastify';
-import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+import { fetcherPost } from '../../utils/fetcher';
 
 export default function UserSignUp() {
   const [email, setEmail] = useState('');
@@ -15,6 +15,7 @@ export default function UserSignUp() {
   const [error, setError] = useState(false);
   const [isCheck, setIsCheck] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const navigate = useRouter();
 
   function handleSignUp(event: any) {
     event.preventDefault();
@@ -39,6 +40,7 @@ export default function UserSignUp() {
             setPassword('');
             setConfirmPassword('');
             setIsCheck(false);
+            navigate.push('/login');
           } else if (status === 400) {
             return res.json().then((data: any) => {
               toast(data.message, {

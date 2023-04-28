@@ -7,7 +7,6 @@ interface PropType {
 
 export function Products({ selected }: PropType) {
   const [products, setProducts] = useState<any>();
-  const [allProducts, setAllProducts] = useState<any>();
   // console.log(selected);
   // useEffect(() => {
   //   fetcherGet(`products`).then((data: any) => {
@@ -23,7 +22,7 @@ export function Products({ selected }: PropType) {
   // }, []);
 
   useEffect(() => {
-    const filtered = fetcherPost(`products/filter`, { selected }).then((res) => res.json().then((data) => setProducts(data)));
+    fetcherPost(`products/filter`, { selected }).then((res) => res.json().then((data) => setProducts(data)));
     // setProducts(res));
   }, [selected]);
 
@@ -44,7 +43,7 @@ export function Products({ selected }: PropType) {
       {products?.map((product: any) => {
         return (
           <div key={product._id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out w-64 mb-5">
-            <img className="w-full object-cover" src={product.imageUrl} height={'200'} width={'150'} alt="Product Image" />
+            <img className="w-full object-cover" src={product.imageUrl} alt="Product Image" />
             <div className="p-3">
               <h3 className="text-md font-semibold text-gray-800 mb-1">{product.title}</h3>
 
