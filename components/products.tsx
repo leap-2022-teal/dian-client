@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetcherPost } from '../utils/fetcher';
+import { fetcherGet } from '../utils/fetcher';
+import numeral from 'numeral';
 
 interface PropType {
   selected: string | undefined;
@@ -48,7 +50,7 @@ export function Products({ selected }: PropType) {
               <h3 className="text-md font-semibold text-gray-800 mb-1">{product.title}</h3>
 
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 text-sm font-bold">{product.unitPrice}₮</span>
+                <span className="text-gray-900 text-sm font-bold">{numeral(product.unitPrice).format('0,0.00')}₮</span>
               </div>
             </div>
           </div>
