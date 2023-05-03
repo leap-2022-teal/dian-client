@@ -2,14 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-// body {
-//   @apply bg-zinc-900 h-full overflow-x-hidden
-// }
+.modal {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
 
-// #__next {
-//   @apply h-full
-// } 
-
-// html {
-//   @apply h-full
-// }
+.modal.show {
+    opacity: 1;
+}

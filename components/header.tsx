@@ -1,6 +1,14 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import UserLogin from './login';
 
 export function Header() {
+  const [showModal, setShowModal] = useState(false);
+
+  function loginModal() {
+    setShowModal(true);
+  }
+
   return (
     <>
       <header>
@@ -25,15 +33,16 @@ export function Header() {
               </div>
             </form>
 
-            <Link href="/login" className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+            <button onClick={loginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
               Нэвтрэх
-            </Link>
+            </button>
             <Link href="/signUp" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
               Бүртгүүлэх
             </Link>
           </div>
         </div>
       </header>
+      <UserLogin showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }
