@@ -4,12 +4,9 @@ import { fetcherPost } from '../../../utils/fetcher';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const router = useRouter();
-  console.log(products);
   return (
     <>
-      {products?.map((product: any) => {
-        return <Products products={products} />;
-      })}
+      <Products products={products} />;
     </>
   );
 }
@@ -17,7 +14,6 @@ export default function FilteredbyCatProducts({ products }: any) {
 export async function getServerSideProps({ params }: any) {
   const { id } = params;
   const products = await fetcherPost(`products/filter`, { id }).then((res) => res.json());
-  console.log(id);
   return {
     props: {
       products,
