@@ -6,8 +6,8 @@ import ProductFilter from '../../components/productFilter';
 export default function Home() {
   return (
     <>
-      <div className="bg-gray-900 min-h-screen">
-        <Header />
+      <Header />
+      <div className="mx-auto container px-4">
         <ProductFilter />
       </div>
       <ToastContainer />
