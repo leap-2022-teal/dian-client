@@ -6,7 +6,6 @@ import ProductFilter from '../../components/productFilter';
 export default function Home() {
   return (
     <>
-
       <ToastContainer />
     </>
   );

@@ -17,7 +17,8 @@ export default function ProductFilter() {
   return (
     <>
       <Category onClick={onClick} subCategories={subCategories} />
-      <div className="grid grid-cols-4">
+      
+      <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
         {/* <Products  /> */}
       </div>
     </>
