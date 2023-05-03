@@ -6,10 +6,6 @@ import ProductFilter from '../../components/productFilter';
 export default function Home() {
   return (
     <>
-      <Header />
-      <div className="mx-auto container px-4">
-        <ProductFilter />
-      </div>
       <ToastContainer />
     </>
   );
