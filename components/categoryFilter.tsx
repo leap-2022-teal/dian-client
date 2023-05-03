@@ -3,7 +3,7 @@ import { fetcherGet } from '../utils/fetcher';
 import { Category } from './category';
 // import { Products } from './products';
 
-export default function ProductFilter() {
+export default function CategoryFilter() {
   const [selected, setSelected] = useState<string | undefined>();
   const [subCategories, setSubCategories] = useState<any>();
   // const [categories, setCategories] = useState<any>();
