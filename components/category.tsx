@@ -1,3 +1,5 @@
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
 
@@ -8,7 +10,7 @@ type C = {
 
 export function Category({ onClick, subCategories }: C) {
   const [categories, setCategories] = useState<any>();
-
+  const router = useRouter();
   useEffect(() => {
     fetcherGet(`categories`).then((data) => setCategories(data));
   }, []);
@@ -19,16 +21,17 @@ export function Category({ onClick, subCategories }: C) {
         <ul className="flex flex-wrap -mb-px text-sm font-medium text-center" role="tablist">
           {categories?.map((category: any) => (
             <li key={category._id} className="mr-2" role="presentation">
-              <button
+              <Link
                 className="inline-block p-4 border-b-2 border-transparent rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300"
                 id={category._id}
                 aria-selected="false"
                 onClick={() => {
-                  onClick(category);
+                  onClick(router.push(`/products/${category._id}`));
                 }}
+                href={`/products/${category._id}`}
               >
                 {category.title}
-              </button>
+              </Link>
             </li>
           ))}
         </ul>

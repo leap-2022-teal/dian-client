@@ -1,45 +1,17 @@
-import { useEffect, useState } from 'react';
-import { fetcherPost } from '../utils/fetcher';
-import { fetcherGet } from '../utils/fetcher';
 import numeral from 'numeral';
 
 interface PropType {
-  selected: string | undefined;
+  // selected: string | undefined;
+  products: any;
 }
 
-export function Products({ selected }: PropType) {
-  const [products, setProducts] = useState<any>();
-  // console.log(selected);
-  // useEffect(() => {
-  //   fetcherGet(`products`).then((data: any) => {
-  //     // const filteredProducts = data.filter((e: any) => {
-  //     //   console.log(e);
-  //     //   if (selected?.includes(e.categoryId._id)) {
-  //     //     return e;
-  //     //   }
-  //     // });
-  //     // setProducts(filteredProducts);
-  //     setAllProducts(data);
-  //   });
-  // }, []);
-
-  useEffect(() => {
-    fetcherPost(`products/filter`, { selected }).then((res) => res.json().then((data) => setProducts(data)));
-    // setProducts(res));
-  }, [selected]);
+export function Products({ products }: PropType) {
+  // const [products, setProducts] = useState<any>(props:);
 
   // useEffect(() => {
-  //   // fetcherGet(`products`).then((data: any) => {
-  //   // });
-  //   const filteredProducts = allProducts?.filter((e: any) => {
-  //     console.log(e);
-  //     if (selected?.includes(e.categoryId?._id)) {
-  //       return e;
-  //     }
-  //   });
-  //   setProducts(filteredProducts);
+  //   fetcherPost(`products/filter`, { selected }).then((res) => res.json().then((data) => setProducts(data)));
   // }, [selected]);
-  // console.log(products);
+
   return (
     <>
       {products?.map((product: any) => {
@@ -50,7 +22,7 @@ export function Products({ selected }: PropType) {
               <h3 className="text-md font-semibold text-gray-800 mb-1">{product.title}</h3>
 
               <div className="flex items-center justify-between">
-                <span className="text-gray-900 text-sm font-bold">{numeral(product.unitPrice).format('0,0.00')}₮</span>
+                <span className="text-gray-900 text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
               </div>
             </div>
           </div>
