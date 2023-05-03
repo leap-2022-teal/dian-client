@@ -8,17 +8,6 @@ export default function ProductFilter() {
   const [subCategories, setSubCategories] = useState<any>();
   const [categories, setCategories] = useState<any>();
 
-  // useEffect(() => {
-  //   fetcherGet(`categories`).then((data) => setCategories(data));
-  // }, []);
-
-  // useEffect(() => {
-  //   const newArr = subCategories?.map((e: any) => {
-  //     return e._id;
-  //   });
-  //   setSelected(newArr);
-  // }, [subCategories]);
-
   function onClick(category: any) {
     fetcherGet(`categories/${category._id}`).then((data) => setSubCategories(data));
     console.log(category);
