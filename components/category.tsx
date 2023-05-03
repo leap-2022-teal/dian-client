@@ -1,17 +1,18 @@
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
 
-export function Category(props: any) {
-  const [categories, setCategories] = useState(props.categories);
-  const [subCategories, setSubCategories] = useState(props.categories);
-  const [selected, setSelected] = useState();
+type C = {
+  subCategories: any;
+  onClick: (e: any) => void;
+};
+
+export function Category({ onClick, subCategories }: C) {
+  const [categories, setCategories] = useState<any>();
 
   useEffect(() => {
     fetcherGet(`categories`).then((data) => setCategories(data));
   }, []);
 
-
-  
   return (
     <>
       <div className="text-sm font-medium text-center text-gray-500 border-b border-gray-200 dark:text-gray-400 dark:border-gray-700">
@@ -23,7 +24,7 @@ export function Category(props: any) {
                 id={category._id}
                 aria-selected="false"
                 onClick={() => {
-                  fetcherGet(`categories/${category._id}`).then((data) => setSubCategories(data));
+                  onClick(category);
                 }}
               >
                 {category.title}
@@ -32,11 +33,6 @@ export function Category(props: any) {
           ))}
         </ul>
       </div>
-      {/* {categories?.map((category: any) => (
-        <div className="text-white box-border bg-slate-600 " key={category._id}>
-        <p>{category.title}</p>
-        </div>
-      ))} */}
 
       {subCategories?.map((category: any) => {
         return (

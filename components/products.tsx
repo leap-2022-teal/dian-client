@@ -1,22 +1,45 @@
 import { useEffect, useState } from 'react';
+import { fetcherPost } from '../utils/fetcher';
 import { fetcherGet } from '../utils/fetcher';
 import numeral from 'numeral';
 
-export function Products(props: any) {
-  const [products, setProducts] = useState(props.products);
+interface PropType {
+  selected: string | undefined;
+}
+
+export function Products({ selected }: PropType) {
+  const [products, setProducts] = useState<any>();
+  // console.log(selected);
+  // useEffect(() => {
+  //   fetcherGet(`products`).then((data: any) => {
+  //     // const filteredProducts = data.filter((e: any) => {
+  //     //   console.log(e);
+  //     //   if (selected?.includes(e.categoryId._id)) {
+  //     //     return e;
+  //     //   }
+  //     // });
+  //     // setProducts(filteredProducts);
+  //     setAllProducts(data);
+  //   });
+  // }, []);
 
   useEffect(() => {
-    fetcherGet(`products`).then((data: any) => {
-      const filteredProducts = data.filter((e: any) => {
-        console.log(e);
-        const subCategories = ['b85bf3a0-4a6b-45d3-bc57-75592f0b7115', '323ed6c1-f4aa-49b6-99a6-c89098c1b6e7'];
-        if (subCategories.includes(e.categoryId._id)) {
-          return e;
-        }
-      });
-      setProducts(filteredProducts);
-    });
-  }, []);
+    fetcherPost(`products/filter`, { selected }).then((res) => res.json().then((data) => setProducts(data)));
+    // setProducts(res));
+  }, [selected]);
+
+  // useEffect(() => {
+  //   // fetcherGet(`products`).then((data: any) => {
+  //   // });
+  //   const filteredProducts = allProducts?.filter((e: any) => {
+  //     console.log(e);
+  //     if (selected?.includes(e.categoryId?._id)) {
+  //       return e;
+  //     }
+  //   });
+  //   setProducts(filteredProducts);
+  // }, [selected]);
+  // console.log(products);
   return (
     <>
       {products?.map((product: any) => {
