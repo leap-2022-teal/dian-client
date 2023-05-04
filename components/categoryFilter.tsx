@@ -3,7 +3,7 @@ import { fetcherGet } from '../utils/fetcher';
 import { Category } from './category';
 // import { Products } from './products';
 
-export default function ProductFilter() {
+export default function CategoryFilter() {
   const [selected, setSelected] = useState<string | undefined>();
   const [subCategories, setSubCategories] = useState<any>();
   // const [categories, setCategories] = useState<any>();
@@ -17,10 +17,6 @@ export default function ProductFilter() {
   return (
     <>
       <Category onClick={onClick} subCategories={subCategories} />
-      
-      <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {/* <Products  /> */}
-      </div>
     </>
   );
 }

@@ -1,11 +1,11 @@
 import { Header } from './header';
-import ProductFilter from './productFilter';
+import CategoryFilter from './categoryFilter';
 
 export default function Layout({ children }: any) {
   return (
-    <div className="bg-gray-900 min-h-screen">
+    <div className="container mx-auto">
       <Header />
-      <ProductFilter />
+      <CategoryFilter />
       {children}
     </div>
   );
