@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { fetcherLogin } from '../utils/fetcher';
-import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
@@ -9,17 +8,11 @@ import { useRef } from 'react';
 import Image from 'next/image';
 import loginImage from '../image/Shiny Happy - Home Vacation small.png';
 
-import React from 'react';
-import { Modal, Input, Row, Checkbox, Button, Text } from '@nextui-org/react';
-
-// modal animation
-// modal blur
-
 export default function UserLogin({ showModal, setShowModal }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  const navigate = useRouter();
+  // const navigate = useRouter();
 
   function handleLogin(event: any) {
     event.preventDefault();
@@ -28,7 +21,10 @@ export default function UserLogin({ showModal, setShowModal }: any) {
         const { token } = res;
         if (token) {
           localStorage.setItem('loginToken', token);
-          navigate.push('/');
+          showModal(false);
+          setEmail('');
+          setPassword('');
+          setError(false);
         } else {
           setError(true);
         }
