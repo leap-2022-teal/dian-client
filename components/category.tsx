@@ -28,7 +28,7 @@ export function Category({ onClick, subCategories }: C) {
                 onClick={() => {
                   onClick(category);
                 }}
-                href={`/products/${category._id}`}
+                href={`/products/${category.slugUrl}`}
               >
                 {category.title}
               </Link>
@@ -40,7 +40,7 @@ export function Category({ onClick, subCategories }: C) {
       {subCategories?.map((category: any) => {
         return (
           <div key={category._id}>
-            <Link href={`/products/${category._id}`}>
+            <Link href={`/products/${category.slugUrl}`}>
               <p className="text-sm text-gray-500 dark:text-gray-400">{category.title}</p>
             </Link>
           </div>
