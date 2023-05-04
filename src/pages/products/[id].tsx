@@ -6,7 +6,7 @@ export default function FilteredbyCatProducts({ products }: any) {
   const router = useRouter();
   return (
     <>
-      <Products products={products} />;
+      <Products products={products} />
     </>
   );
 }

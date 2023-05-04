@@ -10,7 +10,6 @@ export default function CategoryFilter() {
 
   function onClick(category: any) {
     fetcherGet(`categories/${category._id}`).then((data) => setSubCategories(data));
-
     setSelected(category._id);
   }
 
