@@ -1,12 +1,17 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import UserLogin from './login';
-import { fetcherGet, fetcherGetUser } from '../utils/fetcher';
+import { fetcherGetUser } from '../utils/fetcher';
+import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
+import UserSignUp from './signUp';
+
+//garah zasah
+//register design zasah
 
 export function Header() {
-  const [showModal, setShowModal] = useState(false);
-  const [token, setToken] = useState<any>('');
-  const [user, setUser] = useState();
+  const [loginModal, setLoginModal] = useState(false);
+  const [registerModal, setRegisterModal] = useState(false);
+  const [user, setUser] = useState<any>();
 
   useEffect(() => {
     const token = localStorage.getItem('loginToken');
@@ -22,13 +27,18 @@ export function Header() {
     });
   }, []);
 
-  // useEffect(() => {
-  //   const tok = localStorage.getItem('loginToken');
-  //   setToken(tok);
-  // }, []);
+  function logOut() {
+    console.log('1');
+    localStorage.removeItem('loginToken');
+    setUser(null);
+  }
 
-  function loginModal() {
-    setShowModal(true);
+  function handleLoginModal() {
+    setLoginModal(true);
+  }
+
+  function handleRegisterModal() {
+    setRegisterModal(true);
   }
   return (
     <>
@@ -55,26 +65,43 @@ export function Header() {
             </form>
             {!user ? (
               <div>
-                <button onClick={loginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+                <button onClick={handleLoginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
                   Нэвтрэх
                 </button>
-                <Link href="/signUp" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+                <button onClick={handleRegisterModal} className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
                   Бүртгүүлэх
-                </Link>
+                </button>
               </div>
             ) : (
               <div className="flex items-center space-x-4">
-                <div className="font-medium dark:text-white">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Сайна байна уу?</div>
-                  <div></div>
+                <div className="font-medium ">
+                  <div>Сайн байна уу? </div>
+                  <div className="text-sm text-gray-500 ">oyu@gmail.com</div>
                 </div>
-                <img className="w-10 h-10 rounded-full" src="https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png" alt="" />
+
+                <Grid>
+                  <Dropdown placement="bottom-left">
+                    <Dropdown.Trigger>
+                      <Avatar bordered size="lg" as="button" src="https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png" />
+                    </Dropdown.Trigger>
+                    <Dropdown.Menu aria-label="Static Actions">
+                      <Dropdown.Item>Профайл</Dropdown.Item>
+                      <Dropdown.Item>Захиалга</Dropdown.Item>
+                      <Dropdown.Item>Хадгалсан бараа</Dropdown.Item>
+                      <Dropdown.Item color="error">
+                        <button onClick={() => logOut}>Гарах</button>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Grid>
               </div>
             )}
           </div>
         </div>
       </header>
-      <UserLogin showModal={showModal} setShowModal={setShowModal} />
+
+      <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
+      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
     </>
   );
 }

@@ -4,7 +4,6 @@ import { fetcherLogin } from '../utils/fetcher';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-import { useRef } from 'react';
 import Image from 'next/image';
 import loginImage from '../image/Shiny Happy - Home Vacation small.png';
 
@@ -12,7 +11,6 @@ export default function UserLogin({ showModal, setShowModal }: any) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
-  // const navigate = useRouter();
 
   function handleLogin(event: any) {
     event.preventDefault();
