@@ -5,6 +5,8 @@ import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { fetcherPost } from '../utils/fetcher';
+import registerImage from '../image/Shiny Happy - Socializing small.png';
+import Image from 'next/image';
 
 export default function UserSignUp({ showModal, setShowModal }: any) {
   const [email, setEmail] = useState('');
@@ -78,14 +80,25 @@ export default function UserSignUp({ showModal, setShowModal }: any) {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  function handleClose() {
+    setShowModal(false);
+  }
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
       {showModal ? (
-        <section className="bg-gray-150 ">
-          <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-            <div className="w-full bg-white rounded-lg shadow  md:mt-0 sm:max-w-md xl:p-0">
+        <div className={` ${showModal ? 'backdrop-blur' : null} flex items-center justify-center fixed z-10 inset-0 overflow-y-auto`}>
+          <div className="shadow-xl flex items-center justify-center">
+            <div className="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center md:px-10  max-w-3xl mx-auto">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
+                <div className="flex justify-end md:hidden  ">
+                  <button onClick={handleClose} className="bg-gray-100 rounded-full p-1">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Create and account</h1>
                 <form className="space-y-4 md:space-y-6" action="#" onSubmit={handleSignUp}>
                   <div>
@@ -191,9 +204,20 @@ export default function UserSignUp({ showModal, setShowModal }: any) {
                   </p>
                 </form>
               </div>
+
+              <div className="md:w-1/2 hidden md:block ">
+                <div className="flex justify-end">
+                  <button onClick={handleClose} className="bg-gray-100 rounded-full p-1">
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                  </button>
+                </div>
+                <Image src={registerImage} alt="login" />
+              </div>
             </div>
           </div>
-        </section>
+        </div>
       ) : null}
     </>
   );

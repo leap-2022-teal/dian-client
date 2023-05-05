@@ -1,34 +1,32 @@
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Key, useEffect, useState } from 'react';
 import UserLogin from './login';
 import { fetcherGetUser } from '../utils/fetcher';
 import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
 import UserSignUp from './signUp';
-
-//garah zasah
-//register design zasah
+import axios from 'axios';
 
 export function Header() {
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
   const [user, setUser] = useState<any>();
-
+  console.log('user', user);
   useEffect(() => {
     const token = localStorage.getItem('loginToken');
+    console.log('token', token);
     const auth = {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     };
-
-    fetcherGetUser('user', auth).then((data) => {
-      setUser(data);
-      console.log(data);
-    });
+    axios.get('http://localhost:8000/user', { headers: { Authorization: `Bearer ${token}` } }).then((res: any) => setUser(res.data));
+    // fetcherGetUser('user', auth).then((data) => {
+    //   setUser(data);
+    //   console.log(data);
+    // });
   }, []);
 
   function logOut() {
-    console.log('1');
     localStorage.removeItem('loginToken');
     setUser(null);
   }
@@ -88,12 +86,17 @@ export function Header() {
                       <Dropdown.Item>Профайл</Dropdown.Item>
                       <Dropdown.Item>Захиалга</Dropdown.Item>
                       <Dropdown.Item>Хадгалсан бараа</Dropdown.Item>
-                      <Dropdown.Item color="error">
-                        <button onClick={() => logOut}>Гарах</button>
+                      <Dropdown.Item key="logout" color="error">
+                        <button onClick={logOut} style={{ color: 'red' }}>
+                          Гарах
+                        </button>
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Grid>
+                <button onClick={logOut} style={{ color: 'red' }}>
+                  Гарах
+                </button>
               </div>
             )}
           </div>
