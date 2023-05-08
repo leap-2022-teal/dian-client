@@ -9,49 +9,50 @@ import loginImage from '../image/Shiny Happy - Home Vacation small.png';
 import { useRouter } from 'next/router';
 
 export default function UserLogin({ showModal, setShowModal }: any) {
-  const route = useRouter();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
   function handleLogin(event: any) {
     event.preventDefault();
-    fetcherLogin('user/login', { email, password })
+    fetcherLogin('users/login', { email, password })
       .then((res: any) => {
         const { token } = res;
         if (token) {
           localStorage.setItem('loginToken', token);
-          showModal(false);
           setEmail('');
           setPassword('');
           setError(false);
-          route.push('/');
+          setShowModal(false);
+          router.reload();
         } else {
           setError(true);
         }
       })
-      .catch((err) => {
-        console.log(err);
-        alert(err);
-        // if (res.status === 400) {
-        //   toast(res.message, {
-        //     position: 'top-right',
-        //     type: 'error',
-        //     autoClose: 3000,
-        //     hideProgressBar: false,
-        //     closeOnClick: true,
-        //     pauseOnHover: true,
-        //     draggable: true,
-        //     progress: undefined,
-        //   });
-        // } else {
-        //   alert(code);
-        // }
+      .catch(({ res, code }) => {
+        console.log(res);
+        if (res.status === 400) {
+          toast(res.message, {
+            position: 'top-right',
+            type: 'error',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+        } else {
+          alert(code);
+        }
       });
   }
-
   const handleClose = () => {
     setShowModal(false);
+    setEmail('');
+    setPassword('');
+    setError(false);
   };
 
   return (

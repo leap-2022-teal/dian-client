@@ -24,7 +24,7 @@ export default function UserSignUp({ showModal, setShowModal }: any) {
     if (password.length >= 8) {
       setPasswordError(false);
       if (isCheck) {
-        fetcherPost('user/register', { email, password, confirmPassword }).then((res) => {
+        fetcherPost('users/register', { email, password, confirmPassword }).then((res) => {
           const { status } = res;
           if (status === 200) {
             toast('Амжилттай', {

@@ -1,7 +1,6 @@
 import Link from 'next/link';
-import { Key, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserLogin from './login';
-import { fetcherGetUser } from '../utils/fetcher';
 import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
 import UserSignUp from './signUp';
 import axios from 'axios';
@@ -10,17 +9,25 @@ export function Header() {
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
   const [user, setUser] = useState<any>();
-  console.log('user', user);
+
   useEffect(() => {
     const token = localStorage.getItem('loginToken');
-    console.log('token', token);
-    const auth = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios.get('http://localhost:8000/user', { headers: { Authorization: `Bearer ${token}` } }).then((res: any) => setUser(res.data));
-    // fetcherGetUser('user', auth).then((data) => {
+    // const auth = {
+    //   header: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
+
+    axios
+      .get('http://localhost:8000/users/me', { headers: { Authorization: token ? `Bearer ${token}` : '' } })
+      .then((res: any) => setUser(res.data))
+      .catch((res) => {
+        const { status } = res;
+        if (status === 403) {
+          setUser(null);
+        }
+      });
+    // fetcherGetUser('users/me', auth).then((data) => {
     //   setUser(data);
     //   console.log(data);
     // });
@@ -74,7 +81,7 @@ export function Header() {
               <div className="flex items-center space-x-4">
                 <div className="font-medium ">
                   <div>Сайн байна уу? </div>
-                  <div className="text-sm text-gray-500 ">oyu@gmail.com</div>
+                  <div className="text-sm text-gray-500 ">{user.email}</div>
                 </div>
 
                 <Grid>
@@ -86,17 +93,14 @@ export function Header() {
                       <Dropdown.Item>Профайл</Dropdown.Item>
                       <Dropdown.Item>Захиалга</Dropdown.Item>
                       <Dropdown.Item>Хадгалсан бараа</Dropdown.Item>
-                      <Dropdown.Item key="logout" color="error">
-                        <button onClick={logOut} style={{ color: 'red' }}>
+                      <Dropdown.Item>
+                        <div onClick={logOut} style={{ color: 'red' }}>
                           Гарах
-                        </button>
+                        </div>
                       </Dropdown.Item>
                     </Dropdown.Menu>
                   </Dropdown>
                 </Grid>
-                <button onClick={logOut} style={{ color: 'red' }}>
-                  Гарах
-                </button>
               </div>
             )}
           </div>
