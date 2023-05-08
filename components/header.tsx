@@ -1,14 +1,50 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import UserLogin from './login';
+import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
+import UserSignUp from './signUp';
+import axios from 'axios';
 
 export function Header() {
-  const [showModal, setShowModal] = useState(false);
+  const [loginModal, setLoginModal] = useState(false);
+  const [registerModal, setRegisterModal] = useState(false);
+  const [user, setUser] = useState<any>();
 
-  function loginModal() {
-    setShowModal(true);
+  useEffect(() => {
+    const token = localStorage.getItem('loginToken');
+    // const auth = {
+    //   header: {
+    //     Authorization: `Bearer ${token}`,
+    //   },
+    // };
+
+    axios
+      .get('http://localhost:8000/users/me', { headers: { Authorization: token ? `Bearer ${token}` : '' } })
+      .then((res: any) => setUser(res.data))
+      .catch((res) => {
+        const { status } = res;
+        if (status === 403) {
+          setUser(null);
+        }
+      });
+    // fetcherGetUser('users/me', auth).then((data) => {
+    //   setUser(data);
+    //   console.log(data);
+    // });
+  }, []);
+
+  function logOut() {
+    localStorage.removeItem('loginToken');
+    setUser(null);
   }
 
+  function handleLoginModal() {
+    setLoginModal(true);
+  }
+
+  function handleRegisterModal() {
+    setRegisterModal(true);
+  }
   return (
     <>
       <header>
@@ -32,17 +68,47 @@ export function Header() {
                 <input className="block bg-white focus:text-gray-900  rounded-full py-2 pl-10 pr-3 leading-tight" placeholder="Хайх" type="text" />
               </div>
             </form>
+            {!user ? (
+              <div>
+                <button onClick={handleLoginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+                  Нэвтрэх
+                </button>
+                <button onClick={handleRegisterModal} className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
+                  Бүртгүүлэх
+                </button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-4">
+                <div className="font-medium ">
+                  <div>Сайн байна уу? </div>
+                  <div className="text-sm text-gray-500 ">{user.email}</div>
+                </div>
 
-            <button onClick={loginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
-              Нэвтрэх
-            </button>
-            <Link href="/signUp" className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
-              Бүртгүүлэх
-            </Link>
+                <Grid>
+                  <Dropdown placement="bottom-left">
+                    <Dropdown.Trigger>
+                      <Avatar bordered size="lg" as="button" src="https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png" />
+                    </Dropdown.Trigger>
+                    <Dropdown.Menu aria-label="Static Actions">
+                      <Dropdown.Item>Профайл</Dropdown.Item>
+                      <Dropdown.Item>Захиалга</Dropdown.Item>
+                      <Dropdown.Item>Хадгалсан бараа</Dropdown.Item>
+                      <Dropdown.Item>
+                        <div onClick={logOut} style={{ color: 'red' }}>
+                          Гарах
+                        </div>
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Grid>
+              </div>
+            )}
           </div>
         </div>
       </header>
-      <UserLogin showModal={showModal} setShowModal={setShowModal} />
+
+      <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
+      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
     </>
   );
 }

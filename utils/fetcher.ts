@@ -4,6 +4,12 @@ export async function fetcherGet(path: string) {
   return data;
 }
 
+export async function fetcherGetUser(path: string, {}) {
+  const req = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`);
+  const data = await req.json();
+  return data;
+}
+
 export const fetcherPost = async (path: string, body: any) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/${path}`, {
     method: 'POST',
