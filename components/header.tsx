@@ -48,7 +48,7 @@ export function Header() {
   return (
     <>
       <header>
-        <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        <div className="mx-auto flex items-center justify-between px-4 py-3">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold text-gray-900">
               Dian project

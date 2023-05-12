@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import numeral from 'numeral';
 
 interface PropType {
@@ -12,7 +13,7 @@ export function Products({ products }: PropType) {
           {products?.map((product: any) => {
             return (
               <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
-                <img className="w-full" src={product.imageUrl} alt="Product Image" />
+                <Image className="w-full" src={product.imageUrl} alt="Product Image" width={70} height={70} />
                 <div className="px-5 pb-5">
                   <h3 className="text-sm font-semibold text-gray-800 mb-1">{product.title}</h3>
                   <div>
