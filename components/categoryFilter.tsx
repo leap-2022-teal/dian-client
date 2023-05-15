@@ -28,7 +28,7 @@ export function CategoryFilter() {
             onMouseLeave={() => {
               setSelectedId('');
             }}
-            href={`/products/${category.slugUrl}`}
+            href={`/category/${category.slugUrl}`}
           >
             {category.title}
           </Link>

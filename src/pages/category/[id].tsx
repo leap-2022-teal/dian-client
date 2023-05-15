@@ -5,11 +5,11 @@ import { fetcherPost } from '../../../utils/fetcher';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const router = useRouter();
+  console.log(router.query);
   return (
     <Layout>
       <Products products={products} />
     </Layout>
-    
   );
 }
 

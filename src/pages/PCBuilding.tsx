@@ -8,8 +8,6 @@ export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
   const [selected, setSelected] = useState<any[]>([]);
 
-  // const [showModal, setShowModal] = useState(false);
-
   function BuildFilter(category: any) {
     fetcherGet(`products/build/${category}`).then((data) => setProducts(data));
   }
@@ -20,45 +18,16 @@ export default function PCBuilding() {
     products.push(product);
     setSelected(products);
   }
-  console.log(selected);
 
   return (
     <>
       <Header />
-      <div className="flex">
-        <div>
-          {/* {subCategories?.map((category: any) => {
-            return (
-              <div key={category._id}>
-                {selected?.map((product: any) => {
-                  return (
-                    <div key={product._id}>
-                      {product.categoryId === category._id ? (
-                        <>
-                          <div className="flex bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
-                            <div className="px-5 pb-5">
-                              <img className="" src={product.imageUrl} alt="Product Image" />
-                              <h3 className="text-sm font-semibold text-gray-800 mb-1">{product.title}</h3>
-                              <div></div>
-                            </div>
-                          </div>
-                        </>
-                      ) : null}
-                    </div>
-                  );
-                })}
-                <button onClick={() => BuildFilter({ category })}>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">{category.title}</p>
-                </button>
-              </div>
-            );
-          })} */}
-        </div>
-        <div className=" container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="relative">
+        <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {
             return (
-              <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
-                <img className="w-full" src={product.imageUrl} alt="Product Image" />
+              <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden  mb-5">
+                <img className="mx-auto" src={product.imageUrl} alt="Product Image" />
                 <div className="px-5 pb-5">
                   <h3 className="text-sm font-semibold text-gray-800 mb-1">{product.title}</h3>
                   <div>
@@ -70,9 +39,9 @@ export default function PCBuilding() {
             );
           })}
         </div>
-
-        {/* <Sidebar /> */}
-        <BuildModal BuildFilter={BuildFilter} selected={selected} />
+        <div className="absolute top-0 right-0 w-2/5">
+          <BuildModal BuildFilter={BuildFilter} selected={selected} />
+        </div>
       </div>
     </>
   );
