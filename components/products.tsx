@@ -45,7 +45,9 @@ export function Products({ products }: PropType) {
       ) : (
         <div>spin</div>
       )}
-      <BuildModal selected={selected} />
+      <div className="absolute top-0 right-0 w-2/5">
+        <BuildModal selected={selected} />
+      </div>
     </>
   );
 }

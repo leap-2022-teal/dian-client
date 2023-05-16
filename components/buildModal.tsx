@@ -77,10 +77,10 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                 </button>
               </>
             ))}
-            {selected.map((product: any) => {
+            {selected?.map((product: any) => {
               return (
                 <>
-                  {product.category && product?.category[0].parentId !== '6ac583ed-76c9-419a-9b2f-df3290cf6bc1' ? (
+                  {product?.category[0].parentId !== '6ac583ed-76c9-419a-9b2f-df3290cf6bc1' ? (
                     <div className="flex bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
                       <div className="px-5 pb-5">
                         <img className="" src={product.imageUrl} alt="Product Image" />
