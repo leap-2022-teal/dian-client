@@ -26,12 +26,21 @@ export default function UserLogin({ showModal, setShowModal }: any) {
           setError(false);
           setShowModal(false);
           router.reload();
+          toast.success(`${email} хэрэглэгч амжилттай нэвтэрлээ!`, {
+            position: 'top-center',
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: 'light',
+          });
         } else {
           setError(true);
         }
       })
       .catch(({ res, code }) => {
-        console.log(res);
         if (res.status === 400) {
           toast(res.message, {
             position: 'top-right',
