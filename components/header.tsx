@@ -4,11 +4,18 @@ import UserLogin from './login';
 import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
 import UserSignUp from './signUp';
 import axios from 'axios';
+import { FaUser } from 'react-icons/fa';
+import { HiShoppingCart } from 'react-icons/hi';
 
 export function Header() {
   const [loginModal, setLoginModal] = useState(false);
   const [registerModal, setRegisterModal] = useState(false);
   const [user, setUser] = useState<any>();
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setIsDropdownVisible(!isDropdownVisible);
+  };
 
   useEffect(() => {
     const token = localStorage.getItem('loginToken');
@@ -40,69 +47,91 @@ export function Header() {
 
   function handleLoginModal() {
     setLoginModal(true);
+    setIsDropdownVisible(false);
   }
 
   function handleRegisterModal() {
     setRegisterModal(true);
+    setIsDropdownVisible(false);
   }
   return (
     <>
       <header>
-        <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        <div className=" mx-auto flex items-center justify-between px-4 py-7 bg-[#171717]">
           <div className="flex items-center">
-            <Link href="/" className="text-xl font-bold text-gray-900">
+            <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
               Dian project
             </Link>
+            <div className="text-white text-xl pl-40">Category</div>
           </div>
 
           <div className="hidden md:flex items-center">
-            <form className="mr-10">
+            <form className="mr-6">
               <div className="relative">
-                <span className="absolute inset-y-0 left-0 pl-3 flex items-center">
+                <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
+                <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
                   <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                     </svg>
                   </svg>
                 </span>
-                <input className="block bg-white focus:text-gray-900  rounded-full py-2 pl-10 pr-3 leading-tight" placeholder="Хайх" type="text" />
               </div>
             </form>
-            {!user ? (
-              <div>
-                <button onClick={handleLoginModal} className="mr-5 bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
-                  Нэвтрэх
-                </button>
-                <button onClick={handleRegisterModal} className="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-full">
-                  Бүртгүүлэх
-                </button>
-              </div>
-            ) : (
-              <div className="flex items-center space-x-4">
-                <div className="font-medium ">
-                  <div>Сайн байна уу? </div>
-                  <div className="text-sm text-gray-500 ">{user.email}</div>
-                </div>
 
-                <Grid>
-                  <Dropdown placement="bottom-left">
-                    <Dropdown.Trigger>
-                      <Avatar bordered size="lg" as="button" src="https://w7.pngwing.com/pngs/129/292/png-transparent-female-avatar-girl-face-woman-user-flat-classy-users-icon.png" />
-                    </Dropdown.Trigger>
-                    <Dropdown.Menu aria-label="Static Actions">
-                      <Dropdown.Item>Профайл</Dropdown.Item>
-                      <Dropdown.Item>Захиалга</Dropdown.Item>
-                      <Dropdown.Item>Хадгалсан бараа</Dropdown.Item>
-                      <Dropdown.Item>
-                        <div onClick={logOut} style={{ color: 'red' }}>
+            <div className="flex gap-5 pr-10">
+              {!user ? (
+                <>
+                  <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
+                  {isDropdownVisible && (
+                    <div className="absolute right-5 mt-10 w-40 bg-white rounded-lg shadow-lg transition-opacity opacity-300">
+                      <ul className="py-2">
+                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleRegisterModal}>
+                          Бүртгүүлэх
+                        </li>
+                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer " onClick={handleLoginModal}>
+                          Нэвтрэх
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <>
+                  <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
+                  {isDropdownVisible && (
+                    <div
+                      className="absolute right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      role="menu"
+                      aria-orientation="vertical"
+                      aria-labelledby="menu-button"
+                    >
+                      <div className="py-1" role="none">
+                        <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
+                          {user.email}
+                        </a>
+                      </div>
+                      <div className="py-1" role="none">
+                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-3">
+                          Профайл
+                        </a>
+                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
+                          Захиалга
+                        </a>
+                      </div>
+
+                      <div className="py-1" role="none">
+                        <a onClick={logOut} href="#" className="text-red-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-6">
                           Гарах
-                        </div>
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Grid>
-              </div>
-            )}
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+
+              <HiShoppingCart className="text-white text-xl my-3 " />
+            </div>
           </div>
         </div>
       </header>

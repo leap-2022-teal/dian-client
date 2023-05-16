@@ -3,7 +3,7 @@ import CategoryFilter from './categoryFilter';
 
 export default function Layout({ children }: any) {
   return (
-    <div className="container mx-auto">
+    <div className="">
       <Header />
       <CategoryFilter />
       {children}
