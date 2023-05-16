@@ -1,5 +1,5 @@
+import { CategoryFilter } from './categoryFilter';
 import { Header } from './header';
-import CategoryFilter from './categoryFilter';
 
 export default function Layout({ children }: any) {
   return (
@@ -8,5 +8,6 @@ export default function Layout({ children }: any) {
       <CategoryFilter />
       {children}
     </div>
+
   );
 }
