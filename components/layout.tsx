@@ -1,12 +1,14 @@
+import { CategoryFilter } from './categoryFilter';
 import { Header } from './header';
-import CategoryFilter from './categoryFilter';
 
 export default function Layout({ children }: any) {
   return (
-    <div className="container mx-auto">
-      <Header />
-      <CategoryFilter />
-      {children}
-    </div>
+    <>
+      <div className="mx-20">
+        <Header />
+        <CategoryFilter />
+      </div>
+      <div>{children}</div>
+    </>
   );
 }

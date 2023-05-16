@@ -1,22 +1,54 @@
-import { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
-import { Category } from './category';
-// import { Products } from './products';
+import SubCategoryFilter from './subCategoryFilter';
 
-export default function CategoryFilter() {
-  // const [selected, setSelected] = useState<string | undefined>();
-  const [subCategories, setSubCategories] = useState<any>();
-  // const [categories, setCategories] = useState<any>();
-
-  function onClick(category: any) {
-    fetcherGet(`categories/${category._id}`).then((data) => setSubCategories(data));
-    console.log(category._id);
-    // setSelected(category._id);
-  }
+export function CategoryFilter() {
+  const [categories, setCategories] = useState<any>();
+  const [selectedId, setSelectedId] = useState<any>();
+  const router = useRouter();
+  useEffect(() => {
+    fetcherGet(`categories`).then((data) => setCategories(data));
+  }, []);
 
   return (
     <>
-      <Category onClick={onClick} subCategories={subCategories} />
+      <div className="text-sm font-small text-gray-500 ">
+        {categories?.map((category: any) => (
+          <Link
+            key={category._id}
+            className="p-4 hover:text-gray-600  dark:hover:text-gray-300"
+            onClick={() => {
+              setSelectedId(category._id);
+            }}
+            onMouseEnter={() => {
+              setSelectedId(category._id);
+            }}
+            onMouseLeave={() => {
+              setSelectedId('');
+            }}
+            href={`/category/${category.slugUrl}`}
+          >
+            {category.title}
+          </Link>
+        ))}
+      </div>
+      <SubCategoryFilter selectedId={selectedId} />
+      {/* {subCategories?.map((category: any) => {
+        return (
+          <div
+            onMouseEnter={() => {
+              onClick((id = category.parentId));
+            }}
+            key={category._id}
+          >
+            <Link href={`/products/${category.slugUrl}`}>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{category.title}</p>
+            </Link>
+          </div>
+        );
+      })} */}
     </>
   );
 }

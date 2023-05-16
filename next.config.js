@@ -9,6 +9,12 @@ const nextConfig = {
         port: '',
         pathname: '/uploads/images/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'api.hitech.mn',
+        port: '',
+        pathname: '/uploads/images/**',
+      },
     ],
   },
 };
