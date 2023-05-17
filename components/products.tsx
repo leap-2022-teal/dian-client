@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useState } from 'react';
-import BuildModal from './buildModal';
 
 interface PropType {
   products: any;
@@ -46,9 +45,6 @@ export function Products({ products, BuildFilter }: PropType) {
       ) : (
         <div>spin</div>
       )}
-      <div className="absolute top-0 right-0 w-2/5">
-        <BuildModal selected={selected} />
-      </div>
     </>
   );
 }
