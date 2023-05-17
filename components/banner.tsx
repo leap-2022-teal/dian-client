@@ -1,4 +1,3 @@
-import React, { useRef, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -20,8 +19,7 @@ export function Banner() {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="mySwiper height"
-        style={{ height: '100%' }}
+        className="mySwiper"
       >
         <SwiperSlide>
           <img src="https://api.hitech.mn/uploads/images/2023/5/9/ORICO-1683642779960040729-original.jpg" alt="" />
