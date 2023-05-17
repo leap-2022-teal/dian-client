@@ -2,13 +2,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useState } from 'react';
-import BuildModal from './buildModal';
 
 interface PropType {
   products: any;
+  BuildFilter: any;
 }
 
-export function Products({ products }: PropType) {
+export function Products({ products, BuildFilter }: PropType) {
   const [selected, setSelected] = useState<any[]>([]);
 
   function ItemSelect({ product }: any) {

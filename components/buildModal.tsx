@@ -31,7 +31,7 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                     </div>
                   );
                 })}
-                <button onClick={() => BuildFilter(category._id)}>
+                <button onClick={() => BuildFilter(category?._id)}>
                   {selected.filter((product: any) => product.categoryId === category._id).length === 0 && (
                     <div key={category._id} className={`p-2 cursor-pointer text-gray-300 text-sm `}>
                       <img src={category.imageUrl} />

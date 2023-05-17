@@ -1,11 +1,11 @@
+import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import UserLogin from './login';
-import { Dropdown, Avatar, Text, Grid, User } from '@nextui-org/react';
-import UserSignUp from './signUp';
-import axios from 'axios';
 import { FaUser } from 'react-icons/fa';
 import { HiShoppingCart } from 'react-icons/hi';
+import UserLogin from './login';
+import UserSignUp from './signUp';
+import { CategoryFilter } from './categoryFilter';
 
 export function Header() {
   const [loginModal, setLoginModal] = useState(false);
@@ -62,7 +62,9 @@ export function Header() {
             <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
               Dian project
             </Link>
-            <div className="text-white text-xl pl-40">Category</div>
+            <div className="text-white text-xl pl-40">
+              <CategoryFilter />
+            </div>
           </div>
 
           <div className="hidden md:flex items-center">
