@@ -26,17 +26,19 @@ export function Products({ products }: PropType) {
           {products?.map((product: any) => {
             return (
               <>
-                <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
+                <div key={product._id} className="bg-white hover:shadow-lg overflow-hidden border border-gray-100 rounded-md w-[60%] mb-5">
                   <Link href={`/product/${product.slugUrl}`}>
-                    <Image className="w-full" src={product.imageUrl} alt="Product Image" width={70} height={70} />
-                    <div className="px-5 pb-5">
-                      <h3 className="text-sm font-semibold text-gray-800 mb-1">{product.title}</h3>
+                    <Image className="w-full px-10" src={product.imageUrl} alt="Product Image" width={70} height={70} />
+                    <div className="px-8 pb-5">
+                      <h3 className="text-lg font-semibold text-[#3a3939] mt-10 mb-3">{product.title}</h3>
                       <div>
-                        <span className="text-gray-900 text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                        <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
                       </div>
                     </div>
                   </Link>
-                  <button onClick={() => ItemSelect({ product })}>select</button>
+                  <button className="px-8 pb-5 tsext-[#3a3939]" onClick={() => ItemSelect({ product })}>
+                    select
+                  </button>
                 </div>
               </>
             );
@@ -45,9 +47,6 @@ export function Products({ products }: PropType) {
       ) : (
         <div>spin</div>
       )}
-      <div className="absolute top-0 right-0 w-2/5">
-        <BuildModal selected={selected} />
-      </div>
     </>
   );
 }
