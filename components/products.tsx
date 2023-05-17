@@ -5,10 +5,9 @@ import { useState } from 'react';
 
 interface PropType {
   products: any;
-  BuildFilter: any;
 }
 
-export function Products({ products, BuildFilter }: PropType) {
+export function Products({ products }: PropType) {
   const [selected, setSelected] = useState<any[]>([]);
 
   function ItemSelect({ product }: any) {
