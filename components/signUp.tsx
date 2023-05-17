@@ -42,7 +42,8 @@ export default function UserSignUp({ showModal, setShowModal }: any) {
             setPassword('');
             setConfirmPassword('');
             setIsCheck(false);
-            navigate.push('/login');
+            navigate.push('/');
+            setShowModal(false);
           } else if (status === 400) {
             return res.json().then((data: any) => {
               toast(data.message, {
