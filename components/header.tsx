@@ -84,7 +84,7 @@ export function Header() {
                 <>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
-                    <div className="absolute right-5 mt-10 w-40 bg-white rounded-lg shadow-lg transition-opacity opacity-300">
+                    <div className="absolute z-50 right-5 mt-10 w-40 bg-white rounded-lg shadow-lg transition-opacity opacity-300">
                       <ul className="py-2">
                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleRegisterModal}>
                           Бүртгүүлэх
@@ -101,7 +101,7 @@ export function Header() {
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
                     <div
-                      className="absolute right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="menu-button"

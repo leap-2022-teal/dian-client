@@ -6,7 +6,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper';
 
 export function Banner() {
   return (
-    <>
+    <div>
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -34,6 +34,6 @@ export function Banner() {
           <img src="  https://api.hitech.mn/uploads/images/2023/5/9/PG48UQ-1683642833181786191-original.jpg" alt="" />
         </SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 }
