@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { HiShoppingCart } from 'react-icons/hi';
+import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
 import UserSignUp from './signUp';
-import { CategoryFilter } from './categoryFilter';
 
 export function Header() {
   const [loginModal, setLoginModal] = useState(false);
@@ -26,7 +26,7 @@ export function Header() {
     // };
 
     axios
-      .get('http://localhost:8000/users/me', { headers: { Authorization: token ? `Bearer ${token}` : '' } })
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, { headers: { Authorization: token ? `Bearer ${token}` : '' } })
       .then((res: any) => setUser(res.data))
       .catch((res) => {
         const { status } = res;
