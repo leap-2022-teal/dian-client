@@ -23,31 +23,29 @@ export function CategoryFilter() {
         <ul className=" absolute hidden text-gray-700 pt-1 group-hover:block z-50">
           {categories?.map((category: any) => {
             return (
-              <>
-                <Link
-                  key={category._id}
-                  className="hover:text-gray-600"
-                  onMouseEnter={() => {
-                    setSelectedId(category?._id);
-                  }}
-                  href={`/category/${category.slugUrl}`}
-                >
-                  <li className={`cursor-pointer bg-white px-2 py-1 relative hover:bg-gray-100 `}>
-                    <button aria-haspopup="true" aria-controls="menu-lang" className="w-full text-start flex  items-center focus:outline-none">
-                      {category.number === 2 || category.number === 1 || category.number === 3 || category.number === 4 ? (
-                        <>
-                          <span className="p-3 whitespace-nowrap w-full">{category.title}</span>
-                          {selectedId === category._id && <SubCategoryFilter selectedId={selectedId} />}
-                        </>
-                      ) : (
-                        <>
-                          <p className="w-full p-3 relative items-center focus:outline-none">{category.title}</p>
-                        </>
-                      )}
-                    </button>
-                  </li>
-                </Link>
-              </>
+              <Link
+                key={category._id}
+                className="hover:text-gray-600"
+                onMouseEnter={() => {
+                  setSelectedId(category?._id);
+                }}
+                href={`/category/${category.slugUrl}`}
+              >
+                <li className={`cursor-pointer bg-white px-2 py-1 relative hover:bg-gray-100 `}>
+                  <button aria-haspopup="true" aria-controls="menu-lang" className="w-full text-start flex  items-center focus:outline-none">
+                    {category.number === 2 || category.number === 1 || category.number === 3 || category.number === 4 ? (
+                      <>
+                        <span className="p-3 whitespace-nowrap w-full">{category.title}</span>
+                        {selectedId === category._id && <SubCategoryFilter selectedId={selectedId} />}
+                      </>
+                    ) : (
+                      <>
+                        <p className="w-full p-3 relative items-center focus:outline-none">{category.title}</p>
+                      </>
+                    )}
+                  </button>
+                </li>
+              </Link>
             );
           })}
         </ul>
