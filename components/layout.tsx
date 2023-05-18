@@ -7,7 +7,8 @@ export default function Layout({ children }: any) {
     <div className="">
       <Header />
       <Banner />
-      <div className="container">{/* <SpecialProduct /> */}</div>
+      <SpecialProduct />
+
       {children}
     </div>
   );
