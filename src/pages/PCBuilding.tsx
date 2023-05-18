@@ -1,7 +1,8 @@
 import numeral from 'numeral';
 import { useState } from 'react';
 import BuildModal from '../../components/buildModal';
-import { Header } from '../../components/header';
+import { Navbar } from '../../components/navbar';
+import ProductFilter from '../../components/productFilter';
 import { fetcherGet } from '../../utils/fetcher';
 
 export default function PCBuilding() {
@@ -21,7 +22,7 @@ export default function PCBuilding() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <div className="relative">
         <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {

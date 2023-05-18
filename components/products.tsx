@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useState } from 'react';
+import { BsFillCartPlusFill } from 'react-icons/bs';
 
 interface PropType {
   products: any;
@@ -17,26 +18,25 @@ export function Products({ products }: PropType) {
     products.push(product);
     setSelected(products);
   }
-  console.log(selected);
   return (
     <>
       {products ? (
-        <div className=" grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[70%]">
           {products?.map((product: any) => {
             return (
               <>
-                <div key={product._id} className="bg-white hover:shadow-lg overflow-hidden border border-gray-100 rounded-md w-[60%] mb-5">
+                <div key={product._id} className="bg-white hover:shadow-lg overflow-hidden border group border-gray-100 rounded-md ">
                   <Link href={`/product/${product.slugUrl}`}>
-                    <Image className="w-full px-10" src={product.imageUrl} alt="Product Image" width={70} height={70} />
-                    <div className="px-8 pb-5">
-                      <h3 className="text-lg font-semibold text-[#3a3939] mt-10 mb-3">{product.title}</h3>
+                    <Image className="w-full px-10" src={product.imageUrl} alt="Product Image" width={60} height={60} />
+                    <div className="px-5 pb-2">
+                      <h3 className="text-lg font-semibold text-[#3a3939] mt-2 mb-3 truncate">{product.title}</h3>
                       <div>
                         <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
                       </div>
                     </div>
                   </Link>
-                  <button className="px-8 pb-5 tsext-[#3a3939]" onClick={() => ItemSelect({ product })}>
-                    select
+                  <button className="text-[#3a3939] hidden group-hover:block bg-black rounded w-1/12 " onClick={() => ItemSelect({ product })}>
+                    {/* <BsFillCartPlusFill fill="white" /> */}
                   </button>
                 </div>
               </>

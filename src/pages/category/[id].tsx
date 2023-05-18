@@ -1,14 +1,19 @@
 import { useRouter } from 'next/router';
-import Layout from '../../../components/layout';
+import { Navbar } from '../../../components/navbar';
+import ProductFilter from '../../../components/productFilter';
 import { Products } from '../../../components/products';
 import { fetcherPost } from '../../../utils/fetcher';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const router = useRouter();
   return (
-    <Layout>
-      <Products products={products} />
-    </Layout>
+    <>
+      <Navbar />
+      <div className="flex container mx-auto" >
+        <ProductFilter />
+        <Products products={products} />
+      </div>
+    </>
   );
 }
 
