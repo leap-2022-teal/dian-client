@@ -10,7 +10,7 @@ export default function SubCategoryFilter({ selectedId }: any) {
   }, []);
 
   return (
-    <div className={` static hidden  pt-1 group-hover:block z-50`}>
+  <div className={` static hidden  pt-1 group-hover:block z-50`}>
       <div className=" bg-white absolute top-0 left-full  line-clamp-1 z-50 ">
         {filted?.map((category: any) => (
           <li key={category._id} className={` hover:bg-gray-100 py-4 px-4 cursor-pointer `}>

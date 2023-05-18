@@ -1,6 +1,7 @@
 import { Banner } from './banner';
 import { Header } from './header';
 import { SpecialProduct } from './specialProduct';
+import Slider from './productSlider';
 
 export default function Layout({ children }: any) {
   return (
@@ -9,6 +10,7 @@ export default function Layout({ children }: any) {
       <Banner />
       <SpecialProduct />
 
+      <Slider />
       {children}
     </div>
   );
