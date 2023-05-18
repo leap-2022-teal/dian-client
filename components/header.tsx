@@ -24,16 +24,17 @@ export function Header() {
     //     Authorization: `Bearer ${token}`,
     //   },
     // };
-
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, { headers: { Authorization: token ? `Bearer ${token}` : '' } })
-      .then((res: any) => setUser(res.data))
-      .catch((res) => {
-        const { status } = res;
-        if (status === 403) {
-          setUser(null);
-        }
-      });
+    if (token) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, { headers: { Authorization: token ? `Bearer ${token}` : '' } })
+        .then((res: any) => setUser(res.data))
+        .catch((res) => {
+          const { status } = res;
+          if (status === 403) {
+            setUser(null);
+          }
+        });
+    }
     // fetcherGetUser('users/me', auth).then((data) => {
     //   setUser(data);
     //   console.log(data);
