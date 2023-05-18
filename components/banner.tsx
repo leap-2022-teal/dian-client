@@ -11,7 +11,7 @@ export function Banner() {
         spaceBetween={30}
         centeredSlides={true}
         autoplay={{
-          delay: 3000,
+          delay: 5000,
           disableOnInteraction: false,
         }}
         pagination={{
@@ -22,7 +22,7 @@ export function Banner() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://api.hitech.mn/uploads/images/2023/5/9/ORICO-1683642779960040729-original.jpg" alt="" />
+          <img className="bg-red-200" src="https://api.hitech.mn/uploads/images/2023/5/9/ORICO-1683642779960040729-original.jpg" alt="" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
