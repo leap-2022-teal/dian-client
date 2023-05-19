@@ -1,16 +1,16 @@
 import { Banner } from './banner';
 import { Header } from './header';
-import { SpecialProduct } from './specialProduct';
 import Slider from './productSlider';
+import { SpecialProduct } from './specialProduct';
 
 export default function Layout({ children }: any) {
   return (
     <div className="">
       <Header />
       <Banner />
+      <Slider />
       <SpecialProduct />
 
-      <Slider />
       {children}
     </div>
   );

@@ -1,14 +1,23 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import Image from 'next/image';
+import Link from 'next/link';
+import numeral from 'numeral';
+import { useEffect, useState } from 'react';
+import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import SwiperCore, { Autoplay, Pagination, Navigation } from 'swiper';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { fetcherGet } from '../utils/fetcher';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 export function SpecialProduct() {
+  const [products, setProducts] = useState<any>();
+  useEffect(() => {
+    fetcherGet(`products`).then((data) => setProducts(data));
+  }, []);
   return (
-    <div>
-      <div className="w-[250px] h-auto m-2">
+    <div className="flex flex-wrap lg:flex-nowrap w-[100%]">
+      <div className="w-[250px] h-auto m-2  mx-auto">
         <Swiper
           spaceBetween={30}
           slidesPerView={1}
@@ -39,12 +48,47 @@ export function SpecialProduct() {
           </SwiperSlide>
         </Swiper>
       </div>
-
-      <div>
-        <div>
-          <img src="" alt="" />
-        </div>
-        <div></div>
+      <div className="grid grid-cols-1 w-[100%] p-2 md:grid-cols-2 xl:grid-cols-3 gap-1">
+        {products?.map((product: any) => (
+          <div key={product._id} className="bg-slate-100  hover:shadow-lg overflow-hidden border border-gray-100 rounded-2xl">
+            <Link href={`/product/${product.slugUrl}`}>
+              <figure className=" flex justify-center bg-white shadow overflow-hidden rounded-2xl mb-2">
+                <Image className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+              </figure>
+            </Link>
+            <div className="p-5 text-sm font-sans font-bold">
+              <Link href={`/product/${product.slugUrl}`} className="  text-slate-400">
+                <div className="pb-5">
+                  <p className="text-slate-800 mb-5">{product.title}</p>
+                </div>
+              </Link>
+              <div className="flex justify-between">
+                <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                <button className=" text-[#3a3939]">select</button>
+              </div>
+            </div>
+          </div>
+        ))}
+        {products?.map((product: any) => (
+          <div key={product._id} className="bg-white flex hover:shadow-lg w-[100%] h-[100%] overflow-hidden border border-gray-100 rounded-lg">
+            <Link href={`/product/${product.slugUrl}`}>
+              <figure className=" flex justify-center  overflow-hidden">
+                <Image className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+              </figure>
+            </Link>
+            <div className="p-5 text-sm flex w-[100%] flex-col justify-between font-sans font-bold">
+              <Link href={`/product/${product.slugUrl}`} className="  text-slate-400">
+                <div className="pb-5">
+                  <p className="text-slate-800 mb-5">{product.title}</p>
+                </div>
+              </Link>
+              <div className="flex  justify-between">
+                <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                <button className=" text-[#3a3939]">select</button>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
