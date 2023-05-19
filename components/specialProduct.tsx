@@ -13,11 +13,11 @@ SwiperCore.use([Autoplay, Pagination, Navigation]);
 export function SpecialProduct() {
   const [products, setProducts] = useState<any>();
   useEffect(() => {
-    fetcherGet(`products`).then((data) => setProducts(data));
+    fetcherGet(`products/special`).then((data) => setProducts(data));
   }, []);
   return (
     <>
-      <div className="flex flex-wrap lg:flex-nowrap justify-center w-[100%] max-w-[1344px] mx-auto">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto">
         <div className="lg:w-[295px] w-full h-auto mx-16 p-2 ">
           <Swiper
             spaceBetween={30}
@@ -49,31 +49,39 @@ export function SpecialProduct() {
             </SwiperSlide>
           </Swiper>
         </div>
-
-        <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
-          {products?.map((product: any) => (
-            <div key={product._id} className="bg-slate-100 hover:shadow-lg border border-gray-100 rounded-2xl flex flex-col">
-              <Link href={`/product/${product.slugUrl}`}>
-                <figure className="flex justify-center bg-white shadow overflow-hidden rounded-2xl mb-2">
-                  <Image className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
-                </figure>
-              </Link>
-              <div className="p-5 text-sm flex flex-col justify-between flex-grow font-sans font-bold">
-                <Link href={`/product/${product.slugUrl}`} className="text-slate-400">
-                  <div className="pb-5">
-                    <p className="text-slate-800 mb-5">{product.title}</p>
-                  </div>
+        <div>
+          <div className="flex justify-between p-2">
+            <h4>ОНЦЛОХ БАРАА</h4>{' '}
+            <div>
+              <Link href={`/category`}>БҮГДИЙГ ҮЗЭХ</Link>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
+            {products?.map((product: any) => (
+              <div key={product._id} className="bg-slate-100 hover:shadow-lg border border-gray-100 rounded-2xl flex flex-col">
+                <Link href={`/product/${product.slugUrl}`}>
+                  <figure className="flex justify-center bg-white shadow overflow-hidden rounded-2xl mb-2">
+                    <Image className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                  </figure>
                 </Link>
-                <div className="flex justify-between">
-                  <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                  <button className="text-[#3a3939]">select</button>
+                <div className="p-5 text-sm flex flex-col justify-between flex-grow font-sans font-bold">
+                  <Link href={`/product/${product.slugUrl}`} className="text-slate-400">
+                    <div className="pb-5">
+                      <p className="text-slate-800 mb-5">{product.title}</p>
+                    </div>
+                  </Link>
+                  <div className="flex justify-between">
+                    <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                    <button className="text-[#3a3939]">select</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        <></>
       </div>
-      {products?.map((product: any) => (
+      {/* {products?.map((product: any) => (
         <div key={product._id} className="bg-white flex hover:shadow-lg w-[100%] h-[100%] overflow-hidden border border-gray-100 rounded-lg">
           <Link href={`/product/${product.slugUrl}`}>
             <figure className=" flex justify-center  overflow-hidden">
@@ -92,7 +100,7 @@ export function SpecialProduct() {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
     </>
   );
 }

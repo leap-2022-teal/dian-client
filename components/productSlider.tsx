@@ -1,7 +1,7 @@
 export default function Slider() {
   return (
     <>
-      <div className="lg:w-[60%] sm:w-[90%] mx-auto lg:mt-9 mt-5 ">
+      <div className="lg:w-[60%] sm:w-[90%] mx-auto lg:mt-9 mt-5 pb-5">
         <div className="snap-x mx-auto snap-mandatory flex lg:gap-x-10 gap-x-3 overflow-scroll  ">
           <div className=" snap-start flex-shrink-0 w-[22.5%] items-center justify-center  ">
             <figure>
