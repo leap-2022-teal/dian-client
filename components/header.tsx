@@ -19,11 +19,6 @@ export function Header() {
 
   useEffect(() => {
     const token = localStorage.getItem('loginToken');
-    // const auth = {
-    //   header: {
-    //     Authorization: `Bearer ${token}`,
-    //   },
-    // };
     if (token) {
       axios
         .get(`${process.env.NEXT_PUBLIC_API_URL}/users/me`, { headers: { Authorization: token ? `Bearer ${token}` : '' } })
@@ -35,10 +30,6 @@ export function Header() {
           }
         });
     }
-    // fetcherGetUser('users/me', auth).then((data) => {
-    //   setUser(data);
-    //   console.log(data);
-    // });
   }, []);
 
   function logOut() {
@@ -58,7 +49,7 @@ export function Header() {
   return (
     <>
       <header>
-        <div className=" mx-auto flex items-center justify-between px-4 sm:py-4  bg-[#171717]">
+        <div className=" mx-auto flex items-center justify-between px-3 lg:py-3  bg-[#171717]">
           <div className="flex items-center">
             <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
               Dian project
