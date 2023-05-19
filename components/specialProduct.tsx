@@ -17,7 +17,7 @@ export function SpecialProduct() {
   }, []);
   return (
     <>
-      <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
         <div className="lg:w-[295px] w-full h-auto mx-16 p-2 ">
           <Swiper
             spaceBetween={30}

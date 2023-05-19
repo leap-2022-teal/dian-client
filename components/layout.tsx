@@ -1,15 +1,15 @@
-import { Banner } from './banner';
+import { BigBanner, Slider, SmallBanner } from './banner';
 import { Header } from './header';
-import Slider from './productSlider';
 import { SpecialProduct } from './specialProduct';
 
 export default function Layout({ children }: any) {
   return (
     <div className="">
       <Header />
-      <Banner />
+      <BigBanner />
       <Slider />
       <SpecialProduct />
+      <SmallBanner />
 
       {children}
     </div>
