@@ -1,11 +1,12 @@
-import { Banner } from './banner';
+import { BigBanner, Slider } from './banner';
 import { Navbar } from './navbar';
 
 export default function Header() {
   return (
     <>
       <Navbar />
-      <Banner />
+      <BigBanner />
+      <Slider />
     </>
   );
 }
