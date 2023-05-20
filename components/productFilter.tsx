@@ -5,7 +5,7 @@ import { fetcherGet } from '../utils/fetcher';
 import Example from './sidebar';
 
 export default function ProductFilter() {
-  const [open, setOpen] = useState<any>(true);
+  const [open, setOpen] = useState<any>(false);
   const router = useRouter();
   const { id } = router.query;
   const [subCategories, setSubCategories] = useState<any>();
@@ -17,9 +17,10 @@ export default function ProductFilter() {
   return (
     <div>
       <div className="md:hidden block">
-        <button onClick={() => setClick()}>angilal gargah</button>
+        <button onClick={()=> setOpen(true)}>angilal gargah</button>
       </div>
-      <Example setClick={setOpen} />
+      <Example setOpen={setOpen} open={open} />
+
       <div className="hidden md:block">
         <div>
           <h6>Ангилал</h6>

@@ -9,7 +9,7 @@ export default function BuildModal({ BuildFilter, selected }: any) {
     fetcherGet(`categories/subCategory/6ac583ed-76c9-419a-9b2f-df3290cf6bc1`).then((data) => setSubCategories(data));
   }, []);
   return (
-    <div className={`absolute transition-all right-0 flex justify-end overflow-scroll h-screen`}>
+    <div className={`absolute  right-0 flex justify-end overflow-scroll h-screen`}>
       {showModal ? (
         <div className="relative transition-all w-1/4  duration-400 ease-in bg-slate-100">
           <button className="absolute cursor-pointer -left-0 top-1/2 w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
@@ -44,7 +44,7 @@ export default function BuildModal({ BuildFilter, selected }: any) {
           </div>
         </div>
       ) : (
-        <div className={`w- transition-all duration-400 ease-in w-full relative bg-slate-400 `}>
+        <div className={` transition-all duration-400 ease-in w-full relative bg-slate-400 `}>
           <button className="absolute cursor-pointer -left-0 top-1/2 w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowRight />
           </button>
