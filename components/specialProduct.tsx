@@ -8,6 +8,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
+import { BsBasket2 } from 'react-icons/bs';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 export function SpecialProduct() {
@@ -72,7 +73,9 @@ export function SpecialProduct() {
                   </Link>
                   <div className="flex justify-between">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                    <button className="text-[#3a3939]">select</button>
+                    <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                      <BsBasket2 />
+                    </button>
                   </div>
                 </div>
               </div>
