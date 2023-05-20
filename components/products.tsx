@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useState } from 'react';
-import { BsFillCartPlusFill } from 'react-icons/bs';
 
 interface PropType {
   products: any;
@@ -21,27 +20,27 @@ export function Products({ products }: PropType) {
   return (
     <>
       {products ? (
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 w-[70%]">
-          {products?.map((product: any) => {
-            return (
-              <>
-                <div key={product._id} className="bg-white hover:shadow-lg overflow-hidden border group border-gray-100 rounded-md ">
-                  <Link href={`/product/${product.slugUrl}`}>
-                    <Image className="w-full px-10" src={product.imageUrl} alt="Product Image" width={60} height={60} />
-                    <div className="px-5 pb-2">
-                      <h3 className="text-lg font-semibold text-[#3a3939] mt-2 mb-3 truncate">{product.title}</h3>
-                      <div>
-                        <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                      </div>
-                    </div>
-                  </Link>
-                  <button className="text-[#3a3939] hidden group-hover:block bg-black rounded w-1/12 " onClick={() => ItemSelect({ product })}>
-                    {/* <BsFillCartPlusFill fill="white" /> */}
-                  </button>
+        <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
+          {products?.map((product: any) => (
+            <div key={product._id} className=" hover:shadow-lg border border-gray-100 rounded-2xl flex flex-col">
+              <Link href={`/product/${product.slugUrl}`}>
+                <figure className="flex justify-center bg-white  overflow-hidden rounded-2xl mb-2">
+                  <Image className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                </figure>
+              </Link>
+              <div className="p-5 text-sm flex flex-col justify-between flex-grow font-sans font-bold">
+                <Link href={`/product/${product.slugUrl}`} className="text-slate-400">
+                  <div className="pb-5">
+                    <p className="text-slate-800 mb-5">{product.title}</p>
+                  </div>
+                </Link>
+                <div className="flex justify-between">
+                  <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                  <button className="text-[#3a3939]">select</button>
                 </div>
-              </>
-            );
-          })}
+              </div>
+            </div>
+          ))}
         </div>
       ) : (
         <div>spin</div>

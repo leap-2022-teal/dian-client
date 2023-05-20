@@ -8,7 +8,6 @@ export default function Layout({ children }: any) {
       <Header />
       <Slider />
       <SpecialProduct />
-
       {children}
     </div>
   );
