@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import { Header } from '../../../components/header';
-import { useEffect, useState } from 'react';
-import { fetcherGet } from '../../../utils/fetcher';
 import numeral from 'numeral';
+import { useEffect, useState } from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
+import { Navbar } from '../../../components/navbar';
+import { fetcherGet } from '../../../utils/fetcher';
 
 export default function SingleProduct() {
   const [product, setProducts] = useState<any>();
@@ -26,7 +26,7 @@ export default function SingleProduct() {
 
   return (
     <>
-      <Header />
+      <Navbar />
       <div className="container px-10 py-24 mx-auto cursor-pointer mt-10 shadow-lg">
         <div className=" mx-auto flex flex-wrap">
           <img alt={product && product[0]?.title} className="lg:w-1/3 w-full lg:h-auto h-60 object-cover object-center rounded cursor-pointer" src={product && product[0].imageUrl} />
