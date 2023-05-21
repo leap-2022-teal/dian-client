@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BuildModal from '../../components/buildModal';
 import { Navbar } from '../../components/navbar';
 import ProductFilter from '../../components/productFilter';
@@ -9,9 +9,14 @@ export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
   const [selected, setSelected] = useState<any[]>([]);
 
-  function BuildFilter(category: any) {
-    fetcherGet(`products/build/${category}`).then((data) => setProducts(data));
+  function BuildFilter(id: any) {
+    fetcherGet(`products/build/${id}`).then((data) => setProducts(data));
   }
+
+  useEffect(() => {
+    BuildFilter('323ed6c1-f4aa-49b6-99a6-c89098c1b6e7');
+  }, []);
+
   function ItemSelect({ product }: any) {
     const products = selected.filter((e: any) => {
       return e.categoryId !== product.categoryId;
@@ -19,6 +24,7 @@ export default function PCBuilding() {
     products.push(product);
     setSelected(products);
   }
+  
 
   return (
     <>
@@ -40,9 +46,9 @@ export default function PCBuilding() {
             );
           })}
         </div>
-        <div className="absolute top-0 right-0 w-2/5">
-          <BuildModal BuildFilter={BuildFilter} selected={selected} />
-        </div>
+        {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
+        <BuildModal BuildFilter={BuildFilter} selected={selected} />
+        {/* </div> */}
       </div>
     </>
   );
