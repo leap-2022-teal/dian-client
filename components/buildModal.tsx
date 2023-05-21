@@ -8,16 +8,26 @@ export default function BuildModal({ BuildFilter, selected }: any) {
   useEffect(() => {
     fetcherGet(`categories/subCategory/6ac583ed-76c9-419a-9b2f-df3290cf6bc1`).then((data) => setSubCategories(data));
   }, []);
+  const initialValue = 0;
+  const total = selected.reduce(
+    (
+      accumulator: number,
+      current: {
+        unitPrice: number;
+      }
+    ) => accumulator + current.unitPrice,
+    initialValue
+  );
   return (
-    <div className={`absolute transition-all right-0 flex justify-end overflow-scroll h-screen`}>
+    <>
       {showModal ? (
-        <div className="relative transition-all w-1/4  duration-400 ease-in bg-slate-100">
-          <button className="absolute cursor-pointer -left-0 top-1/2 w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
+        <div className="absolute top-0 right-0 transition-all w-1/12   duration-400 ease-in bg-white">
+          <button className="cursor-pointer  w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowLeft />
           </button>
-          <div className="pt-6">
+          <div className="">
             {subCategories?.map((category: any) => (
-              <>
+              <div key={category._id}>
                 {selected.map((product: any) => {
                   return (
                     <div key={product._id}>
@@ -31,26 +41,22 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                     </div>
                   );
                 })}
-                <button onClick={() => BuildFilter(category?._id)}>
-                  {selected.filter((product: any) => product.categoryId === category._id).length === 0 && (
-                    <div key={category._id} className={`p-2 cursor-pointer text-gray-300 text-sm `}>
-                      <img src={category.imageUrl} />
-                    </div>
-                  )}
+                <button onClick={() => BuildFilter(category._id)}>
+                  {selected.filter((product: any) => product.categoryId === category._id).length === 0 && <img src={category.imageUrl} className="p-2 cursor-pointer" />}
                   <p className="text-sm text-gray-500 dark:text-gray-400">{category.title}</p>
                 </button>
-              </>
+              </div>
             ))}
           </div>
         </div>
       ) : (
-        <div className={`w- transition-all duration-400 ease-in w-full relative bg-slate-400 `}>
-          <button className="absolute cursor-pointer -left-0 top-1/2 w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
+        <div className={`absolute top-0 right-0 transition-all duration-400  ease-in w-1/3  bg-white `}>
+          <button className="cursor-pointer w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowRight />
           </button>
-          <div className="pt-6">
+          <div className="">
             {subCategories?.map((category: any) => (
-              <>
+              <div key={category._id}>
                 {selected.map((product: any) => {
                   return (
                     <div key={product._id} className="overflow-scroll ">
@@ -68,19 +74,16 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                   );
                 })}
                 <button onClick={() => BuildFilter(category._id)}>
-                  {selected.filter((product: any) => product.categoryId === category._id).length === 0 && (
-                    <div key={category._id} className={`p-2 cursor-pointer text-gray-300 text-sm `}>
-                      <img src={category.imageUrl} className="" />
-                    </div>
-                  )}
+                  {selected.filter((product: any) => product.categoryId === category._id).length === 0 && <img src={category.imageUrl} className="p-2 cursor-pointer" />}
                   <p className="text-sm text-gray-500 dark:text-gray-400">{category.title}</p>
                 </button>
-              </>
+              </div>
             ))}
-            {selected?.map((product: any) => {
+
+            {/* {selected?.map((product: any) => {
               return (
                 <>
-                  {product?.category[0].parentId !== '6ac583ed-76c9-419a-9b2f-df3290cf6bc1' ? (
+                  {product?.category[0]?.parentId !== '6ac583ed-76c9-419a-9b2f-df3290cf6bc1' ? (
                     <div className="flex bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
                       <div className="px-5 pb-5">
                         <img className="" src={product.imageUrl} alt="Product Image" />
@@ -90,10 +93,11 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                   ) : null}
                 </>
               );
-            })}
+            })} */}
           </div>
         </div>
       )}
-    </div>
+      {total}
+    </>
   );
 }

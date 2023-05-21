@@ -1,5 +1,5 @@
 import numeral from 'numeral';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BuildModal from '../../components/buildModal';
 import { Header } from '../../components/header';
 import { fetcherGet } from '../../utils/fetcher';
@@ -8,9 +8,14 @@ export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
   const [selected, setSelected] = useState<any[]>([]);
 
-  function BuildFilter(category: any) {
-    fetcherGet(`products/build/${category}`).then((data) => setProducts(data));
+  function BuildFilter(id: any) {
+    fetcherGet(`products/build/${id}`).then((data) => setProducts(data));
   }
+
+  useEffect(() => {
+    BuildFilter('323ed6c1-f4aa-49b6-99a6-c89098c1b6e7');
+  }, []);
+
   function ItemSelect({ product }: any) {
     const products = selected.filter((e: any) => {
       return e.categoryId !== product.categoryId;
@@ -18,12 +23,13 @@ export default function PCBuilding() {
     products.push(product);
     setSelected(products);
   }
+  
 
   return (
     <>
       <Header />
-      <div className="relative">
-        <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="relative ">
+        <div className="container max-w-[1344px] mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {
             return (
               <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden  mb-5">
@@ -39,9 +45,9 @@ export default function PCBuilding() {
             );
           })}
         </div>
-        <div className="absolute top-0 right-0 w-2/5">
-          <BuildModal BuildFilter={BuildFilter} selected={selected} />
-        </div>
+        {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
+        <BuildModal BuildFilter={BuildFilter} selected={selected} />
+        {/* </div> */}
       </div>
     </>
   );

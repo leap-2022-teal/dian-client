@@ -12,6 +12,25 @@ export function Header() {
   const [registerModal, setRegisterModal] = useState(false);
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+
+      if (scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);
@@ -48,8 +67,10 @@ export function Header() {
   }
   return (
     <>
-      <header>
-        <div className=" mx-auto flex items-center justify-between px-3 lg:py-3  bg-[#171717]">
+      <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${
+        isScrolled ? 'opacity-90' : 'opacity-100'
+      }`}>
+        <div className=" mx-auto flex items-center justify-between px-3 lg:py-3 bg-[#171717]">
           <div className="flex items-center">
             <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
               Dian project
@@ -129,6 +150,9 @@ export function Header() {
           </div>
         </div>
       </header>
+      <div className={`w-full h-[50px] ${
+        isScrolled ? 'hidden' : 'block'
+      }`}></div>
 
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />

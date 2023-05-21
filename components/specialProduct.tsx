@@ -2,13 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
+import { BsBasket2 } from 'react-icons/bs';
+import { SlArrowRight } from 'react-icons/sl';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
-import { BsBasket2 } from 'react-icons/bs';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 export function SpecialProduct() {
@@ -19,7 +20,10 @@ export function SpecialProduct() {
   return (
     <>
       <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
-        <div className="lg:w-[295px] w-full h-auto mx-16 p-2 ">
+        <div className="lg:w-[350px] w-full h-auto mx-16 p-2 ">
+          <div className=" flex items-center">
+            <span className="text-md font-sans font-semibold">ОНЦГОЙ САНАЛ</span>
+          </div>
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
@@ -31,7 +35,7 @@ export function SpecialProduct() {
               clickable: true,
             }}
             modules={[Autoplay, Pagination, Navigation]}
-            className="w-[350px] h-auto "
+            className="w-[350px]  h-auto "
           >
             <SwiperSlide>
               <img className="relative rounded-lg border border-gray-300" src="https://c1.neweggimages.com/WebResource/Themes/Nest/ne_features_pcbuilder.jpg" alt="" />
@@ -51,10 +55,16 @@ export function SpecialProduct() {
           </Swiper>
         </div>
         <div>
-          <div className="flex justify-between p-2">
-            <h4>ОНЦЛОХ БАРАА</h4>{' '}
+          <div className="flex justify-between p-2 text-md text-[#c10206]  font-sans font-bold">
+            <div className=" flex items-center">
+              <div className="w-2 h-2  bg-[#c10206] rounded-full inline-block mr-4"></div>
+              <h4>ОНЦЛОХ БАРАА</h4>
+            </div>
             <div>
-              <Link href={`/category`}>БҮГДИЙГ ҮЗЭХ</Link>
+              <Link href={`/category`} className="flex  items-center">
+                <div className="mr-2">БҮГДИЙГ ҮЗЭХ</div>
+                <SlArrowRight />
+              </Link>
             </div>
           </div>
           <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">

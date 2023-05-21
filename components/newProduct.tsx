@@ -2,6 +2,7 @@ import Link from 'next/link';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import { BsBasket2 } from 'react-icons/bs';
+import { SlArrowRight } from 'react-icons/sl';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
@@ -14,10 +15,16 @@ export default function NewProduct() {
   }, []);
   return (
     <div className="pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
-      <div className="flex justify-between p-2">
-        <h4>ШИНЭ БАРАА</h4>
+      <div className="flex justify-between p-2 text-md text-[#c10206]  font-sans font-bold">
+        <div className=" flex items-center">
+          <div className="w-2 h-2  bg-[#c10206] rounded-full inline-block mr-4"></div>
+          <h4>ШИНЭ БАРАА</h4>
+        </div>
         <div>
-          <Link href={`/category`}>БҮГДИЙГ ҮЗЭХ</Link>
+          <Link href={`/category`} className="flex  items-center">
+            <div className="mr-2">БҮГДИЙГ ҮЗЭХ</div>
+            <SlArrowRight />
+          </Link>
         </div>
       </div>
       <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
