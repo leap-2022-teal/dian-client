@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
+import { AiFillStar } from 'react-icons/ai';
 
 export function SpecialProduct() {
   const [products, setProducts] = useState<any>();
@@ -21,8 +22,11 @@ export function SpecialProduct() {
     <>
       <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
         <div className="lg:w-[350px] w-full h-auto mx-16 p-2 ">
-          <div className=" flex items-center">
-            <span className="text-md font-sans font-semibold">ОНЦГОЙ САНАЛ</span>
+          <div className=" flex items-center justify-center mb-[2rem]">
+            <div className="w-2 h-2  text-[#c10206] inline-block mb-2 mr-3">
+              <AiFillStar />
+            </div>
+            <h4 className="text-md text-[#c10206]  font-sans font-bold">ОНЦЛОХ САНАЛ</h4>
           </div>
           <Swiper
             spaceBetween={30}
