@@ -2,12 +2,12 @@ import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import BuildModal from '../../components/buildModal';
 import { Navbar } from '../../components/navbar';
-import ProductFilter from '../../components/productFilter';
 import { fetcherGet } from '../../utils/fetcher';
 
 export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
   const [selected, setSelected] = useState<any[]>([]);
+  console.log(selected);
 
   function BuildFilter(id: any) {
     fetcherGet(`products/build/${id}`).then((data) => setProducts(data));
@@ -22,9 +22,10 @@ export default function PCBuilding() {
       return e.categoryId !== product.categoryId;
     });
     products.push(product);
+    console.log(product);
     setSelected(products);
+    console.log(products);
   }
-  
 
   return (
     <>
