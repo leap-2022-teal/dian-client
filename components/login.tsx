@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Image from 'next/image';
-import loginImage from '../image/Shiny Happy - Home Vacation small.png';
+import loginImage from '../image/login.png';
 import { useRouter } from 'next/router';
 
 export default function UserLogin({ showModal, setShowModal }: any) {
@@ -71,103 +71,92 @@ export default function UserLogin({ showModal, setShowModal }: any) {
       {showModal ? (
         <div className={` ${showModal ? 'backdrop-blur' : null} flex items-center justify-center fixed z-10 inset-0 overflow-y-auto`}>
           <div className="shadow-xl flex items-center justify-center">
-            <div className="bg-white rounded-lg shadow-md flex flex-col md:flex-row items-center md:px-10 max-w-3xl mx-auto">
-              <div className="md:w-1/2 hidden md:block">
-                <Image src={loginImage} alt="login" />
+            <div className="bg-white rounded-lg shadow-md ">
+              <div className="justify-end pt-3 pr-3 flex">
+                <button onClick={handleClose} className="bg-gray-100 rounded-full p-1">
+                  <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
               </div>
-              <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                <div className="flex justify-end">
-                  <button onClick={handleClose} className="bg-gray-100 rounded-full p-1">
-                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                  </button>
+              <div className="flex flex-col md:flex-row md:px-10 max-w-3xl mx-auto">
+                <div className="md:w-1/2 hidden md:block">
+                  <Image src={loginImage} alt="login" />
                 </div>
-                <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Sign in to your account</h1>
-                <form className="space-y-4 md:space-y-6" action="#">
-                  {!error ? (
-                    <div>
+                <div className="px-6 pb-6 space-y-4 md:space-y-6 sm:px-8 sm:pb-8">
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Нэвтрэх</h1>
+                  <form className="space-y-4 md:space-y-6" action="#">
+                    {!error ? (
                       <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value);
-                          }}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        />
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">И-мэйл хаяг</label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                            }}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                        </div>
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">Нууц үг</label>
+                          <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                        <input
-                          type="password"
-                          name="password"
-                          value={password}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        />
+                    ) : (
+                      <div className="animate-shake">
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">И-мэйл хаяг</label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={email}
+                            onChange={(e) => {
+                              setEmail(e.target.value);
+                            }}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                        </div>
+                        <div>
+                          <label className="block mb-2 text-sm font-medium text-gray-900 ">Нууц үг</label>
+                          <input
+                            type="password"
+                            name="password"
+                            value={password}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                            }}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                          />
+                        </div>
                       </div>
-                    </div>
-                  ) : (
-                    <div className="animate-shake">
-                      <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Your email</label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={email}
-                          onChange={(e) => {
-                            setEmail(e.target.value);
-                          }}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        />
-                      </div>
-                      <div>
-                        <label className="block mb-2 text-sm font-medium text-gray-900 ">Password</label>
-                        <input
-                          type="password"
-                          name="password"
-                          value={password}
-                          onChange={(e) => {
-                            setPassword(e.target.value);
-                          }}
-                          className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        />
-                      </div>
-                    </div>
-                  )}
+                    )}
 
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-start">
-                      <div className="flex items-center h-5">
-                        <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 " />
-                      </div>
-                      <div className="ml-3 text-sm">
-                        <label className="text-gray-500 ">Remember me</label>
-                      </div>
-                    </div>
-                    <a href="#" className="text-sm font-medium text-green-600 hover:underline ">
-                      Forgot password?
-                    </a>
-                  </div>
-                  <button
-                    type="submit"
-                    onClick={handleLogin}
-                    className="w-full text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
-                  >
-                    Login
-                  </button>
-                  <p className="text-sm font-light text-gray-500 ">
-                    Don’t have an account yet?
-                    <Link href="/signUp" className="font-medium text-green-600 hover:underline ">
-                      Sign up
-                    </Link>
-                  </p>
-                </form>
+                    <button
+                      type="submit"
+                      onClick={handleLogin}
+                      className="w-full text-white bg-[#C10206] hover:[#A50113] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                    >
+                      Нэвтрэх
+                    </button>
+                    <p className="text-sm font-light text-gray-500 ">
+                      Шинэ хэрэглэгч үүсгэх?
+                      <Link href="/signUp" className="font-medium text-[#C10206] hover:underline ml-1 ">
+                        Бүртгүүлэх
+                      </Link>
+                    </p>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
