@@ -1,9 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import numeral from 'numeral';
 import { Fragment } from 'react';
+import { BsBasket2 } from 'react-icons/bs';
+import useLocalStorageState from 'use-local-storage-state';
 
 export default function Example({ open, setOpen }: any) {
-  // const [open, setOpen] = useState(true);
+  const [selceted, setTodos, { isPersistent }] = useLocalStorageState<any[]>('selceted', {});
 
   return (
     <Transition.Root show={open} as={Fragment}>
@@ -47,7 +51,29 @@ export default function Example({ open, setOpen }: any) {
                         <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">Panel title</Dialog.Title>
                       </div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6">{/* Your content */}</div>
+                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                      {selceted?.map((product: any) => (
+                        <div key={product._id} className="bg-white flex hover:shadow-lg border border-gray-100 rounded-lg">
+                          <Link href={`/product/${product.slugUrl}`}>
+                            <figure className=" flex justify-center  ">
+                              <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                            </figure>
+                          </Link>
+                          <div className="p-5 text-sm flex flex-col w-full justify-between font-sans font-bold">
+                            <Link href={`/product/${product.slugUrl}`}>
+                              <p className="text-slate-800 ">{product.title}</p>
+                            </Link>
+                            <div className="flex  justify-between">
+                              <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                              <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                                <BsBasket2 />
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                      {!isPersistent && <span>Changes aren currently persisted.</span>}
+                    </div>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

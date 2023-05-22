@@ -5,7 +5,6 @@ import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { fetcherPost } from '../utils/fetcher';
-import Pagination from './pagination';
 
 interface PropType {
   products: any;
@@ -13,10 +12,11 @@ interface PropType {
 
 export function Products({ products }: PropType) {
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
-
+  console.log(selected);
+  
   const router = useRouter();
   const [limit] = useState(15);
-  let { page, id }: any = router.query;
+  const { id }: any = router.query;
 
   const [productCount, setProductCount] = useState(0);
 
@@ -41,17 +41,17 @@ export function Products({ products }: PropType) {
     products?.push(product);
     setSelected(products);
   }
-  function previousPage() {
-    if (page !== 1) {
-      page = page - 1;
-    }
-  }
+  // function previousPage() {
+  //   if (page !== 1) {
+  //     page = page - 1;
+  //   }
+  // }
 
-  function nextPage() {
-    if (page !== Math.floor(productCount / limit)) {
-      page = page - 1;
-    }
-  }
+  // function nextPage() {
+  //   if (page !== Math.floor(productCount / limit)) {
+  //     page = page - 1;
+  //   }
+  // }
 
   return (
     <>
@@ -80,7 +80,7 @@ export function Products({ products }: PropType) {
             ))}
           </div>
 
-          <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} />
+          {/* <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} /> */}
         </div>
       ) : (
         <div>spin</div>
