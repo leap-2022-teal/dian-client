@@ -3,8 +3,8 @@ import { useState } from 'react';
 import { Navbar } from '../../../components/navbar';
 import ProductFilter from '../../../components/productFilter';
 import { Products } from '../../../components/products';
-import Example from '../../../components/sidebar';
 import { fetcherPost } from '../../../utils/fetcher';
+import ProductSidebar from '../../../components/productSidebar';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const [open, setOpen] = useState<any>(false);
@@ -20,7 +20,7 @@ export default function FilteredbyCatProducts({ products }: any) {
       <div className="">
         <button onClick={() => setOpen(true)}>angilal gargah</button>
       </div>
-      <Example setOpen={setOpen} open={open} />
+      <ProductSidebar setOpen={setOpen} open={open} />
     </>
   );
 }

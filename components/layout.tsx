@@ -1,29 +1,35 @@
 import { createContext, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { SmallBanner } from './banner';
-import Footer from './footer';
 import Brands from './brands';
+import Footer from './footer';
 import Header from './header';
 import NewProduct from './newProduct';
-import Example from './sidebar';
+import ProductSidebar from './productSidebar';
 import { SpecialProduct } from './specialProduct';
 
-const LocalContext = createContext(null);
+type OrderContext = {
+  myFunction: (e: any) => void;
+};
+export const OrderContext = createContext<any | undefined>(undefined);
 
 export default function Layout({ children }: any) {
-  // const [item, setItem] = useState<any>();
-  // const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
-
-  // function ItemSelect({ product }: any) {
-  //   const products = selected?.filter((e: any) => {
-  //     return e._id !== product._id;
-  //   });
-  //   products?.push(product);
-  //   setSelected(products);
-  // }
+  const [item, setItem] = useState<any>();
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
   const [open, setOpen] = useState<any>(false);
 
+  // useEffect(() => {
+  //   ItemSelect(item);
+  // }, [item]);
 
+  function ItemSelect(product: any) {
+    const products = selected?.filter((e: any) => {
+      return e._id !== product._id;
+    });
+    products?.push(product);
+    setSelected(products);
+  }
+  console.log(selected, 'selected');
   // console.log(selected, 'layout');
   // useEffect(() => {
   //   const one: any = localStorage.getItem('selected');
@@ -33,17 +39,19 @@ export default function Layout({ children }: any) {
 
   return (
     <div>
-      <Header />
-      <SpecialProduct />
-      <SmallBanner />
-      <NewProduct />
-      {children}
-      <div className="">
-        <button onClick={() => setOpen(true)}>angilal gargah</button>
-      </div>
-      <Example setOpen={setOpen} open={open} />
-      <Brands />
-      <Footer />
+      <OrderContext.Provider value={{ ItemSelect }}>
+        <Header />
+        <SpecialProduct />
+        <SmallBanner />
+        <NewProduct />
+        {children}
+        <div className="">
+          <button onClick={() => setOpen(true)}>angilal gargah</button>
+        </div>
+        <ProductSidebar setOpen={setOpen} open={open} />
+        <Brands />
+        <Footer />
+      </OrderContext.Provider>
     </div>
   );
 }

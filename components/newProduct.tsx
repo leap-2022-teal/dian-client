@@ -1,16 +1,18 @@
 import Link from 'next/link';
 import numeral from 'numeral';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsBasket2 } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa';
 import { SlArrowRight } from 'react-icons/sl';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { fetcherGet } from '../utils/fetcher';
-import { FaStar } from 'react-icons/fa';
+import { OrderContext } from './layout';
 
 export default function NewProduct() {
   const [products, setProducts] = useState<any>();
+  const { ItemSelect } = useContext(OrderContext);
   useEffect(() => {
     fetcherGet(`products/new`).then((data) => setProducts(data));
   }, []);
@@ -45,7 +47,7 @@ export default function NewProduct() {
               </Link>
               <div className="flex  justify-between">
                 <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                <button onClick={() => ItemSelect(product)} className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
                   <BsBasket2 />
                 </button>
               </div>
