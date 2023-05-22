@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from 'react';
+import { createContext, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { SmallBanner } from './banner';
 import Header from './header';
@@ -9,7 +9,7 @@ import { SpecialProduct } from './specialProduct';
 const LocalContext = createContext(null);
 
 export default function Layout({ children }: any) {
-  const [item, setItem] = useState<any>();
+  // const [item, setItem] = useState<any>();
   // const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   // function ItemSelect({ product }: any) {
@@ -20,14 +20,14 @@ export default function Layout({ children }: any) {
   //   setSelected(products);
   // }
   const [open, setOpen] = useState<any>(false);
-  const [selected, setSelected] = useLocalStorageState<any[]>('selected');
 
-  console.log(selected, 'layout');
-  useEffect(() => {
-    const one: any = localStorage.getItem('selected');
-    setItem(JSON.parse(one));
-  }, []);
-  console.log(item, 'item');
+
+  // console.log(selected, 'layout');
+  // useEffect(() => {
+  //   const one: any = localStorage.getItem('selected');
+  //   setItem(JSON.parse(one));
+  // }, []);
+  // console.log(item, 'item');
 
   return (
     <div className="">
