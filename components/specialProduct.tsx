@@ -22,7 +22,7 @@ export function SpecialProduct() {
     <>
       <div className="flex flex-wrap lg:flex-nowrap justify-center  w-[100%] max-w-[1344px] mx-auto mt-[1rem]">
         <div className="lg:w-[350px] w-full h-auto mx-16 p-2 ">
-          <div className="lg:mt-[100px]"></div>
+          {/* <div className="lg:mt-[100px]"></div> */}
           <Swiper
             spaceBetween={30}
             slidesPerView={1}

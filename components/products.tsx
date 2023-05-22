@@ -13,7 +13,8 @@ interface PropType {
 export function Products({ products }: PropType) {
   const router = useRouter();
   const [limit] = useState(15);
-  let { page, id }: any = router.query;
+  let { page }: any = router.query;
+  const { id }: any = router.query;
 
   const [productCount, setProductCount] = useState(0);
 
