@@ -6,6 +6,9 @@ import { HiShoppingCart } from 'react-icons/hi';
 import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
 import UserSignUp from './signUp';
+import { BiCategory } from 'react-icons/bi';
+import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
+import Image from 'next/image';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -68,18 +71,12 @@ export function Navbar() {
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
-        <div className=" mx-auto flex items-center justify-between px-3 lg:py-3 bg-[#171717]">
+        <div className=" mx-auto flex items-center justify-between py-3 bg-[#171717]">
           <div className="flex items-center">
-            <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
-              Dian project
+            <Link href="/" className="md:w-[150px] w-[100px] ml-10">
+              <Image src={Logo} alt="" />
             </Link>
-            <div className="text-white text-xl pl-40">
-              <CategoryFilter />
-            </div>
-          </div>
-
-          <div className="hidden md:flex items-center">
-            <form className="mr-6">
+            <form className=" ml-40 hidden md:block">
               <div className="relative">
                 <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
                 <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
@@ -91,6 +88,15 @@ export function Navbar() {
                 </span>
               </div>
             </form>
+          </div>
+
+          <div className="hidden md:flex items-center">
+            <div className="text-white text-xl mr-6 bg-[#c10206] rounded-lg flex py-4 px-2">
+              <div className="my-auto pl-2">
+                <BiCategory />
+              </div>
+              <CategoryFilter />
+            </div>
 
             <div className="flex gap-5 pr-10">
               {!user ? (
