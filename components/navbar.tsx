@@ -64,11 +64,13 @@ export function Navbar() {
   function handleLoginModal() {
     setLoginModal(true);
     setIsDropdownVisible(false);
+    setOpen(false);
   }
 
   function handleRegisterModal() {
     setRegisterModal(true);
     setIsDropdownVisible(false);
+    setOpen(false);
   }
   return (
     <>
@@ -167,7 +169,7 @@ export function Navbar() {
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
-      <Sidebar open={open} setOpen={setOpen} />
+      <Sidebar open={open} setOpen={setOpen} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} isDropdownVisible={isDropdownVisible} user={user} />
     </>
   );
 }
