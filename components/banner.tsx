@@ -99,7 +99,7 @@ export function Slider() {
 export const SmallBanner = () => {
   return (
     <>
-      <div className="flex mt-[3rem]">
+      <div className="flex mt-[4rem]">
         <img className="lg:w-[50%] w-[0] " src="https://promotions.newegg.com/nepro/23-0075/banner/800x120@2x.jpg" alt="" />
         <img className="lg:w-[50%] w-[100%]" src="https://promotions.newegg.com/nepro/23-0570/800x120@2x.jpg" alt="" />
       </div>

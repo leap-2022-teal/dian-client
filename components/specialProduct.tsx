@@ -11,7 +11,7 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
-import { AiFillStar } from 'react-icons/ai';
+import { FaStar } from 'react-icons/fa';
 
 export function SpecialProduct() {
   const [products, setProducts] = useState<any>();
@@ -20,14 +20,9 @@ export function SpecialProduct() {
   }, []);
   return (
     <>
-      <div className="flex flex-wrap lg:flex-nowrap justify-center pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
+      <div className="flex flex-wrap lg:flex-nowrap justify-center  w-[100%] max-w-[1344px] mx-auto mt-[1rem]">
         <div className="lg:w-[350px] w-full h-auto mx-16 p-2 ">
-          <div className=" flex items-center justify-center mb-[2rem]">
-            <div className="w-2 h-2  text-[#c10206] inline-block mb-2 mr-3">
-              <AiFillStar />
-            </div>
-            <h4 className="text-md text-[#c10206]  font-sans font-bold">ОНЦЛОХ САНАЛ</h4>
-          </div>
+          <div className="lg:mt-[100px]"></div>
           <Swiper
             spaceBetween={30}
             slidesPerView={1}
@@ -59,9 +54,11 @@ export function SpecialProduct() {
           </Swiper>
         </div>
         <div>
-          <div className="flex justify-between p-2 text-md text-[#c10206]  font-sans font-bold">
+          <div className="flex justify-between p-2 text-md text-[#c10206] mt-[2rem] font-sans font-bold">
             <div className=" flex items-center">
-              <div className="w-2 h-2  bg-[#c10206] rounded-full inline-block mr-4"></div>
+              <div className=" text-[#c10206] mr-2">
+                <FaStar />
+              </div>
               <h4>ОНЦЛОХ БАРАА</h4>
             </div>
             <div>
