@@ -13,9 +13,10 @@ interface PropType {
 export function Products({ products }: PropType) {
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
   console.log(selected);
-  
+
   const router = useRouter();
   const [limit] = useState(15);
+  let { page }: any = router.query;
   const { id }: any = router.query;
 
   const [productCount, setProductCount] = useState(0);

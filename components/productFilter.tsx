@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
-import Example from './sidebar';
+import ProductSidebar from './productSidebar';
 
 export default function ProductFilter() {
   const [open, setOpen] = useState<any>(false);
@@ -13,13 +13,13 @@ export default function ProductFilter() {
   useEffect(() => {
     fetcherGet(`categories/subCategories`).then((data) => setSubCategories(data));
   }, []);
-  
+
   return (
     <div>
       <div className="md:hidden block">
-        <button onClick={()=> setOpen(true)}>angilal gargah</button>
+        <button onClick={() => setOpen(true)}>angilal gargah</button>
       </div>
-      <Example setOpen={setOpen} open={open} />
+      <ProductSidebar setOpen={setOpen} open={open} />
 
       <div className="hidden md:block">
         <div>

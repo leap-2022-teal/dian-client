@@ -7,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { fetcherGet } from '../utils/fetcher';
+import { FaStar } from 'react-icons/fa';
 
 export default function NewProduct() {
   const [products, setProducts] = useState<any>();
@@ -17,7 +18,10 @@ export default function NewProduct() {
     <div className="pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
       <div className="flex justify-between p-2 text-md text-[#c10206]  font-sans font-bold">
         <div className=" flex items-center">
-          <div className="w-2 h-2  bg-[#c10206] rounded-full inline-block mr-4"></div>
+          {/* <div className="w-2 h-2  bg-[#c10206] rounded-full inline-block mr-4"></div> */}
+          <div className=" text-[#c10206] mr-2">
+            <FaStar />
+          </div>
           <h4>ШИНЭ БАРАА</h4>
         </div>
         <div>

@@ -1,6 +1,8 @@
 import { createContext, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { SmallBanner } from './banner';
+import Footer from './footer';
+import Brands from './brands';
 import Header from './header';
 import NewProduct from './newProduct';
 import Example from './sidebar';
@@ -30,7 +32,7 @@ export default function Layout({ children }: any) {
   // console.log(item, 'item');
 
   return (
-    <div className="">
+    <div>
       <Header />
       <SpecialProduct />
       <SmallBanner />
@@ -40,6 +42,8 @@ export default function Layout({ children }: any) {
         <button onClick={() => setOpen(true)}>angilal gargah</button>
       </div>
       <Example setOpen={setOpen} open={open} />
+      <Brands />
+      <Footer />
     </div>
   );
 }

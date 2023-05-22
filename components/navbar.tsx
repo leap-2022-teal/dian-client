@@ -2,10 +2,14 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
-import { HiShoppingCart } from 'react-icons/hi';
+import { HiShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
 import UserSignUp from './signUp';
+import { BiCategory } from 'react-icons/bi';
+import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
+import Image from 'next/image';
+import Sidebar from './sidebar';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -13,6 +17,7 @@ export function Navbar() {
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState<any>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -68,30 +73,41 @@ export function Navbar() {
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
-        <div className=" mx-auto flex items-center justify-between px-3 lg:py-3 bg-[#171717]">
-          <div className="flex items-center">
-            <Link href="/" className="ml-5 text-2xl font-bold text-gray-100">
-              Dian project
-            </Link>
-            <div className="text-white text-xl pl-40">
+        <div className=" mx-auto flex items-center justify-between py-3 bg-[#171717]">
+          {/* <div className="flex items-center justify-between "> */}
+          <Link href="/" className="md:w-[150px] w-[100px] md:ml-10 ml-5">
+            <Image src={Logo} alt="logo" />
+          </Link>
+          <form className=" hidden md:block">
+            <div className="relative">
+              <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
+              <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
+                <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                  </svg>
+                </svg>
+              </span>
+            </div>
+          </form>
+          <button onClick={() => setOpen(!open)}>
+            <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
+          </button>
+
+          {/* </div> */}
+
+          <div className="xl:block hidden"></div>
+          <div className="xl:block hidden"></div>
+
+          <div className="hidden lg:block">
+            <div className="text-white bg-[#c10206] rounded-lg flex py-3 px-1">
+              <div className="my-auto pl-2 pr-1">
+                <BiCategory />
+              </div>
               <CategoryFilter />
             </div>
           </div>
-
-          <div className="hidden md:flex items-center">
-            <form className="mr-6">
-              <div className="relative">
-                <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
-                <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                  <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                    </svg>
-                  </svg>
-                </span>
-              </div>
-            </form>
-
+          <div className="hidden lg:flex items-center">
             <div className="flex gap-5 pr-10">
               {!user ? (
                 <>
@@ -150,7 +166,8 @@ export function Navbar() {
       </header>
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
-      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />{' '}
+      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
+      <Sidebar open={open} setOpen={setOpen} />
     </>
   );
 }
