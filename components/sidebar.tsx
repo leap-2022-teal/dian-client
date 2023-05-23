@@ -1,9 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 import { Fragment, useEffect } from 'react';
-import { SidebarCategory } from './sidebarCategory';
-import { HiOutlineWrenchScrewdriver, HiShoppingCart } from 'react-icons/hi2';
+import { HiShoppingCart } from 'react-icons/hi2';
 import { MdOutlineLogout } from 'react-icons/md';
+import { SidebarCategory } from './sidebarCategory';
 
 export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {
@@ -111,14 +111,14 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                           </div>
                         )}
 
-                        <a href="/PCBuilding">
+                        <Link href="/PCBuilding">
                           <div className="flex py-10 border-b-[1px] border-b-gray-500 cursor-pointer">
                             {/* <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
                               <HiOutlineWrenchScrewdriver />
                             </div> */}
                             <div className="text-lg">Компьютер угсрах</div>
                           </div>
-                        </a>
+                        </Link>
 
                         <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
                           <SidebarCategory />
