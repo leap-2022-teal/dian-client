@@ -1,10 +1,26 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
-import { Fragment } from 'react';
-import SidebarCategory from './sidebarCategory';
+import { Fragment, useEffect } from 'react';
+// import SidebarCategory from './sidebarCategory';
 import { HiChip } from 'react-icons/hi';
+import { Link } from '@nextui-org/react';
 
-export default function Sidebar({ open, setOpen, handleLoginModal, handleRegisterModal, user }: any) {
+export default function Sidebar({ open, setOpen, handleLoginModal, handleRegisterModal, user, logOut }: any) {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <>
       <Transition.Root show={open} as={Fragment}>
@@ -59,29 +75,42 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
                             </button>
                           </div>
                         ) : (
-                          <div className="flex items-center gap-3 border-b-[1px] border-b-gray-500 pb-10">
-                            <div className="relative ">
-                              <img
-                                className="w-10 h-10 rounded-full"
-                                src="https://icon2.cleanpng.com/20181128/puj/kisspng-ninja-portable-network-graphics-computer-icons-ava-macmacmac-5bfea49bdb85c3.5082572815434149398992.jpg"
-                                alt=""
-                              />
-                              <span className="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                          <div className="flex flex-col gap-5 border-b-[1px] border-b-gray-500 pb-10">
+                            <div className="flex items-center gap-3">
+                              <div className="relative ">
+                                <img
+                                  className="w-10 h-10 rounded-full"
+                                  src="https://icon2.cleanpng.com/20181128/puj/kisspng-ninja-portable-network-graphics-computer-icons-ava-macmacmac-5bfea49bdb85c3.5082572815434149398992.jpg"
+                                  alt=""
+                                />
+                                <span className="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                              </div>
+                              <div className="font-bold">{user.email}</div>
                             </div>
-                            <div className="font-bold">{user.email}</div>
+
+                            <div className="flex flex-col gap-3 ml-8 mt-6 text-white ">
+                              <div className="hover:text-[#B52424] cursor-pointer">Профайл</div>
+                              <div className="hover:text-[#B52424] cursor-pointer">Захиалга</div>
+                              <div className="hover:text-[#B52424] cursor-pointer">Сагсалсан бараа</div>
+                              <div onClick={logOut} className="hover:text-[#B52424] cursor-pointer">
+                                Гарах
+                              </div>
+                            </div>
                           </div>
                         )}
 
-                        <div className="flex py-10 border-b-[1px] border-b-gray-500">
-                          <div className="my-auto pl-2 pr-1 text-lg">
-                            <HiChip />
+                        <a href="/PCBuilding">
+                          <div className="flex py-10 border-b-[1px] border-b-gray-500 cursor-pointer">
+                            <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
+                              <HiChip />
+                            </div>
+                            <div className="text-lg ">Компьютер угсрах</div>
                           </div>
-                          <div className="text-lg ">Компьютер угсрах</div>
-                        </div>
+                        </a>
 
-                        <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
+                        {/* <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
                           <SidebarCategory />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </Dialog.Panel>
