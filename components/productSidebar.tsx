@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import useLocalStorageState from 'use-local-storage-state';
 
 export default function ProductSidebar({ open, setOpen }: any) {
-  const [selected, setSelected, { removeItem }] = useLocalStorageState<any[]>('selected');
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected');
   const [quantity, setQuantity] = useState(1);
 
   // if (selected.length ) {
