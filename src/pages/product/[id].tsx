@@ -5,6 +5,7 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { Navbar } from '../../../components/navbar';
 import { fetcherGet } from '../../../utils/fetcher';
 import { OrderContext } from '../../../components/layout';
+import axios from 'axios';
 
 export default function SingleProduct() {
   const [product, setProducts] = useState<any>();
@@ -12,6 +13,7 @@ export default function SingleProduct() {
   const { ItemSelect } = useContext(OrderContext);
   const router = useRouter();
   const { id } = router.query;
+
   useEffect(() => {
     if (router.isReady) {
       fetcherGet(`products/${id}`).then((data: any) => setProducts(data));
