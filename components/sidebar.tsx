@@ -1,10 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment, useEffect } from 'react';
 // import SidebarCategory from './sidebarCategory';
 import { HiChip } from 'react-icons/hi';
-import { Link } from '@nextui-org/react';
-import { SidebarCategory } from './sidebarCategory';
 
 export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {

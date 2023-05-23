@@ -1,8 +1,9 @@
+import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { fetcherGet } from '../utils/fetcher';
 
-export default function BuildModal({ BuildFilter, selected }: any) {
+export default function BuildModal({ BuildFilter, selected, isScrolled }: any) {
   const [showModal, setShowModal] = useState<boolean>(true);
   const [subCategories, setSubCategories] = useState<any>();
   useEffect(() => {
@@ -21,7 +22,7 @@ export default function BuildModal({ BuildFilter, selected }: any) {
   return (
     <>
       {showModal ? (
-        <div className="absolute top-0 right-0 transition-all w-1/12   duration-400 ease-in bg-white">
+        <div className={` fixed top-[75.1px] right-0 transition-all h-screen w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
           <button className="cursor-pointer  w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowLeft />
           </button>
@@ -50,7 +51,7 @@ export default function BuildModal({ BuildFilter, selected }: any) {
           </div>
         </div>
       ) : (
-        <div className={`absolute top-0 right-0 transition-all duration-400  ease-in w-1/3  bg-white `}>
+        <div className={`fixed top-[75.1px] right-0 transition-all overflow-x-auto h-screen duration-400  ease-in w-1/3  bg-[#171717] duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
           <button className="cursor-pointer w-7 border-1 rounded-full " type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowRight />
           </button>
@@ -63,9 +64,14 @@ export default function BuildModal({ BuildFilter, selected }: any) {
                       {product.categoryId === category._id ? (
                         <>
                           <div className="flex bg-white shadow-md rounded-lg overflow-hidden w-[70%] mb-5">
-                            <div className="px-5 pb-5">
-                              <img className="" src={product.imageUrl} alt="Product Image" />
-                              <h3 className="text-sm font-semibold text-gray-800 mb-1">{product.title}</h3>
+                            <figure className=" flex justify-center  ">
+                              <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                            </figure>
+                            <div className="p-5 text-sm flex flex-col w-full justify-between font-sans font-normal">
+                              <p className="text-slate-800 ">{product.title}</p>
+                              <div className="flex  justify-between">
+                                <span className="text-[#101010] text-sm font-normal">{numeral(product.unitPrice).format('0,0')}₮</span>
+                              </div>
                             </div>
                           </div>
                         </>

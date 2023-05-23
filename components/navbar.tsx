@@ -1,17 +1,17 @@
 import axios from 'axios';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { BiCategory } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
-import { HiShoppingCart, HiOutlineMenu } from 'react-icons/hi';
+import { HiOutlineMenu, HiShoppingCart } from 'react-icons/hi';
+import useLocalStorageState from 'use-local-storage-state';
+import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
-import UserSignUp from './signUp';
-import { BiCategory } from 'react-icons/bi';
-import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
-import Image from 'next/image';
-import Sidebar from './sidebar';
 import ProductSidebar from './productSidebar';
-import useLocalStorageState from 'use-local-storage-state';
+import Sidebar from './sidebar';
+import UserSignUp from './signUp';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -101,12 +101,9 @@ export function Navbar() {
           <button onClick={() => setShow(!show)}>
             <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
           </button>
-
           {/* </div> */}
-
           <div className="xl:block hidden"></div>
           <div className="xl:block hidden"></div>
-
           <div className="hidden lg:block">
             <div className="text-white bg-[#c10206] rounded-lg flex py-3 px-1">
               <div className="my-auto pl-2 pr-1">
