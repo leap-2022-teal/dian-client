@@ -59,6 +59,7 @@ export function Navbar() {
   function logOut() {
     localStorage.removeItem('loginToken');
     setUser(null);
+    setOpen(false);
   }
 
   function handleLoginModal() {
@@ -169,7 +170,7 @@ export function Navbar() {
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
-      <Sidebar open={open} setOpen={setOpen} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} isDropdownVisible={isDropdownVisible} user={user} />
+      <Sidebar open={open} setOpen={setOpen} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
     </>
   );
 }

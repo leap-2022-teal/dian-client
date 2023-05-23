@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
-import SubCategoryFilter from './subCategoryFilter';
+import { SubCategoryFilter } from './subCategoryFilter';
 
 export function CategoryFilter() {
   const [categories, setCategories] = useState<any>();
