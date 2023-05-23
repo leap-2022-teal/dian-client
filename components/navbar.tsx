@@ -9,6 +9,7 @@ import UserSignUp from './signUp';
 import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import Image from 'next/image';
 import Sidebar from './sidebar';
+import { useRouter } from 'next/router';
 import ProductSidebar from './productSidebar';
 import useLocalStorageState from 'use-local-storage-state';
 
@@ -18,8 +19,20 @@ export function Navbar() {
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState<any>(false);
+  const [search, setSearch] = useState(''); //Search utgaa input deer avna
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   if (search) {
+  //     router.push(`/products?search=${search}`);
+  //   }
+  // }, [search]);
+
+  // function getSearch(search) {
+  //   router.push(`/products?search=${search}`);
+  // }
   const [show, setShow] = useState<any>(false);
-  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   useEffect(() => {
@@ -77,6 +90,14 @@ export function Navbar() {
     setShow(false);
   }
 
+  function handleSubmit(e: any) {
+    if (e === 'Enter') {
+      // e.preventDefault();
+      console.log('submit');
+      router.push(`/allProducts?search=${search}`);
+    }
+  }
+
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
@@ -85,18 +106,25 @@ export function Navbar() {
           <Link href="/" className="md:w-[150px] w-[100px] md:ml-10 ml-5">
             <Image src={Logo} alt="logo" />
           </Link>
-          <form className=" hidden md:block">
-            <div className="relative">
-              <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
-              <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                  </svg>
+          {/* <form className=" hidden md:block"> */}
+          <div className="relative">
+            <input
+              className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
+              placeholder="Хайх"
+              type="text"
+              onKeyDown={(e) => handleSubmit(e.key)}
+              // onSubmit={() => handleSubmit}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-              </span>
-            </div>
-          </form>
+              </svg>
+            </span>
+          </div>
+          {/* </form>s */}
           <button onClick={() => setShow(!show)}>
             <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
           </button>
