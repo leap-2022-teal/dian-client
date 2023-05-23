@@ -3,7 +3,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { Fragment, useState } from 'react';
-import { toast } from 'react-toastify';
 import useLocalStorageState from 'use-local-storage-state';
 
 export default function ProductSidebar({ open, setOpen }: any) {
@@ -64,8 +63,8 @@ export default function ProductSidebar({ open, setOpen }: any) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {selected?.map((product: any, index: number) => (
-                        <div className="relative">
+                      {selected?.map((product: any) => (
+                        <div key={product._id} className="relative">
                           <div key={product._id} className="bg-white flex hover:shadow-lg border border-gray-100 rounded-lg">
                             <Link href={`/product/${product.slugUrl}`}>
                               <figure className=" flex justify-center  ">
