@@ -1,15 +1,15 @@
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 import { Fragment, useEffect } from 'react';
-// import SidebarCategory from './sidebarCategory';
-import { HiChip } from 'react-icons/hi';
-import { Link } from '@nextui-org/react';
+import { SidebarCategory } from './sidebarCategory';
+import { HiOutlineWrenchScrewdriver, HiShoppingCart } from 'react-icons/hi2';
+import { MdOutlineLogout } from 'react-icons/md';
 
-export default function Sidebar({ open, setOpen, handleLoginModal, handleRegisterModal, user, logOut }: any) {
+export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setOpen(false);
+        setShowSidebar(false);
       }
     };
 
@@ -21,10 +21,15 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
     };
   }, []);
 
+  function savedProduct() {
+    setOpen(true);
+    setShowSidebar(false);
+  }
+
   return (
     <>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10 pt-11" onClose={setOpen}>
+      <Transition.Root show={showSidebar} as={Fragment}>
+        <Dialog as="div" className="relative z-10 pt-11" onClose={setShowSidebar}>
           <Transition.Child as={Fragment} enter="ease-in-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in-out duration-500" leaveFrom="opacity-100]" leaveTo="opacity-0">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-0 transition-opacity" />
           </Transition.Child>
@@ -89,11 +94,18 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
                             </div>
 
                             <div className="flex flex-col gap-3 ml-8 mt-6 text-white ">
-                              <div className="hover:text-[#B52424] cursor-pointer">Профайл</div>
-                              <div className="hover:text-[#B52424] cursor-pointer">Захиалга</div>
-                              <div className="hover:text-[#B52424] cursor-pointer">Сагсалсан бараа</div>
+                              <div onClick={savedProduct} className="hover:text-[#B52424] cursor-pointer">
+                                <div className="flex gap-3 items-center justify-items-center">
+                                  <HiShoppingCart />
+                                  Миний сагс
+                                </div>
+                              </div>
+
                               <div onClick={logOut} className="hover:text-[#B52424] cursor-pointer">
-                                Гарах
+                                <div className="flex gap-3 items-center justify-items-center">
+                                  <MdOutlineLogout />
+                                  Гарах
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -101,16 +113,16 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
 
                         <a href="/PCBuilding">
                           <div className="flex py-10 border-b-[1px] border-b-gray-500 cursor-pointer">
-                            <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
-                              <HiChip />
-                            </div>
-                            <div className="text-lg ">Компьютер угсрах</div>
+                            {/* <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
+                              <HiOutlineWrenchScrewdriver />
+                            </div> */}
+                            <div className="text-lg">Компьютер угсрах</div>
                           </div>
                         </a>
 
-                        {/* <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
+                        <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
                           <SidebarCategory />
-                        </div> */}
+                        </div>
                       </div>
                     </div>
                   </Dialog.Panel>

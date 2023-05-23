@@ -1,3 +1,4 @@
+import { OrderContext } from '@/pages/_app';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { useContext, useEffect, useState } from 'react';
@@ -8,14 +9,18 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { fetcherGet } from '../utils/fetcher';
-import { OrderContext } from './layout';
 
 export default function NewProduct() {
   const [products, setProducts] = useState<any>();
-  const { ItemSelect } = useContext(OrderContext);
+  const orderContext = useContext(OrderContext);
   useEffect(() => {
     fetcherGet(`products/new`).then((data) => setProducts(data));
   }, []);
+  function handleItemSelect(product: any) {
+    if (orderContext && orderContext.ItemSelect) {
+      orderContext.ItemSelect(product);
+    }
+  }
   return (
     <div className="pt-6 w-[100%] max-w-[1344px] mx-auto mt-[3rem]">
       <div className="flex justify-between p-2 text-md text-[#c10206]  font-sans font-bold">
@@ -47,7 +52,7 @@ export default function NewProduct() {
               </Link>
               <div className="flex  justify-between">
                 <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                <button onClick={() => ItemSelect(product)} className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                <button onClick={() => handleItemSelect(product)} className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
                   <BsBasket2 />
                 </button>
               </div>

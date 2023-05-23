@@ -12,11 +12,9 @@ export function SubCategoryFilter({ selectedId }: any) {
   return (
     <div className="">
       {filted?.map((category: any) => (
-        // <li key={category._id} className={`py-4 px-4 cursor-pointer `}>
-        <Link key={category._id} className=" text-sm whitespace-nowrap text-white" href={`/category/${category.slugUrl}`}>
-          <p>{category.title}</p>
+        <Link key={category._id} className=" text-sm whitespace-nowrap text-white  " href={`/category/${category.slugUrl}`}>
+          <p className="ml-10 mb-3 hover:text-[#c10206]">{category.title}</p>
         </Link>
-        // </li>
       ))}
     </div>
   );

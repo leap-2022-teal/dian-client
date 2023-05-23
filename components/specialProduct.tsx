@@ -1,3 +1,4 @@
+import { OrderContext } from '@/pages/_app';
 import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
@@ -11,15 +12,19 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
-import { OrderContext } from './layout';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
 
 export function SpecialProduct() {
   const [products, setProducts] = useState<any>();
-  const { ItemSelect } = useContext(OrderContext);
+  const orderContext = useContext(OrderContext);
   useEffect(() => {
     fetcherGet(`products/special`).then((data) => setProducts(data));
   }, []);
+  function handleItemSelect(product: any) {
+    if (orderContext && orderContext.ItemSelect) {
+      orderContext.ItemSelect(product);
+    }
+  }
   return (
     <>
       <div className="flex flex-wrap lg:flex-nowrap justify-center  w-[100%] max-w-[1344px] mx-auto mt-[1rem]">
@@ -86,7 +91,7 @@ export function SpecialProduct() {
                   </Link>
                   <div className="flex justify-between">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                    <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md" onClick={() => ItemSelect(product)}>
+                    <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md" onClick={() => handleItemSelect(product)}>
                       <BsBasket2 />
                     </button>
                   </div>
