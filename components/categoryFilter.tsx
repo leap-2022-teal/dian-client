@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
-import { SubCategoryFilter } from './subCategoryFilter';
+import { SubCategory } from './subcategory';
 
 export function CategoryFilter() {
   const [categories, setCategories] = useState<any>();
@@ -36,7 +36,7 @@ export function CategoryFilter() {
                     {category.number === 2 || category.number === 1 || category.number === 3 || category.number === 4 ? (
                       <>
                         <span className="p-3 whitespace-nowrap w-full">{category.title}</span>
-                        {selectedId === category._id && <SubCategoryFilter selectedId={selectedId} />}
+                        {selectedId === category._id && <SubCategory selectedId={selectedId} />}
                       </>
                     ) : (
                       <>
