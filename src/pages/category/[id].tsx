@@ -1,16 +1,22 @@
 import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { Navbar } from '../../../components/navbar';
 import ProductFilter from '../../../components/productFilter';
 import { Products } from '../../../components/products';
 import { fetcherPost } from '../../../utils/fetcher';
-import { useEffect } from 'react';
 
 export default function FilteredbyCatProducts({ products }: any) {
+  const [open, setOpen] = useState<any>(false);
+
   const router = useRouter();
   return (
     <>
       <Navbar />
-      <div className=" container mx-auto">
+      <div className="flex mt-10 container mx-auto">
+        {/* <div className="">
+          <button onClick={() => setOpen(true)}>angilal gargah</button>
+        </div>
+        <CategoriesFilterSidebar setOpen={setOpen} open={open} /> */}
         <ProductFilter />
         <Products products={products} />
       </div>

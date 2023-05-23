@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import numeral from 'numeral';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { BsBasket2 } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa';
 import { SlArrowRight } from 'react-icons/sl';
 import SwiperCore, { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
@@ -10,11 +11,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { fetcherGet } from '../utils/fetcher';
+import { OrderContext } from './layout';
 SwiperCore.use([Autoplay, Pagination, Navigation]);
-import { FaStar } from 'react-icons/fa';
 
 export function SpecialProduct() {
   const [products, setProducts] = useState<any>();
+  const { ItemSelect } = useContext(OrderContext);
   useEffect(() => {
     fetcherGet(`products/special`).then((data) => setProducts(data));
   }, []);
@@ -84,7 +86,7 @@ export function SpecialProduct() {
                   </Link>
                   <div className="flex justify-between">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                    <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                    <button className="text-white bg-[#C10206] text-xl p-1 border rounded-md" onClick={() => ItemSelect(product)}>
                       <BsBasket2 />
                     </button>
                   </div>

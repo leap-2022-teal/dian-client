@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
-import Pagination from './pagination';
-import { useRouter } from 'next/router';
+import useLocalStorageState from 'use-local-storage-state';
 import { fetcherPost } from '../utils/fetcher';
 
 interface PropType {
@@ -11,6 +11,8 @@ interface PropType {
 }
 
 export function Products({ products }: PropType) {
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
+  console.log(selected);
   const router = useRouter();
   const [limit] = useState(15);
   let { page }: any = router.query;
@@ -31,24 +33,31 @@ export function Products({ products }: PropType) {
 
     fetchProductCount();
   }, [id]);
-
-  function previousPage() {
-    if (page !== 1) {
-      page = page - 1;
-    }
+  console.log(selected);
+  function ItemSelect({ product }: any) {
+    const products = selected?.filter((e: any) => {
+      return e._id !== product._id;
+    });
+    products?.push(product);
+    setSelected(products);
   }
+  // function previousPage() {
+  //   if (page !== 1) {
+  //     page = page - 1;
+  //   }
+  // }
 
-  function nextPage() {
-    if (page !== Math.floor(productCount / limit)) {
-      page = page - 1;
-    }
-  }
+  // function nextPage() {
+  //   if (page !== Math.floor(productCount / limit)) {
+  //     page = page - 1;
+  //   }
+  // }
 
   return (
     <>
       {products ? (
         <div className="flex flex-col gap-10 justify-center items-center">
-          <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
+          <div className="grid sm:grid-cols-2 w-[100%] box-border p-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
             {products?.map((product: any) => (
               <div key={product._id} className=" hover:shadow-lg border border-gray-100 rounded-2xl flex flex-col">
                 <Link href={`/product/${product.slugUrl}`}>
@@ -64,14 +73,14 @@ export function Products({ products }: PropType) {
                   </Link>
                   <div className="flex justify-between">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                    <button className="text-[#3a3939]">select</button>
+                    <button onClick={() => ItemSelect({ product })}>select</button>
                   </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} />
+          {/* <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} /> */}
         </div>
       ) : (
         <div>spin</div>
