@@ -2,6 +2,7 @@ import type { AppProps } from 'next/app';
 import { createContext } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import '../styles/globals.scss';
+import { toast } from 'react-toastify';
 
 type OrderContextType = {
   ItemSelect: (product: any) => void;
@@ -18,6 +19,16 @@ export default function App({ Component, pageProps }: AppProps) {
     });
     products?.push(product);
     setSelected(products);
+
+    toast.success(`Бараа сагсанд хадгалагдлаа`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
   }
 
   const orderContextValue: OrderContextType = {
