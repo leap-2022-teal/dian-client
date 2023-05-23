@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
     const products = selected?.filter((e: any) => {
       return e._id !== product._id;
     });
+    console.log(product);
     products?.push(product);
     setSelected(products);
   }
