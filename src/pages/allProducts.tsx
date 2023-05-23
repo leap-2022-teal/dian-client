@@ -13,7 +13,7 @@ export default function allProducts() {
   const [order, setOrder] = useLocalStorageState<any[]>('order', { defaultValue: [] });
   const router = useRouter();
   const [limit] = useState(15);
-  // let { page, id }: any = router.query;
+  const { page }: any = router.query;
   const [products, setProducts] = useState([]);
 
   const { search } = router.query;
@@ -23,7 +23,7 @@ export default function allProducts() {
   //   }, [search]);
 
   useEffect(() => {
-    fetcherGet(`products?searchQuery=${search ? search : ''}`).then((data) => setProducts(data.list));
+    fetcherGet(`products?searchQuery=${search ? search : ''}&page=${page}`).then((data) => setProducts(data.list));
   }, [search]);
 
   //   useEffect(() => {
@@ -85,6 +85,9 @@ export default function allProducts() {
                 </div>
               </div>
             ))}
+            {/* <button onClick={() => setPage((old) => Math.max(old - 1, 1))}>Previous page</button>
+            <span>{}</span>
+            <button onClick={() => setPage}>Next page</button> */}
           </div>
 
           {/* <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} /> */}
