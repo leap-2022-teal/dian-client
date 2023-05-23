@@ -6,7 +6,6 @@ import { HiShoppingCart, HiOutlineMenu } from 'react-icons/hi';
 import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
 import UserSignUp from './signUp';
-import { BiCategory } from 'react-icons/bi';
 import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import Image from 'next/image';
 import Sidebar from './sidebar';
@@ -104,16 +103,8 @@ export function Navbar() {
 
           {/* </div> */}
 
-          <div className="xl:block hidden"></div>
-          <div className="xl:block hidden"></div>
-
           <div className="hidden lg:block">
-            <div className="text-white bg-[#c10206] rounded-lg flex py-3 px-1">
-              <div className="my-auto pl-2 pr-1">
-                <BiCategory />
-              </div>
-              <CategoryFilter />
-            </div>
+            <CategoryFilter />
           </div>
           <div className="hidden lg:flex items-center">
             <div className="flex gap-5 pr-10">
@@ -121,12 +112,12 @@ export function Navbar() {
                 <>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
-                    <div className="absolute z-50 right-5 mt-10 w-40 bg-white rounded-lg shadow-lg transition-opacity opacity-300">
-                      <ul className="py-2">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleRegisterModal}>
+                    <div className="absolute z-50 right-5 mt-10 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
+                      <ul className="py-2 text-white">
+                        <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer" onClick={handleRegisterModal}>
                           Бүртгүүлэх
                         </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer " onClick={handleLoginModal}>
+                        <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer " onClick={handleLoginModal}>
                           Нэвтрэх
                         </li>
                       </ul>
@@ -138,27 +129,30 @@ export function Navbar() {
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
                     <div
-                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="menu-button"
                     >
                       <div className="py-1" role="none">
-                        <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
+                        <a href="#" className="text-gray-300 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
                           {user.email}
                         </a>
                       </div>
                       <div className="py-1" role="none">
-                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-3">
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-3">
                           Профайл
                         </a>
-                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
                           Захиалга
+                        </a>
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
+                          Миний сагс
                         </a>
                       </div>
 
                       <div className="py-1" role="none">
-                        <a onClick={logOut} href="#" className="text-red-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-6">
+                        <a onClick={logOut} href="#" className="text-[#c10206]  block px-4 py-2 text-sm" role="menuitem" id="menu-item-6">
                           Гарах
                         </a>
                       </div>
@@ -176,8 +170,8 @@ export function Navbar() {
         </div>
       </header>
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
-      <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
-      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
+      <UserLogin showModal={loginModal} setShowModal={setLoginModal} setRegisterModal={setRegisterModal} />
+      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} setLoginModal={setLoginModal} />
       <Sidebar setOpen={setOpen} showSidebar={show} setShowSidebar={setShow} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
       <ProductSidebar open={open} setOpen={setOpen} />
     </>
