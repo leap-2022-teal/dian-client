@@ -23,7 +23,7 @@ export default function allProducts() {
   //   }, [search]);
 
   useEffect(() => {
-    fetcherGet(`products?searchQuery=${search}`).then((data) => setProducts(data.list));
+    fetcherGet(`products?searchQuery=${search ? search : ''}`).then((data) => setProducts(data.list));
   }, [search]);
 
   //   useEffect(() => {
