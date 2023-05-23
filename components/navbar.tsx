@@ -173,6 +173,7 @@ export function Navbar() {
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} setRegisterModal={setRegisterModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} setLoginModal={setLoginModal} />
       <Sidebar setOpen={setOpen} showSidebar={show} setShowSidebar={setShow} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
+
       <ProductSidebar open={open} setOpen={setOpen} />
     </>
   );

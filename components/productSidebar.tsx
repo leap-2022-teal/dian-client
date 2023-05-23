@@ -3,7 +3,6 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { Fragment, useState } from 'react';
-import { toast } from 'react-toastify';
 import useLocalStorageState from 'use-local-storage-state';
 
 export default function ProductSidebar({ open, setOpen }: any) {
@@ -23,7 +22,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
   }
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10 pt-11" onClose={setOpen}>
+      <Dialog as="div" className="relative z-10 pt-11 " onClose={setOpen}>
         <Transition.Child as={Fragment} enter="ease-in-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in-out duration-500" leaveFrom="opacity-100]" leaveTo="opacity-0">
           <div className="fixed inset-0 bg-gray-500 bg-opacity-0 transition-opacity" />
         </Transition.Child>
