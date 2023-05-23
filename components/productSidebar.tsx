@@ -3,6 +3,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { Fragment, useState } from 'react';
+import { toast } from 'react-toastify';
 import useLocalStorageState from 'use-local-storage-state';
 
 export default function ProductSidebar({ open, setOpen }: any) {
@@ -52,10 +53,10 @@ export default function ProductSidebar({ open, setOpen }: any) {
                         leaveTo="opacity-0"
                       >
                         <div>
-                          <button type="button" className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" onClick={() => setOpen(false)}>
+                          {/* <button type="button" className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" onClick={() => setOpen(false)}>
                             <span className="sr-only">Close panel</span>
                             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                          </button>
+                          </button> */}
                         </div>
                       </Transition.Child>
                       <div className="px-4 sm:px-6">

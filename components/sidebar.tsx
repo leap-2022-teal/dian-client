@@ -4,12 +4,13 @@ import { Fragment, useEffect } from 'react';
 // import SidebarCategory from './sidebarCategory';
 import { HiChip } from 'react-icons/hi';
 import { Link } from '@nextui-org/react';
+import { SidebarCategory } from './sidebarCategory';
 
-export default function Sidebar({ open, setOpen, handleLoginModal, handleRegisterModal, user, logOut }: any) {
+export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
-        setOpen(false);
+        setShowSidebar(false);
       }
     };
 
@@ -21,10 +22,15 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
     };
   }, []);
 
+  function savedProduct() {
+    setOpen(true);
+    setShowSidebar(false);
+  }
+
   return (
     <>
-      <Transition.Root show={open} as={Fragment}>
-        <Dialog as="div" className="relative z-10 pt-11" onClose={setOpen}>
+      <Transition.Root show={showSidebar} as={Fragment}>
+        <Dialog as="div" className="relative z-10 pt-11" onClose={setShowSidebar}>
           <Transition.Child as={Fragment} enter="ease-in-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in-out duration-500" leaveFrom="opacity-100]" leaveTo="opacity-0">
             <div className="fixed inset-0 bg-gray-500 bg-opacity-0 transition-opacity" />
           </Transition.Child>
@@ -91,7 +97,9 @@ export default function Sidebar({ open, setOpen, handleLoginModal, handleRegiste
                             <div className="flex flex-col gap-3 ml-8 mt-6 text-white ">
                               <div className="hover:text-[#B52424] cursor-pointer">Профайл</div>
                               <div className="hover:text-[#B52424] cursor-pointer">Захиалга</div>
-                              <div className="hover:text-[#B52424] cursor-pointer">Сагсалсан бараа</div>
+                              <div onClick={savedProduct} className="hover:text-[#B52424] cursor-pointer">
+                                Сагсалсан бараа
+                              </div>
                               <div onClick={logOut} className="hover:text-[#B52424] cursor-pointer">
                                 Гарах
                               </div>

@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { BiCategory } from 'react-icons/bi';
 import { fetcherGet } from '../utils/fetcher';
-import SubCategoryFilter from './subCategoryFilter';
+import { SubCategoryFilter } from './subCategoryFilter';
 
-export default function SidebarCategory() {
+export function SidebarCategory() {
   const [categories, setCategories] = useState<any>();
 
   useEffect(() => {

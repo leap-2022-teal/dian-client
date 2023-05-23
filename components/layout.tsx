@@ -46,9 +46,6 @@ export default function Layout({ children }: any) {
         <SmallBanner />
         <NewProduct />
         {children}
-        <div className="">
-          <button onClick={() => setOpen(true)}>angilal gargah</button>
-        </div>
         <ProductSidebar setOpen={setOpen} open={open} />
         <Brands />
         <Footer />

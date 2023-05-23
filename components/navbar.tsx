@@ -10,6 +10,8 @@ import { BiCategory } from 'react-icons/bi';
 import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import Image from 'next/image';
 import Sidebar from './sidebar';
+import ProductSidebar from './productSidebar';
+import useLocalStorageState from 'use-local-storage-state';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -17,7 +19,9 @@ export function Navbar() {
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [open, setOpen] = useState<any>(false);
+  const [show, setShow] = useState<any>(false);
+  const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,20 +63,21 @@ export function Navbar() {
   function logOut() {
     localStorage.removeItem('loginToken');
     setUser(null);
-    setOpen(false);
+    setShow(false);
   }
 
   function handleLoginModal() {
     setLoginModal(true);
     setIsDropdownVisible(false);
-    setOpen(false);
+    setShow(false);
   }
 
   function handleRegisterModal() {
     setRegisterModal(true);
     setIsDropdownVisible(false);
-    setOpen(false);
+    setShow(false);
   }
+
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
@@ -93,7 +98,7 @@ export function Navbar() {
               </span>
             </div>
           </form>
-          <button onClick={() => setOpen(!open)}>
+          <button onClick={() => setShow(!show)}>
             <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
           </button>
 
@@ -162,7 +167,10 @@ export function Navbar() {
                 </>
               )}
 
-              <HiShoppingCart className="text-white text-xl my-3 " />
+              <div className="relative">
+                <span className="absolute top-[-1px] right-[-10px] inline-flex items-center justify-center bg-red-600 text-white rounded-full w-3.5 h-3.5 text-xs">{selected.length}</span>
+                <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
+              </div>
             </div>
           </div>
         </div>
@@ -170,7 +178,8 @@ export function Navbar() {
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
-      <Sidebar open={open} setOpen={setOpen} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
+      <Sidebar setOpen={setOpen} showSidebar={show} setShowSidebar={setShow} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
+      <ProductSidebar open={open} setOpen={setOpen} />
     </>
   );
 }
