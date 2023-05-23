@@ -8,7 +8,7 @@ import Image from 'next/image';
 import loginImage from '../image/login.png';
 import { useRouter } from 'next/router';
 
-export default function UserLogin({ showModal, setShowModal }: any) {
+export default function UserLogin({ showModal, setShowModal, setRegisterModal }: any) {
   const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -64,6 +64,15 @@ export default function UserLogin({ showModal, setShowModal }: any) {
     setError(false);
   };
 
+  function register() {
+    setShowModal(false);
+    setRegisterModal(true);
+  }
+
+  setTimeout(() => {
+    setError(false);
+  }, 3000);
+
   return (
     <>
       <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
@@ -71,7 +80,7 @@ export default function UserLogin({ showModal, setShowModal }: any) {
       {showModal ? (
         <div className={` ${showModal ? 'backdrop-blur' : null} flex items-center justify-center fixed z-10 inset-0 overflow-y-auto`}>
           <div className="shadow-xl flex items-center justify-center">
-            <div className="bg-white rounded-lg shadow-md ">
+            <div className="bg-[#171717] rounded-lg shadow-md ">
               <div className="justify-end pt-3 pr-3 flex">
                 <button onClick={handleClose} className="bg-gray-100 rounded-full p-1">
                   <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -84,12 +93,12 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                   <Image src={loginImage} alt="login" />
                 </div>
                 <div className="px-6 pb-6 space-y-4 md:space-y-6 sm:px-8 sm:pb-8">
-                  <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">Нэвтрэх</h1>
+                  <h1 className="text-xl font-bold leading-tight tracking-tight text-white md:text-2xl ">Нэвтрэх</h1>
                   <form className="space-y-4 md:space-y-6" action="#">
                     {!error ? (
                       <div>
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 ">И-мэйл хаяг</label>
+                          <label className="block mb-2 text-sm font-medium text-white ">И-мэйл хаяг</label>
                           <input
                             type="email"
                             name="email"
@@ -97,11 +106,11 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                             onChange={(e) => {
                               setEmail(e.target.value);
                             }}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 ">Нууц үг</label>
+                        <div className="mt-5">
+                          <label className="block mb-2 text-sm font-medium text-white ">Нууц үг</label>
                           <input
                             type="password"
                             name="password"
@@ -109,14 +118,14 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                             onChange={(e) => {
                               setPassword(e.target.value);
                             }}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border  text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                       </div>
                     ) : (
                       <div className="animate-shake">
                         <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 ">И-мэйл хаяг</label>
+                          <label className="block mb-2 text-sm font-medium text-white ">И-мэйл хаяг</label>
                           <input
                             type="email"
                             name="email"
@@ -124,11 +133,11 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                             onChange={(e) => {
                               setEmail(e.target.value);
                             }}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
-                        <div>
-                          <label className="block mb-2 text-sm font-medium text-gray-900 ">Нууц үг</label>
+                        <div className="mt-5">
+                          <label className="block mb-2 text-sm font-medium text-white ">Нууц үг</label>
                           <input
                             type="password"
                             name="password"
@@ -136,7 +145,7 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                             onChange={(e) => {
                               setPassword(e.target.value);
                             }}
-                            className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                       </div>
@@ -149,11 +158,11 @@ export default function UserLogin({ showModal, setShowModal }: any) {
                     >
                       Нэвтрэх
                     </button>
-                    <p className="text-sm font-light text-gray-500 ">
+                    <p className="text-sm font-light text-gray-400 ">
                       Шинэ хэрэглэгч үүсгэх?
-                      <Link href="/signUp" className="font-medium text-[#C10206] hover:underline ml-1 ">
+                      <span onClick={register} className="font-medium text-[#C10206] hover:underline ml-1 ">
                         Бүртгүүлэх
-                      </Link>
+                      </span>
                     </p>
                   </form>
                 </div>
