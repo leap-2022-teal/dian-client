@@ -4,7 +4,7 @@ import { Fragment, useEffect } from 'react';
 // import SidebarCategory from './sidebarCategory';
 import { HiChip } from 'react-icons/hi';
 import { Link } from '@nextui-org/react';
-import SidebarCategory from './sidebarCategory';
+import { SidebarCategory } from './sidebarCategory';
 
 export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {

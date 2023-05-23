@@ -11,6 +11,7 @@ import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import Image from 'next/image';
 import Sidebar from './sidebar';
 import ProductSidebar from './productSidebar';
+import useLocalStorageState from 'use-local-storage-state';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -20,6 +21,7 @@ export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [show, setShow] = useState<any>(false);
   const [open, setOpen] = useState(false);
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -165,7 +167,10 @@ export function Navbar() {
                 </>
               )}
 
-              <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3 " />
+              <div className="relative">
+                <span className="absolute top-[-1px] right-[-10px] inline-flex items-center justify-center bg-red-600 text-white rounded-full w-3.5 h-3.5 text-xs">{selected.length}</span>
+                <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
+              </div>
             </div>
           </div>
         </div>

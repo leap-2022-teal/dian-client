@@ -10,20 +10,6 @@ export default function ProductSidebar({ open, setOpen }: any) {
   const [selected, setSelected] = useLocalStorageState<any[]>('selected');
   const [quantity, setQuantity] = useState(1);
 
-  // if (selected.length ) {
-  //   console.log('success');
-  //   // toast.success('🦄 Wow so easy!', {
-  //   //   position: 'top-right',
-  //   //   autoClose: 5000,
-  //   //   hideProgressBar: false,
-  //   //   closeOnClick: true,
-  //   //   pauseOnHover: true,
-  //   //   draggable: true,
-  //   //   progress: undefined,
-  //   //   theme: 'light',
-  //   // });
-  // }
-
   function handleMinus() {
     setQuantity(+quantity - 1);
   }
