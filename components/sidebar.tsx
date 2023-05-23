@@ -2,6 +2,9 @@ import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useEffect } from 'react';
 // import SidebarCategory from './sidebarCategory';
 import { HiChip } from 'react-icons/hi';
+import { SidebarCategory } from './sidebarCategory';
+import { HiOutlineWrenchScrewdriver, HiShoppingCart } from 'react-icons/hi2';
+import { MdOutlineLogout } from 'react-icons/md';
 
 export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {
@@ -92,13 +95,18 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                             </div>
 
                             <div className="flex flex-col gap-3 ml-8 mt-6 text-white ">
-                              <div className="hover:text-[#B52424] cursor-pointer">Профайл</div>
-                              <div className="hover:text-[#B52424] cursor-pointer">Захиалга</div>
                               <div onClick={savedProduct} className="hover:text-[#B52424] cursor-pointer">
-                                Сагсалсан бараа
+                                <div className="flex gap-3 items-center justify-items-center">
+                                  <HiShoppingCart />
+                                  Миний сагс
+                                </div>
                               </div>
+
                               <div onClick={logOut} className="hover:text-[#B52424] cursor-pointer">
-                                Гарах
+                                <div className="flex gap-3 items-center justify-items-center">
+                                  <MdOutlineLogout />
+                                  Гарах
+                                </div>
                               </div>
                             </div>
                           </div>
@@ -106,16 +114,16 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
 
                         <a href="/PCBuilding">
                           <div className="flex py-10 border-b-[1px] border-b-gray-500 cursor-pointer">
-                            <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
-                              <HiChip />
-                            </div>
-                            <div className="text-lg ">Компьютер угсрах</div>
+                            {/* <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
+                              <HiOutlineWrenchScrewdriver />
+                            </div> */}
+                            <div className="text-lg">Компьютер угсрах</div>
                           </div>
                         </a>
 
-                        {/* <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
+                        <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
                           <SidebarCategory />
-                        </div> */}
+                        </div>
                       </div>
                     </div>
                   </Dialog.Panel>

@@ -2,7 +2,6 @@ import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { BiCategory } from 'react-icons/bi';
 import { FaUser } from 'react-icons/fa';
 import { HiOutlineMenu, HiShoppingCart } from 'react-icons/hi';
 import useLocalStorageState from 'use-local-storage-state';
@@ -12,6 +11,7 @@ import UserLogin from './login';
 import ProductSidebar from './productSidebar';
 import Sidebar from './sidebar';
 import UserSignUp from './signUp';
+import { useRouter } from 'next/router';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -19,8 +19,20 @@ export function Navbar() {
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState<any>(false);
+  const [search, setSearch] = useState(''); //Search utgaa input deer avna
+  const router = useRouter();
+
+  // useEffect(() => {
+  //   if (search) {
+  //     router.push(`/products?search=${search}`);
+  //   }
+  // }, [search]);
+
+  // function getSearch(search) {
+  //   router.push(`/products?search=${search}`);
+  // }
   const [show, setShow] = useState<any>(false);
-  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   useEffect(() => {
@@ -78,6 +90,14 @@ export function Navbar() {
     setShow(false);
   }
 
+  function handleSubmit(e: any) {
+    if (e === 'Enter') {
+      // e.preventDefault();
+      console.log('submit');
+      router.push(`/allProducts?search=${search}`);
+    }
+  }
+
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
@@ -86,31 +106,31 @@ export function Navbar() {
           <Link href="/" className="md:w-[150px] w-[100px] md:ml-10 ml-5">
             <Image src={Logo} alt="logo" />
           </Link>
-          <form className=" hidden md:block">
-            <div className="relative">
-              <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
-              <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                  </svg>
+          {/* <form className=" hidden md:block"> */}
+          <div className="relative">
+            <input
+              className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
+              placeholder="Хайх"
+              type="text"
+              onKeyDown={(e) => handleSubmit(e.key)}
+              // onSubmit={() => handleSubmit}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-              </span>
-            </div>
-          </form>
+              </svg>
+            </span>
+          </div>
+          {/* </form>s */}
           <button onClick={() => setShow(!show)}>
             <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
           </button>
           {/* </div> */}
-          <div className="xl:block hidden"></div>
-          <div className="xl:block hidden"></div>
           <div className="hidden lg:block">
-            <div className="text-white bg-[#c10206] rounded-lg flex py-3 px-1">
-              <div className="my-auto pl-2 pr-1">
-                <BiCategory />
-              </div>
-              <CategoryFilter />
-            </div>
+            <CategoryFilter />
           </div>
           <div className="hidden lg:flex items-center">
             <div className="flex gap-5 pr-10">
@@ -118,12 +138,12 @@ export function Navbar() {
                 <>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
-                    <div className="absolute z-50 right-5 mt-10 w-40 bg-white rounded-lg shadow-lg transition-opacity opacity-300">
-                      <ul className="py-2">
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer" onClick={handleRegisterModal}>
+                    <div className="absolute z-50 right-5 mt-10 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
+                      <ul className="py-2 text-white">
+                        <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer" onClick={handleRegisterModal}>
                           Бүртгүүлэх
                         </li>
-                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer " onClick={handleLoginModal}>
+                        <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer " onClick={handleLoginModal}>
                           Нэвтрэх
                         </li>
                       </ul>
@@ -135,27 +155,30 @@ export function Navbar() {
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
                     <div
-                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="menu-button"
                     >
                       <div className="py-1" role="none">
-                        <a href="#" className="text-gray-500 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
+                        <a href="#" className="text-gray-300 block px-4 py-2 text-sm" role="menuitem" id="menu-item-0">
                           {user.email}
                         </a>
                       </div>
                       <div className="py-1" role="none">
-                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-3">
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-3">
                           Профайл
                         </a>
-                        <a href="#" className="text-gray-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
                           Захиалга
+                        </a>
+                        <a href="#" className="text-gray-100 block px-4 py-2 text-sm" role="menuitem" id="menu-item-2">
+                          Миний сагс
                         </a>
                       </div>
 
                       <div className="py-1" role="none">
-                        <a onClick={logOut} href="#" className="text-red-700 block px-4 py-2 text-sm" role="menuitem" id="menu-item-6">
+                        <a onClick={logOut} href="#" className="text-[#c10206]  block px-4 py-2 text-sm" role="menuitem" id="menu-item-6">
                           Гарах
                         </a>
                       </div>
@@ -173,8 +196,8 @@ export function Navbar() {
         </div>
       </header>
       <div className={`w-full h-[50px] ${isScrolled ? 'hidden' : 'block'}`}></div>
-      <UserLogin showModal={loginModal} setShowModal={setLoginModal} />
-      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} />
+      <UserLogin showModal={loginModal} setShowModal={setLoginModal} setRegisterModal={setRegisterModal} />
+      <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} setLoginModal={setLoginModal} />
       <Sidebar setOpen={setOpen} showSidebar={show} setShowSidebar={setShow} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
       <ProductSidebar open={open} setOpen={setOpen} />
     </>

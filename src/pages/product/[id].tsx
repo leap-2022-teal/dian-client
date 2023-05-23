@@ -13,6 +13,7 @@ export default function SingleProduct() {
   const orderContext = useContext(OrderContext);
   const router = useRouter();
   const { id } = router.query;
+
   useEffect(() => {
     if (router.isReady) {
       fetcherGet(`products/${id}`).then((data: any) => setProducts(data));
