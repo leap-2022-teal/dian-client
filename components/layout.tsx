@@ -12,25 +12,25 @@ import useLocalStorageState from 'use-local-storage-state';
 type OrderContext = {
   myFunction: (e: any) => void;
 };
-export const OrderContext = createContext<any | undefined>(undefined);
+// export const OrderContext = createContext<any | undefined>(undefined);
 
 export default function Layout({ children }: any) {
   const [item, setItem] = useState<any>();
-  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
+  // const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
   const [open, setOpen] = useState<any>(false);
 
   // useEffect(() => {
   //   ItemSelect(item);
   // }, [item]);
 
-  function ItemSelect(product: any) {
-    const products = selected?.filter((e: any) => {
-      return e._id !== product._id;
-    });
-    products?.push(product);
-    setSelected(products);
-  }
-  console.log(selected, 'selected');
+  // function ItemSelect(product: any) {
+  //   const products = selected?.filter((e: any) => {
+  //     return e._id !== product._id;
+  //   });
+  //   products?.push(product);
+  //   setSelected(products);
+  // }
+  // console.log(selected, 'selected');
   // console.log(selected, 'layout');
   // useEffect(() => {
   //   const one: any = localStorage.getItem('selected');
@@ -40,7 +40,7 @@ export default function Layout({ children }: any) {
 
   return (
     <div>
-      <OrderContext.Provider value={{ ItemSelect }}>
+      {/* <OrderContext.Provider value={{ ItemSelect }}> */}
         <Header />
         <SpecialProduct />
         <SmallBanner />
@@ -52,7 +52,7 @@ export default function Layout({ children }: any) {
         <ProductSidebar setOpen={setOpen} open={open} />
         <Brands />
         <Footer />
-      </OrderContext.Provider>
+      {/* </OrderContext.Provider> */}
     </div>
   );
 }

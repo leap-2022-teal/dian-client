@@ -2,14 +2,15 @@ import { useRouter } from 'next/router';
 import numeral from 'numeral';
 import { useContext, useEffect, useState } from 'react';
 import { CiDeliveryTruck } from 'react-icons/ci';
+
 import { Navbar } from '../../../components/navbar';
 import { fetcherGet } from '../../../utils/fetcher';
-import { OrderContext } from '../../../components/layout';
+import { OrderContext } from '../_app';
 
 export default function SingleProduct() {
   const [product, setProducts] = useState<any>();
   const [quantity, setQuantity] = useState(1);
-  const { ItemSelect } = useContext(OrderContext);
+  const orderContext = useContext(OrderContext);
   const router = useRouter();
   const { id } = router.query;
   useEffect(() => {
@@ -24,6 +25,11 @@ export default function SingleProduct() {
 
   function handleAdd() {
     setQuantity(+quantity + 1);
+  }
+  function handleItemSelect(product: any) {
+    if (orderContext && orderContext.ItemSelect) {
+      orderContext.ItemSelect(product);
+    }
   }
 
   return (
@@ -101,7 +107,7 @@ export default function SingleProduct() {
             </div>
             <div className="flex">
               <span className="title-font font-medium text-2xl text-gray-900">{product && numeral(product[0].unitPrice).format('0,0')}₮</span>
-              <button className="flex ml-auto text-white bg-[#C10206] border-0 py-2 px-6 focus:outline-none hover:bg-[#A50113] rounded" onClick={() => ItemSelect({ product })}>
+              <button className="flex ml-auto text-white bg-[#C10206] border-0 py-2 px-6 focus:outline-none hover:bg-[#A50113] rounded" onClick={() => handleItemSelect(product)}>
                 Сагсанд хийх
               </button>
               {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
