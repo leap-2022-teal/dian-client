@@ -1,6 +1,8 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { fetcherGet } from '../utils/fetcher';
 import { BiCategory } from 'react-icons/bi';
+import { fetcherGet } from '../utils/fetcher';
+import SubCategoryFilter from './subCategoryFilter';
 
 export default function SidebarCategory() {
   const [categories, setCategories] = useState<any>();
@@ -18,9 +20,16 @@ export default function SidebarCategory() {
       </div>
 
       {categories?.map((category: any) => (
-        <div className="mt-5 ml-8" key={category._id}>
-          {category.title}
-        </div>
+        <>
+          <div className="mt-5 ml-8" key={category._id}>
+            <Link href={`/category/${category.slugUrl}`}>{category.title}</Link>
+          </div>
+          {category.number === 2 || category.number === 1 || category.number === 3 || category.number === 4 ? (
+            <>
+              <SubCategoryFilter selectedId={category._id} />
+            </>
+          ) : null}
+        </>
       ))}
     </>
   );

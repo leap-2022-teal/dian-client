@@ -57,7 +57,7 @@ export function Products({ products }: PropType) {
     <>
       {products ? (
         <div className="flex flex-col gap-10 justify-center items-center">
-          <div className="grid grid-cols-1 w-[100%] box-border p-2 md:grid-cols-2 xl:grid-cols-3 gap-2">
+          <div className="grid sm:grid-cols-2 w-[100%] box-border p-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
             {products?.map((product: any) => (
               <div key={product._id} className=" hover:shadow-lg border border-gray-100 rounded-2xl flex flex-col">
                 <Link href={`/product/${product.slugUrl}`}>

@@ -4,7 +4,6 @@ import { Navbar } from '../../../components/navbar';
 import ProductFilter from '../../../components/productFilter';
 import { Products } from '../../../components/products';
 import { fetcherPost } from '../../../utils/fetcher';
-import ProductSidebar from '../../../components/productSidebar';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const [open, setOpen] = useState<any>(false);
@@ -13,14 +12,14 @@ export default function FilteredbyCatProducts({ products }: any) {
   return (
     <>
       <Navbar />
-      <div className=" container mx-auto">
+      <div className="flex mt-10 container mx-auto">
+        {/* <div className="">
+          <button onClick={() => setOpen(true)}>angilal gargah</button>
+        </div>
+        <CategoriesFilterSidebar setOpen={setOpen} open={open} /> */}
         <ProductFilter />
         <Products products={products} />
       </div>
-      <div className="">
-        <button onClick={() => setOpen(true)}>angilal gargah</button>
-      </div>
-      <ProductSidebar setOpen={setOpen} open={open} />
     </>
   );
 }
