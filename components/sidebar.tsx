@@ -1,7 +1,9 @@
 import { Dialog, Transition } from '@headlessui/react';
 import Link from 'next/link';
 import { Fragment, useEffect } from 'react';
-import { HiShoppingCart } from 'react-icons/hi2';
+// import SidebarCategory from './sidebarCategory';
+import { HiChip } from 'react-icons/hi';
+import { HiOutlineWrenchScrewdriver, HiShoppingCart } from 'react-icons/hi2';
 import { MdOutlineLogout } from 'react-icons/md';
 import { SidebarCategory } from './sidebarCategory';
 
