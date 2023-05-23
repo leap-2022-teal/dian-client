@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+
 import { SmallBanner } from './banner';
 import Brands from './brands';
 import Footer from './footer';
@@ -7,6 +7,7 @@ import Header from './header';
 import NewProduct from './newProduct';
 import ProductSidebar from './productSidebar';
 import { SpecialProduct } from './specialProduct';
+import useLocalStorageState from 'use-local-storage-state';
 
 type OrderContext = {
   myFunction: (e: any) => void;

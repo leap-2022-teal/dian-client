@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { fetcherGet } from '../utils/fetcher';
 
-export default function SubCategoryFilter({ selectedId }: any) {
+export function SubCategoryFilter({ selectedId }: any) {
   const [subCategories, setSubCategories] = useState<any>();
   const filted = subCategories?.filter((e: any) => e.parentId === selectedId);
   useEffect(() => {

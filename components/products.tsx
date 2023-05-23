@@ -3,8 +3,9 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
-import useLocalStorageState from 'use-local-storage-state';
+
 import { fetcherPost } from '../utils/fetcher';
+import useLocalStorageState from 'use-local-storage-state';
 
 interface PropType {
   products: any;

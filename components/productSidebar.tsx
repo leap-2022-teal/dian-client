@@ -17,7 +17,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
     setQuantity(+quantity + 1);
   }
   function handledeleteItem(product: any) {
-    const deletedItem = selected?.filter((item) => item._id !== product);
+    const deletedItem = selected?.filter((item: any) => item._id !== product);
     setSelected(deletedItem);
   }
   return (
