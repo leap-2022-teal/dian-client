@@ -44,19 +44,29 @@ export function SpecialProduct() {
             className="w-[350px]  h-auto "
           >
             <SwiperSlide>
-              <img className="relative rounded-lg border border-gray-300" src="https://c1.neweggimages.com/WebResource/Themes/Nest/ne_features_pcbuilder.jpg" alt="" />
+              <Link href={`/product/benq-ec2-cw-cf50d4c4`}>
+                <img className="rounded-lg border border-gray-300" src="https://cdn.shopify.com/s/files/1/0631/9590/6271/files/1_67816f92-1c73-46e3-bb91-7535f10549b8.jpg" alt="" />
+              </Link>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Link href={`/product/razer-blackshark-v2-x-gaming-headset-85f0a268`}>
+                <img className="rounded-lg border border-gray-300" src="https://assets2.razerzone.com/images/razer-blackshark-v2/razer-blackshark-v2-2020-OGimage.jpg" alt="" />
+              </Link>
+            </SwiperSlide>
+
+            <SwiperSlide>
+              <Link href={`/product/asrock-b650-livemixer-ddr5-am5-b543edb3`}>
+                <img className="rounded-lg border border-gray-300" src="https://www.asrock.com/mb/features/B650%20LiveMixer.jpg" alt="" />
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-lg border border-gray-300" src="https://assets.hardwarezone.com/img/2021/01/Razer_BlackShark_V2_Pro.jpg" alt="" />
+              <img className="relative rounded-lg border border-gray-300" src="https://www.geekawhat.com/wp-content/uploads/2022/11/Best-Prebuilt-PCs-Featured-Image.jpg" alt="" />
             </SwiperSlide>
             <SwiperSlide>
-              <img className="rounded-lg border border-gray-300" src="https://cdn.shopify.com/s/files/1/0631/9590/6271/files/1_67816f92-1c73-46e3-bb91-7535f10549b8.jpg" alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg border border-gray-300" src="https://www.asrock.com/mb/features/B650%20LiveMixer.jpg" alt="" />
-            </SwiperSlide>
-            <SwiperSlide>
-              <img className="rounded-lg border border-gray-300" src="https://www.fractal-design.com/app/uploads/2021/11/IMG_6741-1440x960.jpg" alt="" />
+              <Link href={`product/dxracer-gaming-chair-pink-8084a411`}>
+                <img className="rounded-lg border border-gray-300" src="https://api.hitech.mn/uploads/images/2022/12/25/1-1671945082952690867-524X524.gif" alt="" />
+              </Link>
             </SwiperSlide>
           </Swiper>
         </div>
