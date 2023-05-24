@@ -62,11 +62,13 @@ export function Slider() {
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
-            <figure>
-              <div className="overflow-hidden">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/ARCTIC-THERMAL-1683643144082288241-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/apple-macbook-air-m2-chip-midnight-2022-512gb-d0a1ecd7`}>
+              <figure>
+                <div className="overflow-hidden">
+                  <img className="border rounded-lg" src="https://9to5mac.com/wp-content/uploads/sites/6/2021/10/MacBook-Pro-2021.jpg?quality=82&strip=all&w=1024" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
@@ -80,19 +82,23 @@ export function Slider() {
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%] items-center  justify-center  ">
-            <figure>
-              <div className="overflow-hidden ">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/990-1683643219099333641-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/980-pro-pcie-r-4-0-nvme-ssd-500gb-52d05e5c`}>
+              <figure>
+                <div className="overflow-hidden ">
+                  <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/990-1683643219099333641-original.jpg" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%] items-center  justify-center  ">
-            <figure>
-              <div className="overflow-hidden ">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/Royal-Cludge-H81-1683643188962167957-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/k70-rgb-mk-2-se-mechanical-gaming-keyboard-97d6db59`}>
+              <figure>
+                <div className="overflow-hidden ">
+                  <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/Royal-Cludge-H81-1683643188962167957-original.jpg" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
