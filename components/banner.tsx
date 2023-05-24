@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -22,16 +23,27 @@ export const BigBanner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className="bg-red-200" src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg" alt="" />
+          <img
+            className="bg-red-200"
+            src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg"
+            alt=""
+          />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
+          <Link href={`/product/asrock-amd-radeon-rx-7900-xtx-phantom-gaming-24gb-oc-802ba4ec`}>
+            <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
+          </Link>
+        </SwiperSlide>
+
+        <SwiperSlide>
+          <Link href={`/product/phanteks-eclipse-p600s-1e263d2f`}>
+            <img src=" https://api.hitech.mn/uploads/images/2023/5/9/NV7-1683642859505632107-original.jpg" alt="" />
+          </Link>
         </SwiperSlide>
         <SwiperSlide>
-          <img src=" https://api.hitech.mn/uploads/images/2023/5/9/NV7-1683642859505632107-original.jpg" alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="  https://api.hitech.mn/uploads/images/2023/5/9/PG48UQ-1683642833181786191-original.jpg" alt="" />
+          <Link href={`/product/asus-rog-swift-pg259qnr-24-5-inch-fhd-1920x1080-fast-ips-360hz-aafa2def`}>
+            <img src="  https://api.hitech.mn/uploads/images/2023/5/9/PG48UQ-1683642833181786191-original.jpg" alt="" />
+          </Link>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -100,8 +112,12 @@ export const SmallBanner = () => {
   return (
     <>
       <div className="flex mt-[4rem]">
-        <img className="lg:w-[50%] w-[0] " src="https://promotions.newegg.com/nepro/23-0075/banner/800x120@2x.jpg" alt="" />
-        <img className="lg:w-[50%] w-[100%]" src="https://promotions.newegg.com/nepro/23-0570/800x120@2x.jpg" alt="" />
+        <Link href={`/product/amd-ryzen-9-7900x-12-core-24-thread-unlocked-desktop-processor-4ba6c388`} className="lg:w-[50%] w-[0]">
+          <img src="https://promotions.newegg.com/nepro/23-0075/banner/800x120@2x.jpg" alt="" />
+        </Link>
+        <Link href={`/product/amd-ryzen-9-7900x-12-core-24-thread-unlocked-desktop-processor-4ba6c388`} className="lg:w-[50%] w-[0]">
+          <img src="https://promotions.newegg.com/nepro/23-0570/800x120@2x.jpg" alt="" />
+        </Link>
       </div>
     </>
   );
