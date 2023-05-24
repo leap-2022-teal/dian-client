@@ -1,16 +1,17 @@
 import axios from 'axios';
+import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
-import { HiShoppingCart, HiOutlineMenu } from 'react-icons/hi';
+import { HiOutlineMenu, HiShoppingCart } from 'react-icons/hi';
+import useLocalStorageState from 'use-local-storage-state';
+import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
 import { CategoryFilter } from './categoryFilter';
 import UserLogin from './login';
-import UserSignUp from './signUp';
-import Logo from '../image/8363498585_f9da2477-6af0-4aec-a0bd-8b82ffc14a4e.png';
-import Image from 'next/image';
-import Sidebar from './sidebar';
 import ProductSidebar from './productSidebar';
-import useLocalStorageState from 'use-local-storage-state';
+import Sidebar from './sidebar';
+import UserSignUp from './signUp';
+import { useRouter } from 'next/router';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -18,9 +19,36 @@ export function Navbar() {
   const [user, setUser] = useState<any>();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [open, setOpen] = useState<any>(false);
+  const [search, setSearch] = useState(''); //Search utgaa input deer avna
+  const router = useRouter();
+  const dropdownRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState<any>(false);
-  const [open, setOpen] = useState(false);
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
+
+  // useEffect(() => {
+  //   if (search) {
+  //     router.push(`/products?search=${search}`);
+  //   }
+  // }, [search]);
+
+  // function getSearch(search) {
+  //   router.push(`/products?search=${search}`);
+  // }
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,6 +105,14 @@ export function Navbar() {
     setShow(false);
   }
 
+  function handleSubmit(e: any) {
+    if (e === 'Enter') {
+      // e.preventDefault();
+      console.log('submit');
+      router.push(`/allProducts?search=${search}`);
+    }
+  }
+
   return (
     <>
       <header className={`fixed top-0 left-0 w-full bg-[#171717] z-50 transition-opacity duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
@@ -85,34 +121,39 @@ export function Navbar() {
           <Link href="/" className="md:w-[150px] w-[100px] md:ml-10 ml-5">
             <Image src={Logo} alt="logo" />
           </Link>
-          <form className=" hidden md:block">
-            <div className="relative">
-              <input className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight" placeholder="Хайх" type="text" />
-              <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
-                <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                  </svg>
+          {/* <form className=" hidden md:block"> */}
+          <div className="relative">
+            <input
+              className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
+              placeholder="Хайх"
+              type="text"
+              onKeyDown={(e) => handleSubmit(e.key)}
+              // onSubmit={() => handleSubmit}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+            <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
+              <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
-              </span>
-            </div>
-          </form>
+              </svg>
+            </span>
+          </div>
+          {/* </form>s */}
           <button onClick={() => setShow(!show)}>
             <HiOutlineMenu className="text-white text-3xl lg:hidden block mr-5" />
           </button>
-
           {/* </div> */}
-
           <div className="hidden lg:block">
             <CategoryFilter />
           </div>
           <div className="hidden lg:flex items-center">
             <div className="flex gap-5 pr-10">
               {!user ? (
-                <>
+                <div ref={dropdownRef}>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
-                    <div className="absolute z-50 right-5 mt-10 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
+                    <div className="absolute z-50 right-3 mt-2 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
                       <ul className="py-2 text-white">
                         <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer" onClick={handleRegisterModal}>
                           Бүртгүүлэх
@@ -123,13 +164,13 @@ export function Navbar() {
                       </ul>
                     </div>
                   )}
-                </>
+                </div>
               ) : (
-                <>
+                <div ref={dropdownRef}>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
                     <div
-                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
+                      className="absolute z-50 right-3 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="menu-button"
@@ -158,7 +199,7 @@ export function Navbar() {
                       </div>
                     </div>
                   )}
-                </>
+                </div>
               )}
 
               <div className="relative">

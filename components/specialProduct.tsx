@@ -69,7 +69,7 @@ export function SpecialProduct() {
               <h4>ОНЦЛОХ БАРАА</h4>
             </div>
             <div>
-              <Link href={`/category`} className="flex  items-center">
+              <Link href={`/allProducts`} className="flex  items-center">
                 <div className="mr-2">БҮГДИЙГ ҮЗЭХ</div>
                 <SlArrowRight />
               </Link>

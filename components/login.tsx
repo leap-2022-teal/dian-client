@@ -106,7 +106,7 @@ export default function UserLogin({ showModal, setShowModal, setRegisterModal }:
                             onChange={(e) => {
                               setEmail(e.target.value);
                             }}
-                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                         <div className="mt-5">
@@ -118,7 +118,7 @@ export default function UserLogin({ showModal, setShowModal, setRegisterModal }:
                             onChange={(e) => {
                               setPassword(e.target.value);
                             }}
-                            className="bg-gray-200 border  text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                       </div>
@@ -133,7 +133,7 @@ export default function UserLogin({ showModal, setShowModal, setRegisterModal }:
                             onChange={(e) => {
                               setEmail(e.target.value);
                             }}
-                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                         <div className="mt-5">
@@ -145,7 +145,7 @@ export default function UserLogin({ showModal, setShowModal, setRegisterModal }:
                             onChange={(e) => {
                               setPassword(e.target.value);
                             }}
-                            className="bg-gray-200 border text-white sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                            className="bg-gray-200 border text-black sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                           />
                         </div>
                       </div>

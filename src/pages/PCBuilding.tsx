@@ -7,6 +7,8 @@ import { fetcherGet } from '../../utils/fetcher';
 export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
   const [selected, setSelected] = useState<any[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);
+
   console.log(selected);
 
   function BuildFilter(id: any) {
@@ -22,15 +24,30 @@ export default function PCBuilding() {
       return e.categoryId !== product.categoryId;
     });
     products.push(product);
-    console.log(product);
     setSelected(products);
-    console.log(products);
   }
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+
+      if (scrollTop > 0) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <>
       <Navbar />
-      <div className="relative">
+      <div className="relative mt-2 md:mt-10">
         <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {
             return (
@@ -48,7 +65,7 @@ export default function PCBuilding() {
           })}
         </div>
         {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
-        <BuildModal BuildFilter={BuildFilter} selected={selected} />
+        <BuildModal BuildFilter={BuildFilter} selected={selected} isScrolled={isScrolled} />
         {/* </div> */}
       </div>
     </>

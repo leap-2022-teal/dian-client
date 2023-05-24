@@ -16,7 +16,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
   function handleAdd() {
     setQuantity(+quantity + 1);
   }
-  function handledeleteItem(product: any) {
+  function handleDeleteItem(product: any) {
     const deletedItem = selected?.filter((item: any) => item._id !== product);
     setSelected(deletedItem);
   }
@@ -39,7 +39,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto relative top-[73px] w-screen max-w-md">
+                <Dialog.Panel className="pointer-events-auto relative md:top-[75px] top-[62px] w-screen max-w-md">
                   <div className="flex h-full flex-col overflow-y-scroll bg-[#171717] py-6 shadow-xl">
                     <div className="flex">
                       <Transition.Child
@@ -63,24 +63,24 @@ export default function ProductSidebar({ open, setOpen }: any) {
                       </div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
-                      {selected?.map((product: any, index: number) => (
-                        <div className="relative">
-                          <div key={product._id} className="bg-white flex hover:shadow-lg border border-gray-100 rounded-lg">
+                      {selected?.map((product: any) => (
+                        <div key={product._id} className="relative mb-6">
+                          <div key={product._id} className=" flex hover:shadow-lg border border-gray-100 rounded-lg">
                             <Link href={`/product/${product.slugUrl}`}>
-                              <figure className=" flex justify-center  ">
-                                <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                              <figure className=" flex my-auto ">
+                                <img className="w-[200px] rounded-tl rounded-bl " src={product.imageUrl} alt="Product Image" width={100} height={100} />
                               </figure>
                             </Link>
                             <div className="p-5 text-sm flex flex-col w-full justify-between font-sans font-bold">
                               <Link href={`/product/${product.slugUrl}`}>
-                                <p className="text-slate-800 ">{product.title}</p>
+                                <p className="text-white ">{product.title}</p>
                               </Link>
                               <div className="flex  justify-between">
-                                <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
+                                <span className="text-white text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
                                 <div className="flex items-center space-x-3">
                                   <button
                                     onClick={handleMinus}
-                                    className="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                    className="hover:text-red-800 hover:border-red-800 inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                     type="button"
                                   >
                                     <span className="sr-only">Quantity button</span>
@@ -99,7 +99,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
                                   </div>
                                   <button
                                     onClick={handleAdd}
-                                    className="inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
+                                    className="hover:text-red-800 hover:border-red-800 inline-flex items-center p-1 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-full focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700"
                                     type="button"
                                   >
                                     <span className="sr-only">Quantity button</span>
@@ -112,10 +112,10 @@ export default function ProductSidebar({ open, setOpen }: any) {
                             </div>
                             <button
                               type="button"
-                              className=" top-1 right-1 absolute rounded-md text-gray-300 hover:text-black focus:outline-none focus:ring-2 focus:ring-white"
-                              onClick={() => handledeleteItem(product._id)}
+                              className=" top-1 right-1 absolute rounded-md text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
+                              onClick={() => handleDeleteItem(product._id)}
                             >
-                              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                              <XMarkIcon className="h-5 w-5" aria-hidden="true" />
                             </button>
                           </div>
                         </div>
