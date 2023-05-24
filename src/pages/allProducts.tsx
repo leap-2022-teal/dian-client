@@ -22,9 +22,12 @@ export default function allProducts() {
   //     axios.get(`http://localhost:8000/products?searchQuery=${search}`).then((res) => setProducts(res.data));
   //   }, [search]);
 
+  console.log(router.isReady);
   useEffect(() => {
-    fetcherGet(`products?searchQuery=${search ? search : ''}&page=${page}`).then((data) => setProducts(data.list));
-  }, [search]);
+    if (router.isReady) {
+      fetcherGet(`products?searchQuery=${search ? search : ''}&page=${page ? page : ''}`).then((data) => setProducts(data.list));
+    }
+  }, [search, page]);
 
   //   useEffect(() => {
   //     const fetchProductCount = async () => {
