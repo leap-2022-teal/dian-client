@@ -52,11 +52,13 @@ export function Slider() {
       <div className="lg:w-[65%] sm:w-[90%] mx-auto lg:mt-9 mt-5 pb-5">
         <div className="snap-x mx-auto snap-mandatory flex lg:gap-x-10 gap-x-3 overflow-scroll  ">
           <div className=" snap-start flex-shrink-0 w-[22.5%] items-center justify-center  ">
-            <figure>
-              <div className="overflow-hidden ">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/Crucial-DDR5-1683643044420235372-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/kingston-fury-32gb-2x16gb-ddr5-4800mhz-88d9b52d`}>
+              <figure>
+                <div className="overflow-hidden ">
+                  <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/Crucial-DDR5-1683643044420235372-original.jpg" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
@@ -68,11 +70,13 @@ export function Slider() {
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
-            <figure>
-              <div className="overflow-hidden ">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/RTX-4080-1683643077931292349-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/asus-rog-strix-geforce-rtx-4080-16gb-356ecdb4`}>
+              <figure>
+                <div className="overflow-hidden ">
+                  <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/RTX-4080-1683643077931292349-original.jpg" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%] items-center  justify-center  ">
@@ -92,11 +96,13 @@ export function Slider() {
           </div>
 
           <div className="snap-start flex-shrink-0 h-[auto] w-[22.5%]  items-center  justify-center  ">
-            <figure>
-              <div className="overflow-hidden ">
-                <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/haste-2-1683642997724233422-original.jpg" alt="image" />
-              </div>
-            </figure>
+            <Link href={`/product/benq-zowie-fk1-c-mouse-for-esports-78c691a5`}>
+              <figure>
+                <div className="overflow-hidden ">
+                  <img className="border rounded-lg" src="https://api.hitech.mn/uploads/images/2023/5/9/haste-2-1683642997724233422-original.jpg" alt="image" />
+                </div>
+              </figure>
+            </Link>
           </div>
         </div>
       </div>
@@ -111,7 +117,7 @@ export const SmallBanner = () => {
         <Link href={`/product/amd-ryzen-9-7900x-12-core-24-thread-unlocked-desktop-processor-4ba6c388`} className="lg:w-[50%] w-[0]">
           <img src="https://promotions.newegg.com/nepro/23-0075/banner/800x120@2x.jpg" alt="" />
         </Link>
-        <Link href={`/product/amd-ryzen-9-7900x-12-core-24-thread-unlocked-desktop-processor-4ba6c388`} className="lg:w-[50%] w-[0]">
+        <Link href={`/product/gaming-build-34-54dc61a2`} className="lg:w-[50%] w-[0]">
           <img src="https://promotions.newegg.com/nepro/23-0570/800x120@2x.jpg" alt="" />
         </Link>
       </div>
