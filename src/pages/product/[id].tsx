@@ -6,6 +6,7 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { Navbar } from '../../../components/navbar';
 import { fetcherGet } from '../../../utils/fetcher';
 import { OrderContext } from '../_app';
+import Footer from '../../../components/footer';
 
 export default function SingleProduct() {
   const [product, setProducts] = useState<any>();
@@ -120,6 +121,7 @@ export default function SingleProduct() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

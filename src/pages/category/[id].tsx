@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Navbar } from '../../../components/navbar';
 import { Products } from '../../../components/products';
 import { fetcherPost } from '../../../utils/fetcher';
+import Footer from '../../../components/footer';
 
 export default function FilteredbyCatProducts({ products }: any) {
   const [open, setOpen] = useState<any>(false);
@@ -19,6 +20,7 @@ export default function FilteredbyCatProducts({ products }: any) {
         {/* <ProductFilter /> */}
         <Products products={products} />
       </div>
+      <Footer />
     </>
   );
 }

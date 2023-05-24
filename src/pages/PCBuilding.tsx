@@ -4,6 +4,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import BuildModal from '../../components/buildModal';
 import { Navbar } from '../../components/navbar';
 import { fetcherGet } from '../../utils/fetcher';
+import Footer from '../../components/footer';
 import { IoMdAdd } from 'react-icons/io';
 
 export default function PCBuilding() {
@@ -74,6 +75,7 @@ export default function PCBuilding() {
         <BuildModal BuildFilter={BuildFilter} products={selected} isScrolled={isScrolled} />
         {/* </div> */}
       </div>
+      <Footer />
     </>
   );
 }
