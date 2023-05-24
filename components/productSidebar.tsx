@@ -51,9 +51,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
                           </button> */}
                         </div>
                       </Transition.Child>
-                      <div className="px-4 sm:px-6">
-                        <Dialog.Title className="text-base font-semibold leading-6 text-gray-900">Panel title</Dialog.Title>
-                      </div>
+                      <div className="px-4 sm:px-6"></div>
                     </div>
                     <div className="relative mt-6 flex-1 px-4 sm:px-6">
                       {selected?.map((product: any) => (
