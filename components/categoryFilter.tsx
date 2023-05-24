@@ -26,23 +26,22 @@ export function CategoryFilter() {
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </button>
-        <ul className=" absolute top-14 right-[20%] hidden pt-1 group-hover:block z-50">
+        <ul className=" absolute top-14 bg-[#171717] rounded-md right-[20%] hidden pt-1 group-hover:block z-50">
           <Link href={`PCBuilding`}>
-            <li>
-              
+            <li className="cursor-pointer  px-2 py-1 relative text-white  hover:text-[#c10206]">
+              <button className=" text-start flex p-3 whitespace-nowrap w-full items-center focus:outline-none">Компьютер угсрах</button>
             </li>
           </Link>
           {categories?.map((category: any) => {
             return (
               <Link
                 key={category._id}
-                className="hover:text-gray-600"
                 onMouseEnter={() => {
                   setSelectedId(category?._id);
                 }}
                 href={`/category/${category.slugUrl}`}
               >
-                <li className={`cursor-pointer bg-[#171717] px-2 py-1 relative text-white  `}>
+                <li className={`cursor-pointer  px-2 py-1 relative text-white`}>
                   <button aria-haspopup="true" aria-controls="menu-lang" className="w-full text-start flex  items-center focus:outline-none">
                     {category.number === 2 || category.number === 1 || category.number === 3 || category.number === 4 ? (
                       <>
