@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { BiCategory } from 'react-icons/bi';
 import { fetcherGet } from '../utils/fetcher';
 import { SubCategory } from './subcategory';
-import { BiCategory } from 'react-icons/bi';
 
 export function CategoryFilter() {
   const [categories, setCategories] = useState<any>();
@@ -27,6 +27,11 @@ export function CategoryFilter() {
           </svg>
         </button>
         <ul className=" absolute top-14 right-[20%] hidden pt-1 group-hover:block z-50">
+          <Link href={`PCBuilding`}>
+            <li>
+              
+            </li>
+          </Link>
           {categories?.map((category: any) => {
             return (
               <Link

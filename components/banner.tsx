@@ -1,8 +1,8 @@
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Navigation, Pagination } from 'swiper';
 import 'swiper/css';
-import 'swiper/css/pagination';
 import 'swiper/css/navigation';
-import { Autoplay, Pagination, Navigation } from 'swiper';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 export const BigBanner = () => {
   return (
@@ -22,7 +22,7 @@ export const BigBanner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img className="bg-red-200" src="https://api.hitech.mn/uploads/images/2023/5/9/ORICO-1683642779960040729-original.jpg" alt="" />
+          <img className="bg-red-200" src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg" alt="" />
         </SwiperSlide>
         <SwiperSlide>
           <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />

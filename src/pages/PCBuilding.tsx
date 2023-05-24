@@ -1,15 +1,14 @@
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
+import useLocalStorageState from 'use-local-storage-state';
 import BuildModal from '../../components/buildModal';
 import { Navbar } from '../../components/navbar';
 import { fetcherGet } from '../../utils/fetcher';
 
 export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
-  const [selected, setSelected] = useState<any[]>([]);
+  const [selected, setSelected] = useLocalStorageState<any[]>('buildProduct', {defaultValue:[]});
   const [isScrolled, setIsScrolled] = useState(false);
-
-  console.log(selected);
 
   function BuildFilter(id: any) {
     fetcherGet(`products/build/${id}`).then((data) => setProducts(data));
@@ -65,7 +64,7 @@ export default function PCBuilding() {
           })}
         </div>
         {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
-        <BuildModal BuildFilter={BuildFilter} selected={selected} isScrolled={isScrolled} />
+        <BuildModal BuildFilter={BuildFilter} products={selected} isScrolled={isScrolled} />
         {/* </div> */}
       </div>
     </>
