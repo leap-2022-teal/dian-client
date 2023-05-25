@@ -8,71 +8,57 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 export const BigBanner = () => {
   return (
     <>
-      <div className=" hidden sm:block">
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-        >
-          <SwiperSlide>
-            <Link href={`/product/asrock-amd-radeon-rx-7900-xtx-phantom-gaming-24gb-oc-802ba4ec`}>
-              <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
-            </Link>
-          </SwiperSlide>
+      <Swiper
+        spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
+      >
+        {/* <div className=" hidden sm:block"> */}
+        <SwiperSlide>
+          <Link href={`/product/asrock-amd-radeon-rx-7900-xtx-phantom-gaming-24gb-oc-802ba4ec`}>
+            <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
+          </Link>
+        </SwiperSlide>
 
-          <SwiperSlide>
-            <Link href={`/product/amd-ryzen-5-7600-472f6911`}>
-              <img
-                className="bg-red-200"
-                src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg"
-                alt=""
-              />
-            </Link>
-          </SwiperSlide>
+        <SwiperSlide>
+          <Link href={`/product/amd-ryzen-5-7600-472f6911`}>
+            <img
+              className="bg-red-200"
+              src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg"
+              alt=""
+            />
+          </Link>
+        </SwiperSlide>
 
-          <SwiperSlide>
-            <Link href={`/product/phanteks-eclipse-p600s-1e263d2f`}>
-              <img src=" https://api.hitech.mn/uploads/images/2023/5/9/NV7-1683642859505632107-original.jpg" alt="" />
-            </Link>
-          </SwiperSlide>
-          <SwiperSlide>
-            <Link href={`/product/asus-rog-swift-pg259qnr-24-5-inch-fhd-1920x1080-fast-ips-360hz-aafa2def`}>
-              <img src="  https://api.hitech.mn/uploads/images/2023/5/9/PG48UQ-1683642833181786191-original.jpg" alt="" />
-            </Link>
-          </SwiperSlide>
-        </Swiper>
-      </div>
-      <div className="  sm:hidden">
-        <Swiper
-          spaceBetween={30}
-          centeredSlides={true}
-          autoplay={{
-            delay: 5000,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          navigation={true}
-          modules={[Autoplay, Pagination, Navigation]}
-          className="mySwiper"
-        >
+        <SwiperSlide>
+          <Link href={`/product/phanteks-eclipse-p600s-1e263d2f`}>
+            <img src=" https://api.hitech.mn/uploads/images/2023/5/9/NV7-1683642859505632107-original.jpg" alt="" />
+          </Link>
+        </SwiperSlide>
+        <SwiperSlide>
+          <Link href={`/product/asus-rog-swift-pg259qnr-24-5-inch-fhd-1920x1080-fast-ips-360hz-aafa2def`}>
+            <img src="  https://api.hitech.mn/uploads/images/2023/5/9/PG48UQ-1683642833181786191-original.jpg" alt="" />
+          </Link>
+        </SwiperSlide>
+        {/* </div> */}
+
+        {/* <div className="sm:hidden block">
           <SwiperSlide>
             <Link href={`/product/asus-rog-swift-pg259qnr-24-5-inch-fhd-1920x1080-fast-ips-360hz-aafa2def`}>
               <img src="https://www.pojo.com/wp-content/uploads/2018/03/ttces2-e1520000383183.jpg`" alt="" />
             </Link>
           </SwiperSlide>
-        </Swiper>
-      </div>
+        </div> */}
+      </Swiper>
     </>
   );
 };
