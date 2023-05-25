@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { HiOutlineMenu, HiShoppingCart } from 'react-icons/hi';
@@ -11,7 +12,6 @@ import UserLogin from './login';
 import ProductSidebar from './productSidebar';
 import Sidebar from './sidebar';
 import UserSignUp from './signUp';
-import { useRouter } from 'next/router';
 
 export function Navbar() {
   const [loginModal, setLoginModal] = useState(false);
@@ -108,7 +108,6 @@ export function Navbar() {
   function handleSubmit(e: any) {
     if (e === 'Enter') {
       // e.preventDefault();
-      console.log('submit');
       router.push(`/allProducts?search=${search}`);
     }
   }

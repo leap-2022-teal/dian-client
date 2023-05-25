@@ -8,7 +8,7 @@ import { Navbar } from '../../components/navbar';
 import { fetcherGet } from '../../utils/fetcher';
 
 export default function AllProducts() {
-  const [order, setOrder] = useLocalStorageState<any[]>('order', { defaultValue: [] });
+  const [order, setOrder] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
   const router = useRouter();
   const [limit] = useState(15);
   // let { page, id }: any = router.query;
