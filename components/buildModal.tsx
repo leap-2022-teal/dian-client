@@ -29,7 +29,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
     <>
       {showModal ? (
         <div
-          className={`mb-10 fixed top-[58px] md:top-[75.1px]  right-0 transition-all h-screen w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${
+          className={`mb-10 fixed top-[58px] md:top-[75.1px]  right-0 transition-all h-screen w-[15%] sm:w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${
             isScrolled ? 'opacity-90' : 'opacity-100'
           }`}
         >
@@ -41,7 +41,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               <>
                 {selectedProduct.map((product: any) => {
                   return product.categoryId === category._id ? (
-                    <div key={product._id} onClick={() => BuildFilter(category._id)} className="md:px-4">
+                    <div key={product._id} onClick={() => BuildFilter(category._id)} className="md:px-2 lg:px-4">
                       <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-0.5">
                         <img className="" src={product.imageUrl} alt="Product Image" />
                       </div>
@@ -81,10 +81,16 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                   return (
                     <div key={product._id} className="overflow-scroll flex justify-center px-4">
                       {product.categoryId === category._id ? (
-                        <div onClick={() => BuildFilter(category._id)} className="flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
+                        <div onClick={() => BuildFilter(category._id)} className="lg:flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
                           <figure className=" flex justify-center  ">
                             <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
                           </figure>
+                          <div className="sm:hidden ">
+                            <p className="text-white text-lg font-medium truncate p-1">{product.title}</p>
+                            <div className="flex  justify-between">
+                              <span className="text-white text-base font-normal p-1">{numeral(product.unitPrice).format('0,0')}₮</span>
+                            </div>
+                          </div>
                           <div className="hidden p-5 text-sm sm:flex flex-col w-full justify-between font-sans font-normal">
                             <p className="text-white text-lg font-semibold">{product.title}</p>
                             <div className="text-white text-base font-normal">Брэнд: {product.brand.title}</div>
@@ -99,7 +105,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                 })}
                 <button onClick={() => BuildFilter(category._id)}>
                   {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
-                    <div className="flex justify-center items-center">
+                    <div className="block md:flex justify-center items-center">
                       <img src={category.imageUrl} className=" w-[160px] cursor-pointer filter grayscale hover:grayscale-0" />
                       <p className="text-sm text-gray-500 dark:text-gray-400 pb-3">{category.title}</p>
                     </div>

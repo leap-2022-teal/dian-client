@@ -121,9 +121,9 @@ export function Navbar() {
             <Image src={Logo} alt="logo" />
           </Link>
           {/* <form className=" hidden md:block"> */}
-          <div className="relative ">
+          <div className="relative hidden">
             <input
-              className="block bg-white focus:text-gray-900 rounded-full leading-tight"
+              className="sm:block  bg-white focus:text-gray-900 rounded-full leading-tight"
               placeholder="Хайх"
               type="text"
               onKeyDown={(e) => handleSubmit(e.key)}
