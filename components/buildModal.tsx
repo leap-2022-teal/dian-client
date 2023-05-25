@@ -59,10 +59,10 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </>
             ))}
           </div>
-          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
+          {/* <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
             <div className="my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
             {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
-          </button>
+          {/* </button> */} */}
           <div className="h-32 w-1"></div>
         </div>
       ) : (
@@ -108,10 +108,10 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </div>
             ))}
           </div>
-          <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
+          {/* <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
             <div className="my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
-          </button>
+          </button> */}
           <div className="h-32 w-32"></div>
         </div>
       )}
