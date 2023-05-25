@@ -23,17 +23,18 @@ export const BigBanner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
+          <Link href={`/product/asrock-amd-radeon-rx-7900-xtx-phantom-gaming-24gb-oc-802ba4ec`}>
+            <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
+          </Link>
+        </SwiperSlide>
+
+        <SwiperSlide>
           <Link href={`/product/amd-ryzen-5-7600-472f6911`}>
             <img
               className="bg-red-200"
               src="https://m.media-amazon.com/images/S/stores-image-uploads-na-prod/5/AmazonStores/A2EUQ1WTGCTBG2/14e46b7c0535200c1aff8dae29498ccb.w1934.h773._CR0%2C0%2C1934%2C773_SX1934_.jpg"
               alt=""
             />
-          </Link>
-        </SwiperSlide>
-        <SwiperSlide>
-          <Link href={`/product/asrock-amd-radeon-rx-7900-xtx-phantom-gaming-24gb-oc-802ba4ec`}>
-            <img src="https://api.hitech.mn/uploads/images/2023/5/9/7900-1683642640771328372-original.jpg" alt="" />
           </Link>
         </SwiperSlide>
 

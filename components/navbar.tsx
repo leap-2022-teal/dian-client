@@ -122,7 +122,7 @@ export function Navbar() {
             <Image src={Logo} alt="logo" />
           </Link>
           {/* <form className=" hidden md:block"> */}
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <input
               className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
               placeholder="Хайх"
@@ -203,7 +203,7 @@ export function Navbar() {
               )}
 
               <div className="relative">
-                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-4 text-xs">{selected.length}</span>
+                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-3.5 justify-center items-center text-xs">{selected.length}</span>
                 <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
               </div>
             </div>

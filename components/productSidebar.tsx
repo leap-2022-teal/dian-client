@@ -32,7 +32,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
                 leaveFrom="translate-x-0"
                 leaveTo="translate-x-full"
               >
-                <Dialog.Panel className="pointer-events-auto relative md:top-[75px] top-[62px] w-screen max-w-md">
+                <Dialog.Panel className="pointer-events-auto relative md:top-[75px] top-[56px] w-screen max-w-md">
                   <div className="flex h-full flex-col overflow-y-scroll bg-[#171717] py-6 shadow-xl">
                     <div className="flex">
                       <Transition.Child
