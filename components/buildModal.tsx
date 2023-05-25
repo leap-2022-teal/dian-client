@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import useLocalStorageState from 'use-local-storage-state';
 import { fetcherGet } from '../utils/fetcher';
-import { BsBasket2 } from 'react-icons/bs';
 
 export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
   const [showModal, setShowModal] = useState<boolean>(true);
@@ -11,7 +10,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
   useEffect(() => {
     fetcherGet(`categories/subCategory/6ac583ed-76c9-419a-9b2f-df3290cf6bc1`).then((data) => setSubCategories(data));
   }, []);
-  const [selected, setSelected] = useLocalStorageState<any>('PCBuild', { defaultValue: {} });
+  const [selected, setSelected] = useLocalStorageState<any[]>('orderPCBuild', { defaultValue: [] });
   const [selectedProduct, setSelectedProduct] = useLocalStorageState<any[]>('buildProduct', { defaultValue: [] });
   const initialValue = 0;
   const total = selectedProduct.reduce(
@@ -24,54 +23,54 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
     initialValue
   );
   function BaraaNemeh() {
-    setSelected({ name: 'PCbuild', selectedProduct });
+    setSelected(selectedProduct);
   }
   return (
     <>
       {showModal ? (
-        <>
-          <div
-            className={`mb-10 fixed top-[75.1px] right-0 transition-all h-screen w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}
-          >
-            <button className="cursor-pointer  w-7 border-1 rounded-full text-white" type="button" onClick={() => setShowModal(!showModal)}>
-              <FaArrowLeft />
-            </button>
-            <div className="grid grid-cols-1">
-              {subCategories?.map((category: any) => (
-                <div key={category._id}>
-                  {selectedProduct.map((product: any) => {
-                    return (
-                      <div key={product._id} className="px-4">
-                        {product.categoryId === category._id ? (
-                          <>
-                            <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-0.5">
-                              <img className="" src={product.imageUrl} alt="Product Image" />
-                            </div>
-                          </>
-                        ) : null}
+        <div
+          className={`mb-10 fixed top-[61.5px] md:top-[75.1px]  right-0 transition-all h-screen w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${
+            isScrolled ? 'opacity-90' : 'opacity-100'
+          }`}
+        >
+          <button className="cursor-pointer  w-7 border-1 rounded-full text-white" type="button" onClick={() => setShowModal(!showModal)}>
+            <FaArrowLeft />
+          </button>
+          <div className="grid grid-cols-1 items-center">
+            {subCategories?.map((category: any) => (
+              <>
+                {selectedProduct.map((product: any) => {
+                  return product.categoryId === category._id ? (
+                    <div key={product._id} className="md:px-4">
+                      <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-0.5">
+                        <img className="" src={product.imageUrl} alt="Product Image" />
                       </div>
-                    );
-                  })}
-                  <button onClick={() => BuildFilter(category._id)}>
-                    {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
-                      <>
-                        <img src={category.imageUrl} className=" cursor-pointer filter grayscale hover:grayscale-0" />
-                        <p className="text-xs text-gray-500 dark:text-gray-400 m-1">{category.title}</p>
-                      </>
-                    )}
-                  </button>
-                </div>
-              ))}
-            </div>
-
-            {/* <button onClick={() => BaraaNemeh()} className="text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 rounded-lg p-1 ml-2">
-              Сагсалах
-            </button> */}
-            <div className="h-32 w-32"></div>
+                    </div>
+                  ) : null;
+                })}
+                <button onClick={() => BuildFilter(category._id)}>
+                  {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
+                    <>
+                      <img src={category.imageUrl} className=" cursor-pointer filter grayscale hover:grayscale-0" />
+                      <p className="text-xs text-gray-500 dark:text-gray-400 m-1">{category.title}</p>
+                    </>
+                  )}
+                </button>
+              </>
+            ))}
           </div>
-        </>
+          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl p-1 rounded-xl mx-2 mt-3 ">
+            <div className="my-auto text-center text-base font-semibold p-2">Сагсалах </div>
+            {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
+          </button>
+          <div className="h-32 w-32"></div>
+        </div>
       ) : (
-        <div className={`fixed top-[75.1px] right-0 transition-all overflow-x-auto h-screen duration-400  ease-in w-1/3  bg-[#171717] duration-300 ${isScrolled ? 'opacity-90' : 'opacity-100'}`}>
+        <div
+          className={`fixed top-[62px] md:top-[75.1px]  right-0 transition-all overflow-x-auto h-screen duration-400  ease-in w-1/3  bg-[#171717] duration-300 ${
+            isScrolled ? 'opacity-90' : 'opacity-100'
+          }`}
+        >
           <button className="cursor-pointer w-7 border-1 rounded-full text-white" type="button" onClick={() => setShowModal(!showModal)}>
             <FaArrowRight />
           </button>
@@ -98,7 +97,6 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                     </div>
                   );
                 })}
-
                 <button onClick={() => BuildFilter(category._id)}>
                   {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
                     <div className="flex justify-center items-center">
@@ -110,12 +108,10 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </div>
             ))}
           </div>
-
           <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl p-1 rounded-full mx-8 ">
             <div className="my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
           </button>
-
           <div className="h-32 w-32"></div>
         </div>
       )}

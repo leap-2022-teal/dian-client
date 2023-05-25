@@ -3,11 +3,12 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 import numeral from 'numeral';
 import { Fragment } from 'react';
+import { HiShoppingCart } from 'react-icons/hi';
 import useLocalStorageState from 'use-local-storage-state';
-import Quantity from './quantity';
 
 export default function ProductSidebar({ open, setOpen }: any) {
   const [selected, setSelected] = useLocalStorageState<any[]>('selected');
+  const [pcBuild, setPCBuild, { removeItem }] = useLocalStorageState<any[]>('orderPCBuild');
 
   function handleDeleteItem(product: any) {
     const deletedItem = selected?.filter((item: any) => item._id !== product);
@@ -53,7 +54,13 @@ export default function ProductSidebar({ open, setOpen }: any) {
                       </Transition.Child>
                       <div className="px-4 sm:px-6"></div>
                     </div>
-                    <div className="relative mt-6 flex-1 px-4 sm:px-6">
+                    <div className="relative mb-6 flex-1 px-4 sm:px-6">
+                      <div className="text-white pb-4">
+                        <div className="flex gap-3 items-center justify-items-center">
+                          <HiShoppingCart />
+                          Миний сагс
+                        </div>
+                      </div>
                       {selected?.map((product: any) => (
                         <div key={product._id} className="relative mb-6">
                           <div key={product._id} className=" flex hover:shadow-lg border border-gray-100 rounded-lg">
@@ -68,22 +75,51 @@ export default function ProductSidebar({ open, setOpen }: any) {
                               </Link>
                               <div className="flex  justify-between">
                                 <span className="text-white text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                                <Quantity />
+                                {/* <Quantity /> */}
                               </div>
+                              <button
+                                type="button"
+                                className=" top-1 right-1 absolute rounded-md text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
+                                onClick={() => handleDeleteItem(product._id)}
+                              >
+                                <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                              </button>
                             </div>
-                            <button
-                              type="button"
-                              className=" top-1 right-1 absolute rounded-md text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
-                              onClick={() => handleDeleteItem(product._id)}
-                            >
-                              <XMarkIcon className="h-5 w-5" aria-hidden="true" />
-                            </button>
                           </div>
                         </div>
                       ))}
-                      <div className="h-28 w-28"></div>
-                    </div>
+                      {pcBuild && (
+                        <div className="relative ">
+                          <div className="text-white">Угсарсан компьютер</div>
+                          <button
+                            type="button"
+                            className=" top-1 right-1 absolute rounded-md text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
+                            onClick={() => removeItem()}
+                          >
+                            <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                          </button>
+                          {pcBuild?.map((buildProducts: any) => (
+                            <div key={buildProducts._id} className=" my-3 flex hover:shadow-lg border border-gray-100 rounded-lg">
+                              <Link href={`/product/${buildProducts.slugUrl}`}>
+                                <figure className=" flex my-auto ">
+                                  <img className="w-[200px] rounded-tl rounded-bl " src={buildProducts.imageUrl} alt="Product Image" width={100} height={100} />
+                                </figure>
+                              </Link>
+                              <div className="p-5 text-sm flex flex-col w-full justify-between font-sans font-bold">
+                                {/* <Link href={`/product/${buildProducts.slugUrl}`}> */}
+                                <p className="text-white ">{buildProducts.title}</p>
+                                {/* </Link> */}
+                                <div className="flex  justify-between">
+                                  <span className="text-white text-sm font-bold">{numeral(buildProducts.unitPrice).format('0,0')}₮</span>
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    <div className=" h-12 w-1"></div>
                   </div>
+                    </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

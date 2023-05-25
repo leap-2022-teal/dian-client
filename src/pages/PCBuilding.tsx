@@ -49,14 +49,13 @@ export default function PCBuilding() {
     <>
       <Navbar />
       <div className="relative mt-2 md:mt-10">
-        <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {
             return (
               <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden relative mb-5">
                 <img className="mx-auto" src={product.imageUrl} alt="Product Image" />
                 <div className="px-5 pb-5 ">
                   <h3 className="text-sm font-semibold text-gray-800 mb-10">{product.title}</h3>
-
                   <div className="flex justify-between bottom-2">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
                     <button onClick={() => ItemSelect({ product })} className="text-[#171717] border-1 border-[#171717] text-sm  p-0.5 lg:p-1 border rounded-full">
@@ -71,9 +70,7 @@ export default function PCBuilding() {
             );
           })}
         </div>
-        {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
         <BuildModal BuildFilter={BuildFilter} products={selected} isScrolled={isScrolled} />
-        {/* </div> */}
       </div>
       <Footer />
     </>
