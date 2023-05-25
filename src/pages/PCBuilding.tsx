@@ -56,7 +56,6 @@ export default function PCBuilding() {
                 <img className="mx-auto" src={product.imageUrl} alt="Product Image" />
                 <div className="px-5 pb-5 ">
                   <h3 className="text-sm font-semibold text-gray-800 mb-10">{product.title}</h3>
-
                   <div className="flex justify-between bottom-2">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
                     <button onClick={() => ItemSelect({ product })} className="text-[#171717] border-1 border-[#171717] text-sm  p-0.5 lg:p-1 border rounded-full">
@@ -71,9 +70,7 @@ export default function PCBuilding() {
             );
           })}
         </div>
-        {/* <div className="absolute top-0 flex justify-end right-0 w-2/5"> */}
         <BuildModal BuildFilter={BuildFilter} products={selected} isScrolled={isScrolled} />
-        {/* </div> */}
       </div>
       <Footer />
     </>
