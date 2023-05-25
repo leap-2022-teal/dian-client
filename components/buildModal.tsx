@@ -41,7 +41,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               <>
                 {selectedProduct.map((product: any) => {
                   return product.categoryId === category._id ? (
-                    <div key={product._id} className="md:px-4">
+                    <div key={product._id} onClick={() => BuildFilter(category._id)} className="md:px-4">
                       <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-0.5">
                         <img className="" src={product.imageUrl} alt="Product Image" />
                       </div>
@@ -81,7 +81,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                   return (
                     <div key={product._id} className="overflow-scroll flex justify-center px-4">
                       {product.categoryId === category._id ? (
-                        <div className="flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
+                        <div onClick={() => BuildFilter(category._id)} className="flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
                           <figure className=" flex justify-center  ">
                             <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
                           </figure>
