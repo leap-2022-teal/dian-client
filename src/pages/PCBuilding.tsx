@@ -1,11 +1,11 @@
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
+import { IoMdAdd } from 'react-icons/io';
 import useLocalStorageState from 'use-local-storage-state';
 import BuildModal from '../../components/buildModal';
+import Footer from '../../components/footer';
 import { Navbar } from '../../components/navbar';
 import { fetcherGet } from '../../utils/fetcher';
-import Footer from '../../components/footer';
-import { IoMdAdd } from 'react-icons/io';
 
 export default function PCBuilding() {
   const [products, setProducts] = useState<any>();
@@ -48,8 +48,8 @@ export default function PCBuilding() {
   return (
     <>
       <Navbar />
-      <div className="relative mt-2 md:mt-10">
-        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="relative mt-2 md:mt-10 flex">
+        <div className="container mx-10 grid md:mx-auto sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {products?.map((product: any) => {
             return (
               <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden relative mb-5">
@@ -70,6 +70,7 @@ export default function PCBuilding() {
             );
           })}
         </div>
+        <div className="w-1/12 h-screen"></div>
         <BuildModal BuildFilter={BuildFilter} products={selected} isScrolled={isScrolled} />
       </div>
       <Footer />
