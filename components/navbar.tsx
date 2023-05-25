@@ -121,17 +121,17 @@ export function Navbar() {
             <Image src={Logo} alt="logo" />
           </Link>
           {/* <form className=" hidden md:block"> */}
-          <div className="relative hidden lg:block">
+          <div className="relative ">
             <input
-              className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
+              className="block bg-white focus:text-gray-900 rounded-full leading-tight"
               placeholder="Хайх"
               type="text"
               onKeyDown={(e) => handleSubmit(e.key)}
               // onSubmit={() => handleSubmit}
               onChange={(e) => setSearch(e.target.value)}
             />
-            <span className="absolute inset-y-0 right-0 pr-3 flex items-center">
-              <svg className="h-6 w-6 fill-current text-gray-500" viewBox="0 0 24 24">
+            <span className="absolute inset-y-0 right-0 pr-1 flex items-center">
+              <svg className="h-5 w-5 fill-current text-gray-500" viewBox="0 0 24 24">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>

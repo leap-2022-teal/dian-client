@@ -75,8 +75,6 @@ export default function UserLogin({ showModal, setShowModal, setRegisterModal }:
 
   return (
     <>
-      <ToastContainer position="top-right" autoClose={5000} hideProgressBar={false} newestOnTop={false} closeOnClick rtl={false} pauseOnFocusLoss draggable pauseOnHover />
-
       {showModal ? (
         <div className={` ${showModal ? 'backdrop-blur' : null} flex items-center justify-center fixed z-10 inset-0 overflow-y-auto`}>
           <div className="shadow-xl flex items-center justify-center">

@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { Navbar } from '../../components/navbar';
 import { fetcherGet } from '../../utils/fetcher';
+import { BsBasket2 } from 'react-icons/bs';
 
 export default function AllProducts() {
   const [order, setOrder] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
@@ -78,7 +79,9 @@ export default function AllProducts() {
                   </Link>
                   <div className="flex justify-between">
                     <span className="text-[#101010] text-sm font-bold">{numeral(product.unitPrice).format('0,0')}₮</span>
-                    <button onClick={() => ItemSelect({ product })}>select</button>
+                    <button onClick={() => ItemSelect({ product })} className="text-white bg-[#C10206] text-xl p-1 border rounded-md">
+                      <BsBasket2 />
+                    </button>
                   </div>
                 </div>
               </div>
