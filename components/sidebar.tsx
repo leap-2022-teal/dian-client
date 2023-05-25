@@ -87,13 +87,6 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                             </div>
 
                             <div className="flex flex-col gap-3 ml-8 mt-6 text-white ">
-                              <div onClick={savedProduct} className="hover:text-[#B52424] cursor-pointer">
-                                <div className="flex gap-3 items-center justify-items-center">
-                                  <HiShoppingCart />
-                                  Миний сагс
-                                </div>
-                              </div>
-
                               <div onClick={logOut} className="hover:text-[#B52424] cursor-pointer">
                                 <div className="flex gap-3 items-center justify-items-center">
                                   <MdOutlineLogout />
@@ -105,13 +98,14 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                         )}
 
                         <Link href="/PCBuilding">
-                          <div className="flex mb-3 ">
-                            {/* <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
-                              <HiOutlineWrenchScrewdriver />
-                            </div> */}
+                          <div className="flex  ">
                             <div className="text-lg hover:text-[#c10206] mt-4 font-semibold">Компьютер угсрах</div>
                           </div>
                         </Link>
+
+                        <div className="flex mb-4" onClick={savedProduct}>
+                          <div className="text-lg hover:text-[#c10206] mt-4 font-semibold">Миний сагс</div>
+                        </div>
 
                         <div className="flex flex-col">
                           <SidebarCategory />
