@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaUser } from 'react-icons/fa';
 import { HiOutlineMenu, HiShoppingCart } from 'react-icons/hi';
 import useLocalStorageState from 'use-local-storage-state';
@@ -22,6 +22,9 @@ export function Navbar() {
   const [open, setOpen] = useState<any>(false);
   const [search, setSearch] = useState(''); //Search utgaa input deer avna
   const router = useRouter();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [show, setShow] = useState<any>(false);
+  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
 
   // useEffect(() => {
   //   if (search) {
@@ -32,8 +35,20 @@ export function Navbar() {
   // function getSearch(search) {
   //   router.push(`/products?search=${search}`);
   // }
-  const [show, setShow] = useState<any>(false);
-  const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownVisible(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -107,7 +122,7 @@ export function Navbar() {
             <Image src={Logo} alt="logo" />
           </Link>
           {/* <form className=" hidden md:block"> */}
-          <div className="relative">
+          <div className="relative hidden lg:block">
             <input
               className="block bg-white focus:text-gray-900 rounded-full py-2 pl-3 pr-10 leading-tight"
               placeholder="Хайх"
@@ -135,10 +150,10 @@ export function Navbar() {
           <div className="hidden lg:flex items-center">
             <div className="flex gap-5 pr-10">
               {!user ? (
-                <>
+                <div ref={dropdownRef}>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
-                    <div className="absolute z-50 right-5 mt-10 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
+                    <div className="absolute z-50 right-3 mt-2 w-40 bg-[#171717] rounded-lg shadow-lg transition-opacity opacity-300">
                       <ul className="py-2 text-white">
                         <li className="px-4 py-2 hover:text-[#C10206] cursor-pointer" onClick={handleRegisterModal}>
                           Бүртгүүлэх
@@ -149,13 +164,13 @@ export function Navbar() {
                       </ul>
                     </div>
                   )}
-                </>
+                </div>
               ) : (
-                <>
+                <div ref={dropdownRef}>
                   <FaUser className="text-white text-xl relative my-3" onClick={toggleDropdown} />
                   {isDropdownVisible && (
                     <div
-                      className="absolute z-50 right-5 mt-12 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
+                      className="absolute z-50 right-3 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-[#171717] shadow-lg focus:outline-none"
                       role="menu"
                       aria-orientation="vertical"
                       aria-labelledby="menu-button"
@@ -184,11 +199,11 @@ export function Navbar() {
                       </div>
                     </div>
                   )}
-                </>
+                </div>
               )}
 
               <div className="relative">
-                <span className="absolute top-[-1px] right-[-10px] inline-flex items-center justify-center bg-red-600 text-white rounded-full w-3.5 h-3.5 text-xs">{selected.length}</span>
+                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-3.5 justify-center items-center text-xs">{selected.length}</span>
                 <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
               </div>
             </div>
@@ -199,6 +214,7 @@ export function Navbar() {
       <UserLogin showModal={loginModal} setShowModal={setLoginModal} setRegisterModal={setRegisterModal} />
       <UserSignUp showModal={registerModal} setShowModal={setRegisterModal} setLoginModal={setLoginModal} />
       <Sidebar setOpen={setOpen} showSidebar={show} setShowSidebar={setShow} handleRegisterModal={handleRegisterModal} handleLoginModal={handleLoginModal} logOut={logOut} user={user} />
+
       <ProductSidebar open={open} setOpen={setOpen} />
     </>
   );

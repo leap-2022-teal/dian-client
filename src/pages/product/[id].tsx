@@ -6,6 +6,7 @@ import { CiDeliveryTruck } from 'react-icons/ci';
 import { Navbar } from '../../../components/navbar';
 import { fetcherGet } from '../../../utils/fetcher';
 import { OrderContext } from '../_app';
+import Footer from '../../../components/footer';
 
 export default function SingleProduct() {
   const [product, setProducts] = useState<any>();
@@ -36,7 +37,7 @@ export default function SingleProduct() {
   return (
     <>
       <Navbar />
-      <div className="container px-10 py-24 mx-auto cursor-pointer mt-10 shadow-lg">
+      <div className="container px-10 py-24 mx-auto cursor-pointer mt-20 shadow-lg">
         <div className=" mx-auto flex flex-wrap">
           <img alt={product && product[0]?.title} className="lg:w-1/3 w-full lg:h-auto h-60 object-cover object-center rounded cursor-pointer" src={product && product[0].imageUrl} />
           <div className="lg:w-1/2 lg:pl-10 lg:py-6 mt-6 lg:mt-0 cursor-pointer">
@@ -119,6 +120,10 @@ export default function SingleProduct() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className=" w-screen">
+        <Footer />
       </div>
     </>
   );

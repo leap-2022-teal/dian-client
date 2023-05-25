@@ -5,11 +5,9 @@ import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import useLocalStorageState from 'use-local-storage-state';
 import { Navbar } from '../../components/navbar';
-import Pagination from '../../components/pagination';
-import { fetcherGet, fetcherPost } from '../../utils/fetcher';
-import axios from 'axios';
+import { fetcherGet } from '../../utils/fetcher';
 
-export default function allProducts() {
+export default function AllProducts() {
   const [order, setOrder] = useLocalStorageState<any[]>('order', { defaultValue: [] });
   const router = useRouter();
   const [limit] = useState(15);

@@ -1,10 +1,10 @@
 import { Dialog, Transition } from '@headlessui/react';
+import Link from 'next/link';
 import { Fragment, useEffect } from 'react';
 // import SidebarCategory from './sidebarCategory';
-import { HiChip } from 'react-icons/hi';
-import { SidebarCategory } from './sidebarCategory';
-import { HiOutlineWrenchScrewdriver, HiShoppingCart } from 'react-icons/hi2';
+import { HiShoppingCart } from 'react-icons/hi2';
 import { MdOutlineLogout } from 'react-icons/md';
+import { SidebarCategory } from './sidebarCategory';
 
 export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal, handleRegisterModal, user, logOut, setOpen }: any) {
   useEffect(() => {
@@ -28,7 +28,7 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
   }
 
   return (
-    <>
+    <div>
       <Transition.Root show={showSidebar} as={Fragment}>
         <Dialog as="div" className="relative z-10 pt-11" onClose={setShowSidebar}>
           <Transition.Child as={Fragment} enter="ease-in-out duration-500" enterFrom="opacity-0" enterTo="opacity-100" leave="ease-in-out duration-500" leaveFrom="opacity-100]" leaveTo="opacity-0">
@@ -47,7 +47,7 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                   leaveFrom="translate-x-0"
                   leaveTo="translate-x-full"
                 >
-                  <Dialog.Panel className="pointer-events-auto relative top-[73px] w-screen max-w-md">
+                  <Dialog.Panel className="pointer-events-auto relative md:top-[75px] top-[56px] w-screen max-w-md">
                     <div className="flex h-full flex-col overflow-y-scroll bg-[#171717] py-6 shadow-xl">
                       <div className="flex">
                         <Transition.Child
@@ -59,16 +59,8 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                           leaveFrom="opacity-100"
                           leaveTo="opacity-0"
                         >
-                          <div>
-                            {/* <button type="button" className="rounded-md text-gray-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-white" onClick={() => setOpen(false)}>
-                              <span className="sr-only">Close panel</span>
-                              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                            </button> */}
-                          </div>
+                          <div></div>
                         </Transition.Child>
-                        {/* <div className="px-4 sm:px-6">
-                          <Dialog.Title className="text-base font-semibold leading-6 text-gray-100">Нэвтрэх</Dialog.Title>
-                        </div> */}
                       </div>
                       <div className="relative mt-6 flex-1 px-4 sm:px-6 text-white">
                         {!user ? (
@@ -81,7 +73,7 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                             </button>
                           </div>
                         ) : (
-                          <div className="flex flex-col gap-5 border-b-[1px] border-b-gray-500 pb-10">
+                          <div className="flex flex-col gap-5 pb-10">
                             <div className="flex items-center gap-3">
                               <div className="relative ">
                                 <img
@@ -112,16 +104,16 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
                           </div>
                         )}
 
-                        <a href="/PCBuilding">
-                          <div className="flex py-10 border-b-[1px] border-b-gray-500 cursor-pointer">
+                        <Link href="/PCBuilding">
+                          <div className="flex mb-3 ">
                             {/* <div className="my-auto pl-2 pr-2 text-lg text-[#B52424]">
                               <HiOutlineWrenchScrewdriver />
                             </div> */}
-                            <div className="text-lg">Компьютер угсрах</div>
+                            <div className="text-lg hover:text-[#c10206] mt-4 font-semibold">Компьютер угсрах</div>
                           </div>
-                        </a>
+                        </Link>
 
-                        <div className="flex flex-col py-10 border-b-[1px] border-b-gray-500">
+                        <div className="flex flex-col">
                           <SidebarCategory />
                         </div>
                       </div>
@@ -133,6 +125,6 @@ export default function Sidebar({ setShowSidebar, showSidebar, handleLoginModal,
           </div>
         </Dialog>
       </Transition.Root>
-    </>
+    </div>
   );
 }
