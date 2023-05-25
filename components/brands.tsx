@@ -1,7 +1,7 @@
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { fetcherGet } from '../utils/fetcher';
-import Link from 'next/link';
 
 export default function Brands() {
   const [brands, setBrands] = useState<any>();
@@ -23,11 +23,10 @@ export default function Brands() {
 
         <div className=" flex flex-wrap p-2 justify-around items-center">
           {brands?.map((brand: any) => (
-            <Link href={`allProducts?search=${brand.title}`}>
-            
-            <div key={brand._id} className="w-[100px] h-[100px] mx-4 my-4 rounded-sm">
-              <img className="filter grayscale" src={brand.imageUrl} alt="" />
-            </div>
+            <Link key={brand._id} href={`allProducts?search=${brand.title}`}>
+              <div className="w-[100px] h-[100px] mx-4 my-4 rounded-sm">
+                <img className="filter grayscale" src={brand.imageUrl} alt="" />
+              </div>
             </Link>
           ))}
         </div>

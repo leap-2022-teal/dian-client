@@ -49,7 +49,7 @@ export default function PCBuilding() {
     <>
       <Navbar />
       <div className="relative mt-2 md:mt-10">
-        <div className="container mx-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {products?.map((product: any) => {
             return (
               <div key={product._id} className="bg-white shadow-md rounded-lg overflow-hidden relative mb-5">
