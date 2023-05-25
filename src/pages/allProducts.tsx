@@ -12,7 +12,7 @@ export default function AllProducts() {
   const [order, setOrder] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
   const router = useRouter();
   const [limit] = useState(15);
-  // let { page, id }: any = router.query;
+  const { page }: any = router.query;
   const [products, setProducts] = useState([]);
 
   const { search } = router.query;
@@ -21,9 +21,12 @@ export default function AllProducts() {
   //     axios.get(`http://localhost:8000/products?searchQuery=${search}`).then((res) => setProducts(res.data));
   //   }, [search]);
 
+  console.log(router.isReady);
   useEffect(() => {
-    fetcherGet(`products?searchQuery=${search ? search : ''}`).then((data) => setProducts(data.list));
-  }, [search]);
+    if (router.isReady) {
+      fetcherGet(`products?searchQuery=${search ? search : ''}&page=${page ? page : ''}`).then((data) => setProducts(data.list));
+    }
+  }, [search, page]);
 
   //   useEffect(() => {
   //     const fetchProductCount = async () => {
@@ -86,6 +89,9 @@ export default function AllProducts() {
                 </div>
               </div>
             ))}
+            {/* <button onClick={() => setPage((old) => Math.max(old - 1, 1))}>Previous page</button>
+            <span>{}</span>
+            <button onClick={() => setPage}>Next page</button> */}
           </div>
 
           {/* <Pagination productCount={productCount} limit={limit} previousPage={previousPage} nextPage={nextPage} /> */}
