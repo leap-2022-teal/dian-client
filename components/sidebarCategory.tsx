@@ -13,15 +13,12 @@ export function SidebarCategory() {
   return (
     <>
       <div className="flex">
-        {/* <div className="my-auto pl-2 pr-1 text-xl">
-          <BiCategory />
-        </div> */}
         <div className="text-lg font-semibold">Ангилал</div>
       </div>
 
       {categories?.map((category: any) => (
         <>
-          <div className=" mt-6 hover:text-[#c10206] flex gap-2 items-center justify-items-center" key={category._id}>
+          <div className=" mt-1 hover:text-[#c10206] flex gap-2 items-center justify-items-center" key={category._id}>
             <BiCategory />
 
             <Link href={`/category/${category.slugUrl}`}>{category.title}</Link>
