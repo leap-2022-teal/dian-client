@@ -61,7 +61,9 @@ export function SpecialProduct() {
               </Link>
             </SwiperSlide>
             <SwiperSlide>
-              <img className="relative rounded-lg border border-gray-300" src="https://www.geekawhat.com/wp-content/uploads/2022/11/Best-Prebuilt-PCs-Featured-Image.jpg" alt="" />
+              <Link href={`/product/phanteks-enthoo-evolv-x-glass-matte-white-f884bdda`}>
+                <img className="relative rounded-lg border border-gray-300" src="https://www.geekawhat.com/wp-content/uploads/2022/11/Best-Prebuilt-PCs-Featured-Image.jpg" alt="" />
+              </Link>
             </SwiperSlide>
             <SwiperSlide>
               <Link href={`product/dxracer-gaming-chair-pink-8084a411`}>

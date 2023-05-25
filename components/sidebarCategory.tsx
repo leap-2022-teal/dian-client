@@ -33,6 +33,8 @@ export function SidebarCategory() {
           ) : null}
         </>
       ))}
+
+      <div className="h-32 w-32"></div>
     </>
   );
 }
