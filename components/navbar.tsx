@@ -203,7 +203,7 @@ export function Navbar() {
               )}
 
               <div className="relative">
-                <span className="absolute top-[-1px] right-[-10px] inline-flex items-center justify-center bg-red-600 text-white rounded-full w-3.5 h-3.5 text-xs">{selected.length}</span>
+                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-4 text-xs">{selected.length}</span>
                 <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
               </div>
             </div>
