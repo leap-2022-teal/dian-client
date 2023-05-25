@@ -59,8 +59,8 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </>
             ))}
           </div>
-          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl p-1 rounded-xl mx-2 mt-3 ">
-            <div className="my-auto text-center md:text-base text-xs font-semibold p-2">Сагсалах</div>
+          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
+            <div className="my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
             {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
           </button>
           <div className="h-32 w-1"></div>
@@ -85,7 +85,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                           <figure className=" flex justify-center  ">
                             <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
                           </figure>
-                          <div className="p-5 text-sm flex flex-col w-full justify-between font-sans font-normal">
+                          <div className="hidden p-5 text-sm sm:flex flex-col w-full justify-between font-sans font-normal">
                             <p className="text-white text-lg font-semibold">{product.title}</p>
                             <div className="text-white text-base font-normal">Брэнд: {product.brand.title}</div>
                             <div className="flex  justify-between">
@@ -108,7 +108,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </div>
             ))}
           </div>
-          <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl p-1 rounded-full mx-8 ">
+          <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
             <div className="my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
           </button>
