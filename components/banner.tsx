@@ -51,7 +51,7 @@ export const BigBanner = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="  sm:hidden">
+      <div className=" sm:hidden">
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
