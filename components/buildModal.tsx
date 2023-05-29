@@ -24,7 +24,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
     initialValue
   );
   function BaraaNemeh() {
-    setSelectedProduct(selectedProduct);
+    setSelected(selectedProduct);
   }
   function handleDeleteItem(product: any) {
     const deletedItem = selectedProduct?.filter((item: any) => item._id !== product);
@@ -86,7 +86,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                   return (
                     <div key={product._id} className="overflow-scroll flex justify-center px-4">
                       {product.categoryId === category._id ? (
-                        <div className="relative">
+                        <div className="relative w-[100%]">
                           <button
                             type="button"
                             className=" top-1 right-1 absolute rounded-md z-20 text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
