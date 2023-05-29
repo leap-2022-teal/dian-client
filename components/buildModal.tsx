@@ -2,6 +2,7 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { HiShoppingCart } from 'react-icons/hi';
 import useLocalStorageState from 'use-local-storage-state';
 import { fetcherGet } from '../utils/fetcher';
 
@@ -64,8 +65,9 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </>
             ))}
           </div>
-          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
-            <div className="my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
+          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%]  md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
+            <div className=" hidden lg:block my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
+            <HiShoppingCart className=" mx-auto lg:hidden text-white text-xl my-3" />
             {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
           </button>
           <div className="h-32 w-1"></div>
@@ -129,7 +131,8 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
             ))}
           </div>
           <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
-            <div className="my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
+            <div className="hidden lg:block my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
+            <HiShoppingCart className=" lg:hidden text-white text-xl my-3" />
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
           </button>
           <div className="h-32 w-32"></div>
