@@ -1,3 +1,4 @@
+import { XMarkIcon } from '@heroicons/react/24/outline';
 import numeral from 'numeral';
 import { useEffect, useState } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
@@ -23,7 +24,11 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
     initialValue
   );
   function BaraaNemeh() {
-    setSelected(selectedProduct);
+    setSelectedProduct(selectedProduct);
+  }
+  function handleDeleteItem(product: any) {
+    const deletedItem = selectedProduct?.filter((item: any) => item._id !== product);
+    setSelectedProduct(deletedItem);
   }
   return (
     <>
@@ -59,10 +64,10 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </>
             ))}
           </div>
-          {/* <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
+          <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 md:w-[85%] md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
             <div className="my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
             {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
-          {/* </button> */}
+          </button>
           <div className="h-32 w-1"></div>
         </div>
       ) : (
@@ -81,21 +86,30 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                   return (
                     <div key={product._id} className="overflow-scroll flex justify-center px-4">
                       {product.categoryId === category._id ? (
-                        <div onClick={() => BuildFilter(category._id)} className="lg:flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
-                          <figure className=" flex justify-center  ">
-                            <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
-                          </figure>
-                          <div className="sm:hidden ">
-                            <p className="text-white text-lg font-medium truncate p-1">{product.title}</p>
-                            <div className="flex  justify-between">
-                              <span className="text-white text-base font-normal p-1">{numeral(product.unitPrice).format('0,0')}₮</span>
+                        <div className="relative">
+                          <button
+                            type="button"
+                            className=" top-1 right-1 absolute rounded-md z-20 text-gray-300 hover:text-red-800 focus:outline-none focus:ring-2 focus:ring-white"
+                            onClick={() => handleDeleteItem(product._id)}
+                          >
+                            <XMarkIcon className="h-5 w-5" aria-hidden="true" />
+                          </button>
+                          <div onClick={() => BuildFilter(category._id)} className="lg:flex  w-[100%] border border-gray-100 rounded-lg overflow-hidden ">
+                            <figure className=" flex justify-center  ">
+                              <img className="w-[190px]" src={product.imageUrl} alt="Product Image" width={100} height={100} />
+                            </figure>
+                            <div className="sm:hidden ">
+                              <p className="text-white text-lg font-medium truncate p-1">{product.title}</p>
+                              <div className="flex  justify-between">
+                                <span className="text-white text-base font-normal p-1">{numeral(product.unitPrice).format('0,0')}₮</span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="hidden p-5 text-sm sm:flex flex-col w-full justify-between font-sans font-normal">
-                            <p className="text-white text-lg font-semibold">{product.title}</p>
-                            <div className="text-white text-base font-normal">Брэнд: {product.brand.title}</div>
-                            <div className="flex  justify-between">
-                              <span className="text-white text-base font-normal">{numeral(product.unitPrice).format('0,0')}₮</span>
+                            <div className="hidden p-5 text-sm sm:flex flex-col w-full justify-between font-sans font-normal">
+                              <p className="text-white text-lg font-semibold">{product.title}</p>
+                              <div className="text-white text-base font-normal">Брэнд: {product.brand.title}</div>
+                              <div className="flex  justify-between">
+                                <span className="text-white text-base font-normal">{numeral(product.unitPrice).format('0,0')}₮</span>
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -114,10 +128,10 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
               </div>
             ))}
           </div>
-          {/* <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
+          <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
             <div className="my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
-          </button> */}
+          </button>
           <div className="h-32 w-32"></div>
         </div>
       )}
