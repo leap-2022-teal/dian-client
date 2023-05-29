@@ -47,8 +47,8 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                 {selectedProduct.map((product: any) => {
                   return product.categoryId === category._id ? (
                     <div key={product._id} onClick={() => BuildFilter(category._id)} className="md:px-2 lg:px-4">
-                      <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-0.5">
-                        <img className="" src={product.imageUrl} alt="Product Image" />
+                      <div className="flex bg-white shadow-md rounded-lg overflow-hidden mb-5">
+                        <img className="w-40" src={product.imageUrl} alt="Product Image" />
                       </div>
                     </div>
                   ) : null;
@@ -56,7 +56,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                 <button onClick={() => BuildFilter(category._id)}>
                   {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
                     <>
-                      <img src={category.imageUrl} className=" cursor-pointer filter grayscale hover:grayscale-0" />
+                      <img src={category.imageUrl} className="w-36 cursor-pointer filter grayscale hover:grayscale-0" />
                       <p className="text-xs hidden  text-gray-500 dark:text-gray-400 m-1">{category.title}</p>
                     </>
                   )}
