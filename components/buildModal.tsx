@@ -5,6 +5,7 @@ import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { HiShoppingCart } from 'react-icons/hi';
 import useLocalStorageState from 'use-local-storage-state';
 import { fetcherGet } from '../utils/fetcher';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
   const [showModal, setShowModal] = useState<boolean>(true);
@@ -13,7 +14,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
     fetcherGet(`categories/subCategory/6ac583ed-76c9-419a-9b2f-df3290cf6bc1`).then((data) => setSubCategories(data));
   }, []);
   const [selected, setSelected] = useLocalStorageState<any[]>('orderPCBuild', { defaultValue: [] });
-  const [selectedProduct, setSelectedProduct] = useLocalStorageState<any[]>('buildProduct', { defaultValue: [] });
+  const [selectedProduct, setSelectedProduct, { removeItem }] = useLocalStorageState<any[]>('buildProduct', { defaultValue: [] });
   const initialValue = 0;
   const total = selectedProduct.reduce(
     (
@@ -26,6 +27,16 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
   );
   function BaraaNemeh() {
     setSelected(selectedProduct);
+    toast.success(`Бараа сагсанд хадгалагдлаа`, {
+      position: 'top-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      draggable: true,
+      progress: undefined,
+      theme: 'dark',
+    });
+    removeItem();
   }
   function handleDeleteItem(product: any) {
     const deletedItem = selectedProduct?.filter((item: any) => item._id !== product);
@@ -33,6 +44,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
   }
   return (
     <>
+      <ToastContainer />
       {showModal ? (
         <div
           className={`mb-10 fixed top-[58px] md:top-[75.1px]  right-0 transition-all h-screen w-[15%] sm:w-1/12 overflow-x-auto  duration-400 ease-in bg-[#171717] duration-300 ${
@@ -66,9 +78,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
             ))}
           </div>
           <button onClick={() => BaraaNemeh()} className=" text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%]  md:text-xl md:p-1 rounded-xl md:mx-2 md:mt-3 ">
-            <div className=" hidden lg:block my-auto text-center md:text-base  md:font-semibold p-2">Сагсалах</div>
-            <HiShoppingCart className=" mx-auto lg:hidden text-white text-xl my-3" />
-            {/* <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div> */}
+            <HiShoppingCart className=" mx-auto text-white text-xl my-2" />
           </button>
           <div className="h-32 w-1"></div>
         </div>
@@ -131,8 +141,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
             ))}
           </div>
           <button onClick={() => BaraaNemeh()} className="flex justify-between text-white bg-[#C10206] hover:bg-[#A50113] opacity-90 w-[85%] text-xl md:p-1 rounded-full md:mx-8 ">
-            <div className="hidden lg:block my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
-            <HiShoppingCart className=" lg:hidden text-white text-xl my-3" />
+            <div className=" lg:block my-auto text-base font-semibold ml-3">Сагсанд хийх</div>
             <div className="text-[#C10206] text-base bg-white px-3 py-2 rounded-full">{numeral(total).format('0,0')}₮</div>
           </button>
           <div className="h-32 w-32"></div>

@@ -88,7 +88,7 @@ export default function ProductSidebar({ open, setOpen }: any) {
                           </div>
                         </div>
                       ))}
-                      {pcBuild && (
+                      {pcBuild?.length && (
                         <div className="relative ">
                           <div className="text-white">Угсарсан компьютер</div>
                           <button
@@ -117,9 +117,9 @@ export default function ProductSidebar({ open, setOpen }: any) {
                           ))}
                         </div>
                       )}
-                    <div className=" h-12 w-1"></div>
-                  </div>
+                      <div className=" h-12 w-1"></div>
                     </div>
+                  </div>
                 </Dialog.Panel>
               </Transition.Child>
             </div>

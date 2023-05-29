@@ -26,7 +26,7 @@ export function CategoryFilter() {
             <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
           </svg>
         </button>
-        <ul className=" absolute top-15 bg-[#171717] rounded-md right-[30%] hidden pt-1 group-hover:block z-50">
+        <ul className=" absolute top-15 bg-[#171717] rounded-md right-[20%] hidden pt-1 group-hover:block z-50">
           <Link href={`PCBuilding`}>
             <li className="cursor-pointer  px-2 py-1 relative text-white  hover:text-[#c10206]">
               <button className=" text-start flex p-3 whitespace-nowrap w-full items-center focus:outline-none">Компьютер угсрах</button>

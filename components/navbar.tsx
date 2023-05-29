@@ -25,6 +25,9 @@ export function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [show, setShow] = useState<any>(false);
   const [selected, setSelected] = useLocalStorageState<any[]>('selected', { defaultValue: [] });
+  const [orderPCBuild, setOrderPCBuild] = useLocalStorageState<any[]>('orderPCBuild', { defaultValue: [] });
+
+  const basketCount = selected.length + orderPCBuild.length;
 
   // useEffect(() => {
   //   if (search) {
@@ -202,7 +205,7 @@ export function Navbar() {
               )}
 
               <div className="relative">
-                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-3.5 justify-center items-center text-xs">{selected.length}</span>
+                <span className="absolute top-[-1px] right-[-11px] flex my-auto bg-red-600 text-white rounded-full w-3.5 h-3.5 justify-center items-center text-xs">{basketCount}</span>
                 <HiShoppingCart onClick={() => setOpen(true)} className="text-white text-xl my-3" />
               </div>
             </div>
