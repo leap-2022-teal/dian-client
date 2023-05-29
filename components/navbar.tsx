@@ -121,7 +121,7 @@ export function Navbar() {
             <Image src={Logo} alt="logo" />
           </Link>
           {/* <form className=" hidden md:block"> */}
-          <div className="relative hidden">
+          <div className="relative hidden md:block">
             <input
               className="sm:block  bg-white focus:text-gray-900 rounded-full leading-tight"
               placeholder="Хайх"
