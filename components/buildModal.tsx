@@ -57,7 +57,7 @@ export default function BuildModal({ BuildFilter, products, isScrolled }: any) {
                 <button onClick={() => BuildFilter(category._id)}>
                   {products.filter((product: any) => product.categoryId === category._id).length === 0 && (
                     <>
-                      <img src={category.imageUrl} className="w-36 cursor-pointer filter grayscale hover:grayscale-0" />
+                      <img src={category.imageUrl} className="w-40 cursor-pointer filter grayscale hover:grayscale-0" />
                       <p className="text-xs hidden  text-gray-500 dark:text-gray-400 m-1">{category.title}</p>
                     </>
                   )}
